@@ -10,14 +10,22 @@ const CONCENTRATION_DISPLAY_DECIMALS = 2;
  * Formats a mL value for display (2 decimal places).
  */
 export function formatMl(value: number): string {
-  return value.toFixed(ML_DISPLAY_DECIMALS);
+  const formatted = value.toFixed(ML_DISPLAY_DECIMALS);
+  if (formatted === "0.00" && value > 0) {
+    return "< 0.01";
+  }
+  return formatted;
 }
 
 /**
  * Formats syringe units for display (whole numbers).
  */
 export function formatSyringeUnits(value: number): string {
-  return Math.round(value).toString();
+  const rounded = Math.round(value);
+  if (rounded === 0 && value > 0) {
+    return "< 1";
+  }
+  return rounded.toString();
 }
 
 /**
