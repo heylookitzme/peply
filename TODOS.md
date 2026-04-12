@@ -1,4 +1,4 @@
-# TODOS.md - InjectWise
+# TODOS.md - Peply
 
 Last updated: 2026-04-12
 
@@ -19,7 +19,7 @@ Last updated: 2026-04-12
 - [x] Define Zod validation schemas for content models
 - [x] Write CLAUDE.md (project operating contract)
 - [x] Write ARCHITECTURE.md (system design)
-- [x] Write product brief (`inject-wise-product-brief-tightened.md`)
+- [x] Write product brief (`peply-product-brief-tightened.md`)
 - [x] Write build-ready notes (`BUILD-READY-NOTES.md`)
 - [x] Initialize git repository and push to GitHub (v0.1.0)
 - [x] Add `.env.example` (v0.1.1.0)
@@ -27,7 +27,7 @@ Last updated: 2026-04-12
 - [x] Install `@vitest/coverage-v8` for coverage reporting (v0.1.1.0)
 - [ ] Set up GitHub Actions CI pipeline (lint, typecheck, test, build)
 - [ ] Connect Vercel for preview deployments
-- [ ] Rename all references from InjectWise to InjectWise
+- [x] Rename all references to Peply (v0.1.1.0)
 
 ## Sprint 1 — Calculator MVP
 

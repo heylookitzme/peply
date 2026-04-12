@@ -1,4 +1,4 @@
-# STATUS.md - InjectWise (formerly InjectWise)
+# STATUS.md - Peply (formerly Peply)
 
 **Audit date:** 2026-04-12
 **Auditor:** Claude Code (automated)
@@ -48,7 +48,7 @@
 ### Actual directory structure
 
 ```
-InjectWise/
+Peply/
 |-- src/
 |   |-- app/
 |   |   |-- globals.css (26 lines)
@@ -96,7 +96,7 @@ InjectWise/
 |-- CLAUDE.md
 |-- README-next.md
 |-- Wilbur Schedule.md
-|-- inject-wise-product-brief-tightened.md
+|-- peply-product-brief-tightened.md
 |-- package.json
 |-- tsconfig.json
 |-- vitest.config.ts
@@ -138,7 +138,7 @@ InjectWise/
 |------|-------|
 | `Wilbur Schedule.md` | Personal peptide dosing schedule (from Grok conversation). Not project code. |
 | `BUILD-READY-NOTES.md` | Planning document from pre-build phase |
-| `inject-wise-product-brief-tightened.md` | Product brief |
+| `peply-product-brief-tightened.md` | Product brief |
 | `README-next.md` | Next.js default readme |
 | `pnpm-workspace.yaml` | Workspace config |
 
@@ -152,7 +152,7 @@ InjectWise/
 | `DESIGN.md` | **No** | Not created yet. CLAUDE.md says to write when contents are real. |
 | `COMPOUNDS.md` | **No** | Not created yet. No compound data exists in the codebase. |
 | `TODOS.md` | **No** | Not created yet. |
-| Product brief | **Yes** | `inject-wise-product-brief-tightened.md` - 266-line product brief defining MVP scope, 4 initial compounds (Semaglutide, Tirzepatide, Retatrutide, Tesamorelin), user flows, content policy, data model direction, and build sequence. |
+| Product brief | **Yes** | `peply-product-brief-tightened.md` - 266-line product brief defining MVP scope, 4 initial compounds (Semaglutide, Tirzepatide, Retatrutide, Tesamorelin), user flows, content policy, data model direction, and build sequence. |
 
 ---
 
@@ -234,17 +234,17 @@ None have been implemented yet.
 
 ---
 
-## 9. Naming: InjectWise -> InjectWise
+## 9. Naming: Peply -> Peply
 
-The following files/configs still reference "InjectWise" or "inject-wise":
+The following files/configs still reference "Peply" or "peply":
 
 | Location | Reference |
 |----------|-----------|
-| `package.json` | `"name": "inject-wise"` |
+| `package.json` | `"name": "peply"` |
 | `CLAUDE.md` | Title, all references throughout |
 | `ARCHITECTURE.md` | Title, all references throughout |
 | `BUILD-READY-NOTES.md` | Title, all references throughout |
-| `inject-wise-product-brief-tightened.md` | Filename and all content |
+| `peply-product-brief-tightened.md` | Filename and all content |
 | `src/app/layout.tsx` | Likely metadata title/description |
 | `README-next.md` | Possible references |
 
@@ -258,7 +258,7 @@ Based on the CLAUDE.md sprint plan and current state:
 
 1. **Initialize git repository** - This is the #1 priority. No version control means no history, no branches, no collaboration, no CI/CD.
 2. **Add `.gitignore`** - Must exclude `node_modules/`, `.next/`, `.env`, etc.
-3. **Rename InjectWise -> InjectWise** across all files (package.json, docs, source code metadata)
+3. **Rename Peply -> Peply** across all files (package.json, docs, source code metadata)
 4. **Fix lint error** in `src/app/layout.tsx:34` (`<a>` -> `<Link>`)
 5. **Install `@vitest/coverage-v8`** to enable coverage reporting
 
@@ -305,6 +305,6 @@ But critical infrastructure is missing:
 - No deployment target connected
 - No component or E2E tests
 - No compound data yet
-- All references still say "InjectWise" (rename to InjectWise needed)
+- All references still say "Peply" (rename to Peply needed)
 
 Last updated: 2026-04-12

@@ -1,4 +1,4 @@
-# CHANGELOG.md - InjectWise
+# CHANGELOG.md - Peply
 
 All notable changes to this project will be documented in this file.
 
@@ -37,7 +37,7 @@ Sprint 1 QA and review pass. First formal review and QA cycle on the calculator.
 
 ### Changed
 
-- Project renamed from InjectWise to InjectWise (rename pass pending across codebase)
+- Project renamed from Peply to Peply (rename pass pending across codebase)
 
 ---
 
@@ -95,4 +95,4 @@ Initial scaffolding and calculator core implementation.
 - Lint error in `layout.tsx:34`: `<a>` tag used for internal navigation (should be `<Link>`)
 - `@vitest/coverage-v8` not installed (coverage reporting unavailable)
 - No `.gitignore` (added in subsequent commit)
-- All references still say "InjectWise" (rename to InjectWise pending)
+- All references still say "Peply" (rename to Peply pending)

@@ -1,8 +1,8 @@
-# InjectWise - Tightened Product Brief
+# Peply - Tightened Product Brief
 
 ## One-Sentence Product
 
-InjectWise is a public web app that helps users calculate peptide and injectable reconstitution math accurately and view a small set of citation-backed dosing protocols without vendor bias.
+Peply is a public web app that helps users calculate peptide and injectable reconstitution math accurately and view a small set of citation-backed dosing protocols without vendor bias.
 
 ## Product Goal
 
@@ -85,7 +85,7 @@ User enters:
 - target dose
 - syringe selection
 
-InjectWise returns:
+Peply returns:
 
 - concentration
 - mL to draw
@@ -113,14 +113,14 @@ The app still makes the math transparent and editable. Compound mode should not 
 
 ## Content Policy
 
-InjectWise will not:
+Peply will not:
 
 - provide medical advice
 - recommend sourcing or vendors
 - host community discussion
 - claim legal or regulatory authority
 
-InjectWise may:
+Peply may:
 
 - present calculation outputs
 - summarize published dosing protocols
@@ -239,14 +239,14 @@ This is important: Supabase should not be added on day one unless there is a con
 
 ## Success Criteria For v1
 
-InjectWise v1 is successful if users can:
+Peply v1 is successful if users can:
 
 - compute any dilution and target dose quickly on mobile
 - understand exactly how the result was produced
 - trust the warnings
 - browse a small set of supported, cited protocols
 
-InjectWise v1 does not need to become a full protocol operating system.
+Peply v1 does not need to become a full protocol operating system.
 
 ## Open Decisions Before Build
 

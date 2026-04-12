@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "InjectWise - Peptide Reconstitution Calculator",
+  title: "Peply - Peptide Reconstitution Calculator",
   description:
     "Accurate peptide and injectable reconstitution calculations with concentration, draw volume, and syringe unit outputs.",
 };
@@ -33,7 +33,7 @@ export default function RootLayout({
         <header className="border-b border-gray-200 dark:border-gray-800">
           <div className="mx-auto max-w-4xl px-4 py-4 flex items-center justify-between">
             <Link href="/" className="text-xl font-semibold tracking-tight">
-              InjectWise
+              Peply
             </Link>
             <nav className="flex gap-4 text-sm">
               <Link
@@ -49,7 +49,7 @@ export default function RootLayout({
         <footer className="border-t border-gray-200 dark:border-gray-800 py-6 text-center text-xs text-gray-500">
           <div className="mx-auto max-w-4xl px-4 space-y-1">
             <p>
-              InjectWise is a calculation tool, not medical advice. Always consult a
+              Peply is a calculation tool, not medical advice. Always consult a
               qualified healthcare provider.
             </p>
             <p>Results should be verified independently before use.</p>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CalculatorForm } from "@/components/calculator/CalculatorForm";
 
 export const metadata: Metadata = {
-  title: "Calculator - InjectWise",
+  title: "Calculator - Peply",
   description:
     "Universal peptide reconstitution calculator. Enter vial amount, diluent volume, target dose, and syringe type to get accurate draw calculations.",
 };
