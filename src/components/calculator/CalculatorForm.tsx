@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { z } from "zod/v4";
 import type {
   CalculatorInput,
   CalculatorResult,
@@ -60,7 +61,11 @@ export function CalculatorForm(): React.ReactElement {
       const calcResult = calculate(input);
       setResult(calcResult);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Calculation failed.");
+      if (err instanceof z.ZodError) {
+        setError(err.issues[0]?.message ?? "Invalid input.");
+      } else {
+        setError(err instanceof Error ? err.message : "Calculation failed.");
+      }
     }
   }, [
     vialAmount,
