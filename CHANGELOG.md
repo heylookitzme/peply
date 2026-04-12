@@ -6,6 +6,27 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.1.1.0] - 2026-04-12
+
+Sprint 1 QA and review pass. First formal review and QA cycle on the calculator.
+
+### Fixed
+
+- Home page "Open Calculator" link now uses Next.js `<Link>` instead of raw `<a>` tag (eliminates full page reload)
+- Geist font now renders correctly (removed `font-family: Arial` override in globals.css)
+- Duplicate `formatMl` function in `evaluateWarnings.ts` replaced with import from `formatResult.ts`
+- Unreachable fallback in `convertDoseUnit` now throws instead of silently returning unconverted value
+- Sub-centiliter draw volumes now display `< 0.01 mL` instead of misleading `0.00 mL`
+- Sub-unit syringe draws now display `< 1 units` instead of misleading `0 units`
+- Zod validation errors now show human-readable messages instead of raw JSON objects
+
+### Added
+
+- `.env.example` placeholder for future environment variables
+- `VERSION` file (4-digit format)
+
+---
+
 ## [Unreleased]
 
 ### Added

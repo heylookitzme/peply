@@ -21,10 +21,10 @@ Last updated: 2026-04-12
 - [x] Write ARCHITECTURE.md (system design)
 - [x] Write product brief (`inject-wise-product-brief-tightened.md`)
 - [x] Write build-ready notes (`BUILD-READY-NOTES.md`)
-- [ ] Initialize git repository and push to GitHub
-- [ ] Add `.env.example`
-- [ ] Set up Husky + lint-staged pre-commit hooks
-- [ ] Install `@vitest/coverage-v8` for coverage reporting
+- [x] Initialize git repository and push to GitHub (v0.1.0)
+- [x] Add `.env.example` (v0.1.1.0)
+- [x] Set up Husky + lint-staged pre-commit hooks (v0.1.0)
+- [x] Install `@vitest/coverage-v8` for coverage reporting (v0.1.1.0)
 - [ ] Set up GitHub Actions CI pipeline (lint, typecheck, test, build)
 - [ ] Connect Vercel for preview deployments
 - [ ] Rename all references from InjectWise to InjectWise
@@ -56,15 +56,15 @@ Last updated: 2026-04-12
 
 ### Remaining
 
-- [ ] Fix lint error: `layout.tsx:34` — use `<Link>` instead of `<a>` for internal navigation
+- [x] Fix lint error: `page.tsx:14` — use `<Link>` instead of `<a>` for internal navigation (v0.1.1.0)
 - [ ] Add component tests for `CalculatorForm` (input behavior, validation, error states)
 - [ ] Add component tests for `CalculatorResults` (rendering all output fields)
 - [ ] Add component tests for `CalculatorWarnings` (severity styles, empty state)
 - [ ] Add E2E test: calculator happy path (fill form, submit, verify results)
 - [ ] Add E2E test: calculator edge cases (zero inputs, overflow, tiny doses)
 - [ ] Add E2E test: mobile viewport behavior (375px)
-- [ ] Run `/review` on calculator implementation
-- [ ] Run `/qa` against calculator UI
+- [x] Run `/review` on calculator implementation (v0.1.1.0)
+- [x] Run `/qa` against calculator UI (v0.1.1.0)
 - [ ] Achieve 80%+ coverage on `src/lib/` and `src/components/`
 
 ## Sprint 2 — Curated Content Layer
@@ -125,6 +125,8 @@ Last updated: 2026-04-12
 
 ## Blockers
 
-1. **No git repository on GitHub** — Cannot run CI, cannot deploy, cannot collaborate. Must initialize and push before any further development.
-2. **Rename pending** — All docs, code, and configs still reference "InjectWise". Must complete rename to "InjectWise" before public-facing work.
-3. **No coverage tooling** — `@vitest/coverage-v8` not installed. Cannot verify the 80% coverage target.
+1. ~~**No git repository on GitHub**~~ — Resolved (v0.1.0)
+2. ~~**Rename pending**~~ — Resolved (fe6a31c)
+3. ~~**No coverage tooling**~~ — Resolved (v0.1.1.0)
+
+No active blockers.
