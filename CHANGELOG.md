@@ -1,0 +1,77 @@
+# CHANGELOG.md - InjectWise
+
+All notable changes to this project will be documented in this file.
+
+Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+---
+
+## [Unreleased]
+
+### Added
+
+- Project status audit (`STATUS.md`) with full health check across all systems
+- Structured task backlog (`TODOS.md`) organized by sprint
+- This changelog
+
+### Changed
+
+- Project renamed from InjectWise to InjectWise (rename pass pending across codebase)
+
+---
+
+## [0.1.0] - 2026-03-31
+
+Initial scaffolding and calculator core implementation.
+
+### Added
+
+#### Project Setup
+- Next.js 15 App Router scaffold with TypeScript strict mode
+- Tailwind CSS styling (mobile-first)
+- Vitest + React Testing Library test setup
+- Playwright configuration (E2E config only, no tests written)
+- ESLint configuration
+- Zod v4 for runtime validation
+- Path alias `@/` mapped to `src/`
+
+#### Type System
+- `CalculatorInput` / `CalculatorResult` / `CalculatorWarning` types with `as const` enums
+- `Compound` / `Protocol` / `ProtocolStep` / `Citation` content types
+- Zod schemas for calculator input validation
+- Zod schemas for content model validation (ready for compound data)
+
+#### Calculation Engine (`src/lib/calculations/`)
+- `convertDoseUnit` — mg/mcg bidirectional conversion
+- `calculateConcentration` — vial amount / diluent volume
+- `calculateDrawVolume` — target dose / concentration with unit normalization
+- `calculateSyringeUnits` — mL to syringe units for 3 syringe types (U-100 1mL, U-50 0.5mL, U-30 0.3mL)
+- `evaluateWarnings` — deterministic warning engine (LOW_DRAW_VOLUME, SYRINGE_OVERFLOW, ROUNDING_RISK, DILUTION_AWKWARD)
+- `formatResult` — display formatters for mL (2dp), syringe units (whole), concentration, dose
+- `calculate` — full pipeline orchestrator (validate -> concentrate -> draw -> units -> warnings)
+
+#### Calculator UI
+- `CalculatorForm` — client component with all inputs (vial amount, diluent, target dose, syringe type)
+- `CalculatorResults` — displays concentration, draw volume, syringe units with exact-value toggle
+- `CalculatorWarnings` — severity-coded warning cards (critical/warning/info) with recommendations
+- `/calculator` page with metadata
+- Landing page (`/`) with product description and feature cards
+
+#### Layout
+- Root layout with Geist font family, header with nav, footer with disclaimer
+- Dark mode support via Tailwind
+
+#### Tests (69 tests, all passing)
+- Unit tests for all 7 calculation modules
+- Edge case coverage: zero/negative inputs, divide-by-zero, overflow, tiny doses, rounding
+
+#### Documentation
+- `CLAUDE.md` — project operating contract
+- `ARCHITECTURE.md` — system design and build plan
+- Product brief and build-ready notes
+
+### Known Issues
+- Lint error in `layout.tsx:34`: `<a>` tag used for internal navigation (should be `<Link>`)
+- `@vitest/coverage-v8` not installed (coverage reporting unavailable)
+- No `.gitignore` (added in subsequent commit)
+- All references still say "InjectWise" (rename to InjectWise pending)
