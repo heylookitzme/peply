@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function HomePage(): React.ReactElement {
   return (
     <div className="mx-auto max-w-4xl px-4 py-16">
@@ -11,12 +13,12 @@ export default function HomePage(): React.ReactElement {
           with smart warnings.
         </p>
         <div className="pt-4">
-          <a
+          <Link
             href="/calculator"
             className="inline-block rounded-lg bg-foreground text-background px-6 py-3 text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Open Calculator
-          </a>
+          </Link>
         </div>
       </div>
 

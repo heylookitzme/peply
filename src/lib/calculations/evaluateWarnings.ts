@@ -3,6 +3,7 @@ import type {
   CalculatorWarning,
 } from "@/types/calculator";
 import { SYRINGE_TYPES } from "@/types/calculator";
+import { formatMl } from "./formatResult";
 
 /** Minimum draw volume (mL) below which measurement accuracy is unreliable */
 const LOW_DRAW_VOLUME_THRESHOLD_ML = 0.05;
@@ -83,8 +84,4 @@ export function evaluateWarnings(params: {
   }
 
   return warnings;
-}
-
-function formatMl(value: number): string {
-  return value.toFixed(2);
 }
