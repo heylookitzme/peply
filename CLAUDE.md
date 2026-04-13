@@ -14,6 +14,28 @@ It defines:
 
 If this document conflicts with older planning notes, this document wins unless the owner explicitly approves a change.
 
+## Table of Contents
+
+- [Project Identity](#project-identity)
+- [Current Product Scope](#current-product-scope)
+- [Product Principles](#product-principles)
+- [gstack](#gstack)
+- [Tech Stack](#tech-stack)
+- [Code Standards](#code-standards)
+- [Content And Editorial Rules](#content-and-editorial-rules)
+- [Content Language Guidelines](#content-language-guidelines)
+- [Data Model Rules](#data-model-rules)
+- [Calculation Engine Rules](#calculation-engine-rules)
+- [Git Workflow](#git-workflow)
+- [CI](#ci)
+- [Deployment](#deployment)
+- [Security And Secrets](#security-and-secrets)
+- [Performance Targets](#performance-targets)
+- [AI Agent Guidelines](#ai-agent-guidelines)
+- [Definition Of Done](#definition-of-done)
+- [Documents Written After Planning](#documents-written-after-planning)
+- [Design System](#design-system)
+
 ## Project Identity
 
 Peply is a public web application for peptide and injectable medication reconstitution calculations and a small citation-backed protocol reference layer.
