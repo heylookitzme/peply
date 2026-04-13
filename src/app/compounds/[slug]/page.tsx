@@ -187,6 +187,12 @@ export default async function CompoundPage({
                 </a>{" "}
                 for authoritative guidance.
               </p>
+              <Link
+                href="/regulatory"
+                className="inline-block text-[13px] text-accent hover:underline mt-3"
+              >
+                View full regulatory timeline &rarr;
+              </Link>
             </Card>
           </section>
         </>
