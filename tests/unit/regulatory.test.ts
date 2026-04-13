@@ -57,11 +57,12 @@ describe("regulatory tracker data", () => {
     }
   });
 
-  it("remaining restricted compounds all have names and reasons", () => {
+  it("remaining restricted compounds all have names, reasons, and dates", () => {
     expect(REMAINING_RESTRICTED.length).toBe(5);
     for (const c of REMAINING_RESTRICTED) {
       expect(c.name).toBeTruthy();
       expect(c.reason).toBeTruthy();
+      expect(c.dateRestricted).toBe("2023-09-29");
     }
   });
 
@@ -106,5 +107,24 @@ describe("regulatory tracker data", () => {
     const invBadge = getRegulatoryBadge(inv);
     expect(invBadge.label).toBe("Investigational");
     expect(invBadge.style).toContain("info");
+
+    // Cat 1 stable
+    const cat1Stable = COMPOUNDS.find(
+      (c) =>
+        c.regulatoryStatus.currentCategory === "cat1" &&
+        c.regulatoryStatus.reclassificationStatus === "stable",
+    );
+    if (cat1Stable) {
+      const cat1Badge = getRegulatoryBadge(cat1Stable);
+      expect(cat1Badge.label).toBe("Category 1");
+      expect(cat1Badge.style).toContain("success");
+    }
+  });
+
+  it("remaining restricted compounds do not overlap with COMPOUNDS", () => {
+    const compoundNames = COMPOUNDS.map((c) => c.name.toLowerCase());
+    for (const rc of REMAINING_RESTRICTED) {
+      expect(compoundNames).not.toContain(rc.name.toLowerCase());
+    }
   });
 });

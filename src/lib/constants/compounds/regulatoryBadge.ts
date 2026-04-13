@@ -30,6 +30,16 @@ export function getRegulatoryBadge(compound: Compound): RegulatoryBadgeInfo {
       tooltip: "Currently in clinical trials. Not yet FDA-approved.",
     };
   }
+  if (
+    compound.regulatoryStatus.currentCategory === "cat1" &&
+    compound.regulatoryStatus.reclassificationStatus === "stable"
+  ) {
+    return {
+      label: "Category 1",
+      style: REG_BADGE_STYLES.cat1,
+      tooltip: "May be legally compounded by licensed 503A/503B pharmacies under a physician prescription.",
+    };
+  }
   if (compound.regulatoryStatus.reclassificationStatus === "pending") {
     return {
       label: "Cat 2 \u2192 Pending Cat 1",

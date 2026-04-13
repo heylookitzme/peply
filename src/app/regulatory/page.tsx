@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "FDA Regulatory Tracker - Peply",
   description:
-    "FDA peptide regulatory status tracker. Category 1 and Category 2 classification, reclassification timeline, and compound status table.",
+    "FDA regulatory status tracker. Category 1 and Category 2 compounding classification, reclassification timeline, and compound status table.",
 };
 
 export default function RegulatoryPage(): React.ReactElement {
@@ -36,7 +36,7 @@ export default function RegulatoryPage(): React.ReactElement {
         label="Regulatory"
         title="FDA Regulatory Tracker"
         emphasisWord="Tracker"
-        subtitle="Peptide compounding category status based on publicly available FDA communications."
+        subtitle="Compounding category status based on publicly available FDA communications."
       />
 
       {/* Verification notice */}
@@ -71,7 +71,9 @@ export default function RegulatoryPage(): React.ReactElement {
             restricted from compounding.
           </p>
           <p className="text-[11px] text-text-secondary mt-3">
-            Last updated: February 27, 2026
+            Last updated:{" "}
+            {TIMELINE_MILESTONES.filter((m) => m.status === "completed")
+              .slice(-1)[0]?.date ?? "Unknown"}
           </p>
         </Card>
       </div>
@@ -260,11 +262,11 @@ export default function RegulatoryPage(): React.ReactElement {
                     </span>
                   </td>
                   <td className="text-sm font-mono px-4 py-3 border-b border-border hidden sm:table-cell">
-                    2023-09-29
+                    {compound.dateRestricted}
                   </td>
                   <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
-                    <span className="text-[11px] text-text-secondary">
-                      {compound.reason}
+                    <span className="text-[11px] text-text-secondary italic">
+                      Not returning: {compound.reason.toLowerCase()}
                     </span>
                   </td>
                 </tr>
@@ -356,7 +358,7 @@ export default function RegulatoryPage(): React.ReactElement {
               Category 1 bulk drug substances may be legally compounded by
               licensed 503A and 503B pharmacies under a physician prescription.
               Category 2 substances are restricted from compounding due to
-              safety concerns or insufficient clinical data.
+              insufficient clinical data or unresolved adverse event profiles.
             </p>
           </Card>
           <Card padding="sm">

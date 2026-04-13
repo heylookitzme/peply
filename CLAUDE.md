@@ -86,7 +86,7 @@ Do not build these into the first release:
 - reorder reminders
 - multi-compound stacking
 - notifications
-- ~~real-time regulatory tracker~~ (shipped as static tracker in v0.4.0)
+- ~~real-time regulatory tracker~~ (shipped as static reference page)
 - forums or comments
 
 ## Product Principles
