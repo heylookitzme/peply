@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useSyncExternalStore } from "react";
+import { Sun, Moon } from "lucide-react";
 
 function getTheme(): "dark" | "light" {
   if (typeof window === "undefined") return "dark";
@@ -26,9 +27,9 @@ export function ThemeToggle(): React.ReactElement {
     <button
       onClick={toggle}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className="rounded-md border border-border bg-surface px-3 py-1.5 text-[13px] text-text-secondary hover:text-text transition-colors duration-150"
+      className="p-2 rounded-md text-text-secondary hover:text-text transition-colors duration-150"
     >
-      {theme === "dark" ? "Light" : "Dark"}
+      {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
     </button>
   );
 }

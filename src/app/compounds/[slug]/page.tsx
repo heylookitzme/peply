@@ -21,10 +21,10 @@ export async function generateMetadata({
 }: CompoundPageProps): Promise<Metadata> {
   const { slug } = await params;
   const compound = getCompoundBySlug(slug);
-  if (!compound) return { title: "Not Found - Peply" };
+  if (!compound) return { title: "Not Found" };
   return {
-    title: `${compound.name} - Peply`,
-    description: compound.summary,
+    title: compound.name,
+    description: `${compound.name} dosing, titration protocols, and reconstitution reference. ${compound.summary.slice(0, 100)}`,
   };
 }
 

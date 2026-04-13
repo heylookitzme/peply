@@ -5,9 +5,9 @@ import { Card } from "@/components/ui/Card";
 import { SubmitForm } from "./SubmitForm";
 
 export const metadata: Metadata = {
-  title: "Submit Data - Peply",
+  title: "Community",
   description:
-    "Submit anonymous compound experience data. Contributions are reviewed privately and may be used to improve reference information.",
+    "Submit anonymous peptide experience data. Structured compound reports reviewed privately to improve reference information.",
 };
 
 export default function SubmitPage(): React.ReactElement {

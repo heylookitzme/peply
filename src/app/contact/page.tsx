@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact - Peply",
+  title: "Contact",
   description:
     "Contact Peply for general inquiries, vendor partnerships, data requests, or bug reports.",
 };

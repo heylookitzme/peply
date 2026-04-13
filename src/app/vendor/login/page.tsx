@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { LoginForm } from "./LoginForm";
 
 export const metadata: Metadata = {
-  title: "Vendor Login - Peply",
+  title: "Vendor Portal",
   description: "Log in to your vendor account to submit compound quality data.",
 };
 

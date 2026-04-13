@@ -6,9 +6,9 @@ import { Card } from "@/components/ui/Card";
 import { STACK_CATEGORY_LABELS, EVIDENCE_STYLES } from "@/lib/constants/stacks/labels";
 
 export const metadata: Metadata = {
-  title: "Stacks - Peply",
+  title: "Stack Protocols",
   description:
-    "Community-derived peptide stacks and combination protocols. Recovery, growth, and metabolic stacks with documented dosing and evidence levels.",
+    "Wolverine, Glow, Klow, GH/Muscle, and Metabolic stack protocols. Community-derived multi-compound combinations with documented dosing.",
 };
 
 export default function StacksPage(): React.ReactElement {

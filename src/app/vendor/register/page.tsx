@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { RegisterForm } from "./RegisterForm";
 
 export const metadata: Metadata = {
-  title: "Vendor Registration - Peply",
+  title: "Vendor Portal",
   description: "Register as a vendor to submit compound quality data.",
 };
 

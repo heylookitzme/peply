@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Card } from "@/components/ui/Card";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - Peply",
+  title: "Terms of Service",
   description:
     "Terms of service for Peply, an educational reference tool for reconstitution calculations and published compound data.",
 };

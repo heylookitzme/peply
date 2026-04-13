@@ -19,10 +19,10 @@ export async function generateMetadata({
 }: StackPageProps): Promise<Metadata> {
   const { slug } = await params;
   const stack = getStackBySlug(slug);
-  if (!stack) return { title: "Not Found - Peply" };
+  if (!stack) return { title: "Not Found" };
   return {
-    title: `${stack.name} - Peply`,
-    description: stack.summary,
+    title: stack.name,
+    description: `${stack.name} stack protocol. ${stack.summary.slice(0, 120)}`,
   };
 }
 

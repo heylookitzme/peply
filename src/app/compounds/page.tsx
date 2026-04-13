@@ -4,9 +4,9 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { CompoundFilters } from "@/components/compounds/CompoundFilters";
 
 export const metadata: Metadata = {
-  title: "Compounds - Peply",
+  title: "Compounds",
   description:
-    "Compound reference for peptides and injectable medications. Published clinical dose ranges, titration protocols, and regulatory status.",
+    "21 peptide compounds with published dose ranges, titration protocols, and FDA regulatory status. BPC-157, semaglutide, tirzepatide, and more.",
 };
 
 export default function CompoundsPage(): React.ReactElement {
