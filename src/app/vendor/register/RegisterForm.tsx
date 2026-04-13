@@ -50,6 +50,9 @@ export function RegisterForm(): React.ReactElement {
           Password <span className="text-error">*</span>
         </label>
         <input id="password" name="password" type="password" required minLength={8} placeholder="Minimum 8 characters" className={inputClass} />
+        <p className="text-[11px] text-text-secondary">
+          At least 8 characters. Must include uppercase, lowercase, and a number.
+        </p>
       </div>
 
       <hr className="border-border" />
