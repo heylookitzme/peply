@@ -56,7 +56,10 @@ export default async function CompoundPage({
         {(() => {
           const badge = getRegulatoryBadge(compound);
           return (
-            <span className={`inline-block shrink-0 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${badge.style}`}>
+            <span
+              className={`inline-block shrink-0 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide cursor-help ${badge.style}`}
+              title={badge.tooltip}
+            >
               {badge.label}
             </span>
           );

@@ -66,7 +66,8 @@ export function CompoundFilters({ compounds }: CompoundFiltersProps): React.Reac
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <h2 className="font-serif text-xl">{compound.name}</h2>
                   <span
-                    className={`inline-block shrink-0 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${regBadge.style}`}
+                    className={`inline-block shrink-0 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide cursor-help ${regBadge.style}`}
+                    title={regBadge.tooltip}
                   >
                     {regBadge.label}
                   </span>
