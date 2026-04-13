@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { href: "/compounds", label: "Compounds" },
   { href: "/stacks", label: "Stacks" },
   { href: "/regulatory", label: "Regulatory" },
-  { href: "/submit", label: "Community" },
+  { href: "/submit", label: "Contribute" },
 ] as const;
 
 export function Header(): React.ReactElement {
