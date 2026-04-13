@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { CalculatorForm } from "@/components/calculator/CalculatorForm";
 
@@ -19,6 +20,15 @@ export default function CalculatorPage(): React.ReactElement {
       />
       <div className="mt-8">
         <CalculatorForm />
+      </div>
+
+      <div className="mt-12 text-center">
+        <Link
+          href="/calculator/stacks"
+          className="text-[13px] text-accent hover:underline"
+        >
+          Calculate a full stack &rarr;
+        </Link>
       </div>
     </div>
   );
