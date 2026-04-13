@@ -7,6 +7,10 @@ export async function createClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
+  // DEBUG: remove after verifying env vars in Vercel runtime logs
+  console.log("SUPABASE_URL exists:", !!supabaseUrl);
+  console.log("SUPABASE_KEY exists:", !!supabaseKey);
+
   if (!supabaseUrl || !supabaseKey) {
     throw new Error("Missing Supabase environment variables");
   }
