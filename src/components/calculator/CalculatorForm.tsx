@@ -12,6 +12,7 @@ import { SYRINGE_TYPES } from "@/types/calculator";
 import type { Compound } from "@/types/content";
 import { COMPOUNDS } from "@/lib/constants/compounds";
 import { calculate } from "@/lib/calculations";
+import { formatDoseRange } from "@/lib/formatDoseRange";
 import { Button } from "@/components/ui/Button";
 import { CalculatorResults } from "./CalculatorResults";
 import { CalculatorWarnings } from "./CalculatorWarnings";
@@ -112,7 +113,7 @@ export function CalculatorForm(): React.ReactElement {
   ]);
 
   const doseHint = selectedCompound
-    ? `${selectedCompound.clinicalDoseRange.min}-${selectedCompound.clinicalDoseRange.max} ${selectedCompound.clinicalDoseRange.unit} ${selectedCompound.clinicalDoseRange.frequencyLabel.toLowerCase()}`
+    ? `${formatDoseRange(selectedCompound.clinicalDoseRange)} ${selectedCompound.clinicalDoseRange.frequencyLabel.toLowerCase()}`
     : null;
 
   return (
@@ -134,7 +135,7 @@ export function CalculatorForm(): React.ReactElement {
           <option value="">Custom / Manual Entry</option>
           {COMPOUNDS.map((c) => (
             <option key={c.slug} value={c.slug}>
-              {c.name} ({c.clinicalDoseRange.min}-{c.clinicalDoseRange.max} {c.clinicalDoseRange.unit})
+              {c.name} ({formatDoseRange(c.clinicalDoseRange)})
             </option>
           ))}
         </select>

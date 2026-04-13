@@ -6,6 +6,45 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.2.0.0] - 2026-04-12
+
+Sprint 3.5: Compound database expansion to 19 compounds with regulatory status tracker.
+
+### Added
+
+- 15 new research peptide compounds across 4 categories:
+  - Growth & Recovery: BPC-157, TB-500, GHK-Cu, AOD-9604, Thymosin Alpha-1
+  - GH Secretagogues: Ipamorelin, CJC-1295 (no DAC), CJC-1295 (with DAC)
+  - Neuropeptides: Semax, Selank, DSIP
+  - Longevity & Immune: Epitalon, MOTS-C, KPV, Kisspeptin-10
+- FDA Category 2 regulatory tracker with restriction/reclassification dates
+- Category filter pills on /compounds page (8 categories)
+- Regulatory status section on compound detail pages (for non-approved compounds)
+- Regulatory badge colors: green (approved), yellow (Cat 2 pending), red (restricted), blue (investigational)
+- `RegulatoryCategory` and `ReclassificationStatus` types
+- Shared `getRegulatoryBadge` utility for consistent badge rendering
+
+### Fixed
+
+- Compound detail page badge now shows "Cat 2 → Pending Cat 1" (was showing generic "Research")
+
+---
+
+## [0.1.3.2] - 2026-04-12
+
+Production deployment and dose display fix.
+
+### Fixed
+
+- Fixed-dose compounds (Tesamorelin) now display "2 mg" instead of "2-2 mg" everywhere (compound list, detail page, calculator selector)
+
+### Added
+
+- `formatDoseRange` utility for consistent dose range display across all pages
+- Vercel deployment documentation in CLAUDE.md (fork, live URL, sync instructions)
+
+---
+
 ## [0.1.3.1] - 2026-04-12
 
 Sprint 3.0 deployment and CI infrastructure.

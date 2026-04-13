@@ -42,8 +42,9 @@ export const retatrutide: Compound = {
     },
   ],
   regulatoryStatus: {
+    currentCategory: "investigational",
+    reclassificationStatus: "stable",
     fdaCategory: "Investigational (Phase 3)",
-    reclassificationStatus: "TRIUMPH Phase 3 program ongoing",
     lastUpdated: "2024-06-01",
     sourcingNote:
       "Not FDA-approved. Available only through clinical trials or research supply. Phase 3 results expected 2025-2026.",

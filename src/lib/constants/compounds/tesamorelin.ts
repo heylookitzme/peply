@@ -36,6 +36,8 @@ export const tesamorelin: Compound = {
     },
   ],
   regulatoryStatus: {
+    currentCategory: "approved",
+    reclassificationStatus: "stable",
     fdaCategory: "FDA-approved (NDA 022505)",
     lastUpdated: "2024-01-01",
     sourcingNote:

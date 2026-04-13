@@ -271,6 +271,14 @@ Required checks on every PR:
 
 Pre-commit hooks via Husky and lint-staged are recommended once the repo is scaffolded.
 
+## Deployment
+
+- **Source of truth:** heylookitzme/peply (GitHub, origin remote)
+- **Archive:** JAWC-HOLDINGS-LLC/inject-wise (upstream remote, read-only)
+- **Live URL:** https://peply-nine.vercel.app
+- **Production branch:** main (Vercel auto-deploys on push)
+- **CI:** GitHub Actions (lint, typecheck, test, build)
+
 ## Security And Secrets
 
 - never commit secrets

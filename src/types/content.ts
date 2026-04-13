@@ -3,6 +3,10 @@ export const COMPOUND_CATEGORIES = [
   "dual-agonist",
   "triple-agonist",
   "growth-hormone",
+  "growth-recovery",
+  "gh-secretagogue",
+  "neuropeptide",
+  "longevity-immune",
   "other",
 ] as const;
 export type CompoundCategory = (typeof COMPOUND_CATEGORIES)[number];
@@ -59,9 +63,25 @@ export interface TitrationProtocol {
   steps: TitrationStep[];
 }
 
+export const REGULATORY_CATEGORIES = [
+  "cat1",
+  "cat2",
+  "approved",
+  "investigational",
+] as const;
+export type RegulatoryCategory = (typeof REGULATORY_CATEGORIES)[number];
+
+export const RECLASSIFICATION_STATUSES = [
+  "stable",
+  "pending",
+  "announced",
+] as const;
+export type ReclassificationStatus = (typeof RECLASSIFICATION_STATUSES)[number];
+
 export interface RegulatoryStatus {
+  currentCategory: RegulatoryCategory;
+  reclassificationStatus: ReclassificationStatus;
   fdaCategory: string;
-  reclassificationStatus?: string;
   dateRestricted?: string;
   dateAnnouncedReturn?: string;
   lastUpdated: string;

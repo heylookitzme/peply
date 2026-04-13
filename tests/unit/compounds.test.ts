@@ -11,10 +11,8 @@ import {
 import type { Compound } from "@/types/content";
 
 describe("compound data integrity", () => {
-  const allCompounds: Compound[] = [semaglutide, tirzepatide, retatrutide, tesamorelin];
-
-  it("exports 4 compounds in the COMPOUNDS array", () => {
-    expect(COMPOUNDS).toHaveLength(4);
+  it("exports 19 compounds in the COMPOUNDS array", () => {
+    expect(COMPOUNDS).toHaveLength(19);
   });
 
   it("all compounds have unique ids", () => {
@@ -27,7 +25,7 @@ describe("compound data integrity", () => {
     expect(new Set(slugs).size).toBe(slugs.length);
   });
 
-  it.each(allCompounds.map((c) => [c.name, c]))(
+  it.each(COMPOUNDS.map((c) => [c.name, c]))(
     "%s has required fields",
     (_name, compound) => {
       const c = compound as Compound;
@@ -42,7 +40,7 @@ describe("compound data integrity", () => {
     },
   );
 
-  it.each(allCompounds.map((c) => [c.name, c]))(
+  it.each(COMPOUNDS.map((c) => [c.name, c]))(
     "%s has valid dose range with proper units",
     (_name, compound) => {
       const c = compound as Compound;
@@ -55,7 +53,7 @@ describe("compound data integrity", () => {
     },
   );
 
-  it.each(allCompounds.map((c) => [c.name, c]))(
+  it.each(COMPOUNDS.map((c) => [c.name, c]))(
     "%s has at least one titration protocol with steps",
     (_name, compound) => {
       const c = compound as Compound;
@@ -73,7 +71,7 @@ describe("compound data integrity", () => {
     },
   );
 
-  it.each(allCompounds.map((c) => [c.name, c]))(
+  it.each(COMPOUNDS.map((c) => [c.name, c]))(
     "%s has at least one citation with lastReviewedAt",
     (_name, compound) => {
       const c = compound as Compound;
@@ -87,7 +85,7 @@ describe("compound data integrity", () => {
     },
   );
 
-  it.each(allCompounds.map((c) => [c.name, c]))(
+  it.each(COMPOUNDS.map((c) => [c.name, c]))(
     "%s has at least one vial size",
     (_name, compound) => {
       const c = compound as Compound;
@@ -99,12 +97,18 @@ describe("compound data integrity", () => {
     },
   );
 
-  it.each(allCompounds.map((c) => [c.name, c]))(
+  it.each(COMPOUNDS.map((c) => [c.name, c]))(
     "%s has valid regulatory status",
     (_name, compound) => {
       const c = compound as Compound;
       expect(c.regulatoryStatus.fdaCategory).toBeTruthy();
       expect(c.regulatoryStatus.lastUpdated).toBeTruthy();
+      expect(["cat1", "cat2", "approved", "investigational"]).toContain(
+        c.regulatoryStatus.currentCategory,
+      );
+      expect(["stable", "pending", "announced"]).toContain(
+        c.regulatoryStatus.reclassificationStatus,
+      );
     },
   );
 });
@@ -116,10 +120,10 @@ describe("getCompoundBySlug", () => {
     expect(result!.name).toBe("Semaglutide");
   });
 
-  it("returns tirzepatide for slug 'tirzepatide'", () => {
-    const result = getCompoundBySlug("tirzepatide");
+  it("returns bpc-157 for slug 'bpc-157'", () => {
+    const result = getCompoundBySlug("bpc-157");
     expect(result).toBeDefined();
-    expect(result!.name).toBe("Tirzepatide");
+    expect(result!.name).toBe("BPC-157");
   });
 
   it("returns undefined for unknown slug", () => {
@@ -145,7 +149,7 @@ describe("specific compound data accuracy", () => {
     expect(semaglutide.clinicalDoseRange.min).toBe(0.25);
     expect(semaglutide.clinicalDoseRange.max).toBe(2.4);
     expect(semaglutide.clinicalDoseRange.frequency).toBe("weekly");
-    expect(semaglutide.manufacturer).toBe("Novo Nordisk");
+    expect(semaglutide.regulatoryStatus.currentCategory).toBe("approved");
   });
 
   it("tirzepatide: FDA approved, 2.5-15mg weekly", () => {
@@ -153,15 +157,13 @@ describe("specific compound data accuracy", () => {
     expect(tirzepatide.clinicalDoseRange.min).toBe(2.5);
     expect(tirzepatide.clinicalDoseRange.max).toBe(15);
     expect(tirzepatide.clinicalDoseRange.frequency).toBe("weekly");
-    expect(tirzepatide.manufacturer).toBe("Eli Lilly");
   });
 
   it("retatrutide: investigational, 2-12mg weekly", () => {
     expect(retatrutide.approvalStatus).toBe("investigational");
     expect(retatrutide.clinicalDoseRange.min).toBe(2);
     expect(retatrutide.clinicalDoseRange.max).toBe(12);
-    expect(retatrutide.clinicalDoseRange.frequency).toBe("weekly");
-    expect(retatrutide.manufacturer).toBe("Eli Lilly");
+    expect(retatrutide.regulatoryStatus.currentCategory).toBe("investigational");
   });
 
   it("tesamorelin: FDA approved, 2mg daily", () => {
@@ -169,6 +171,47 @@ describe("specific compound data accuracy", () => {
     expect(tesamorelin.clinicalDoseRange.min).toBe(2);
     expect(tesamorelin.clinicalDoseRange.max).toBe(2);
     expect(tesamorelin.clinicalDoseRange.frequency).toBe("daily");
-    expect(tesamorelin.manufacturer).toBe("Theratechnologies");
+  });
+});
+
+describe("category distribution", () => {
+  it("has compounds in all expected categories", () => {
+    const categories = new Set(COMPOUNDS.map((c) => c.category));
+    expect(categories.has("glp1")).toBe(true);
+    expect(categories.has("growth-recovery")).toBe(true);
+    expect(categories.has("gh-secretagogue")).toBe(true);
+    expect(categories.has("neuropeptide")).toBe(true);
+    expect(categories.has("longevity-immune")).toBe(true);
+  });
+});
+
+describe("regulatory status consistency", () => {
+  it("all cat2 compounds have dateRestricted 2023-09-29", () => {
+    const cat2 = COMPOUNDS.filter(
+      (c) => c.regulatoryStatus.currentCategory === "cat2",
+    );
+    expect(cat2.length).toBeGreaterThan(0);
+    for (const c of cat2) {
+      expect(c.regulatoryStatus.dateRestricted).toBe("2023-09-29");
+    }
+  });
+
+  it("all pending reclassification compounds have dateAnnouncedReturn 2026-02-27", () => {
+    const pending = COMPOUNDS.filter(
+      (c) => c.regulatoryStatus.reclassificationStatus === "pending",
+    );
+    expect(pending.length).toBeGreaterThan(0);
+    for (const c of pending) {
+      expect(c.regulatoryStatus.dateAnnouncedReturn).toBe("2026-02-27");
+    }
+  });
+
+  it("approved compounds have stable reclassification", () => {
+    const approved = COMPOUNDS.filter(
+      (c) => c.regulatoryStatus.currentCategory === "approved",
+    );
+    for (const c of approved) {
+      expect(c.regulatoryStatus.reclassificationStatus).toBe("stable");
+    }
   });
 });

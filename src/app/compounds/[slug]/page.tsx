@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { COMPOUNDS, getCompoundBySlug } from "@/lib/constants/compounds";
-import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { calculateSyringeUnits, formatSyringeUnits } from "@/lib/calculations";
-import { CATEGORY_LABELS, STATUS_LABELS } from "@/lib/constants/compounds/labels";
+import { CATEGORY_LABELS } from "@/lib/constants/compounds/labels";
+import { getRegulatoryBadge } from "@/lib/constants/compounds/regulatoryBadge";
+import { formatDoseRange } from "@/lib/formatDoseRange";
 
 interface CompoundPageProps {
   params: Promise<{ slug: string }>;
@@ -52,9 +53,14 @@ export default async function CompoundPage({
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
         <h1 className="font-serif text-[36px] leading-tight">{compound.name}</h1>
-        <Badge status={compound.approvalStatus}>
-          {STATUS_LABELS[compound.approvalStatus]}
-        </Badge>
+        {(() => {
+          const badge = getRegulatoryBadge(compound);
+          return (
+            <span className={`inline-block shrink-0 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${badge.style}`}>
+              {badge.label}
+            </span>
+          );
+        })()}
       </div>
       <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent mb-4">
         {CATEGORY_LABELS[compound.category]} &middot; {compound.manufacturer}
@@ -104,12 +110,10 @@ export default async function CompoundPage({
         <Card>
           <div className="flex items-baseline gap-2 mb-2">
             <span className="font-mono text-2xl font-medium">
-              {compound.clinicalDoseRange.min === compound.clinicalDoseRange.max
-                ? compound.clinicalDoseRange.min
-                : `${compound.clinicalDoseRange.min}-${compound.clinicalDoseRange.max}`}
+              {formatDoseRange(compound.clinicalDoseRange)}
             </span>
             <span className="text-sm text-text-secondary">
-              {compound.clinicalDoseRange.unit} {compound.clinicalDoseRange.frequencyLabel.toLowerCase()}
+              {compound.clinicalDoseRange.frequencyLabel.toLowerCase()}
             </span>
           </div>
           {compound.regulatoryStatus.sourcingNote && (
@@ -119,6 +123,48 @@ export default async function CompoundPage({
           )}
         </Card>
       </section>
+
+      {/* Regulatory Status (for non-approved compounds) */}
+      {compound.regulatoryStatus.currentCategory !== "approved" && (
+        <>
+          <hr className="border-border mb-8" />
+          <section className="mb-8">
+            <h2 className="text-base font-semibold mb-4">Regulatory Status</h2>
+            <Card>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium">
+                    FDA Category
+                  </dt>
+                  <dd className="text-sm mt-1">{compound.regulatoryStatus.fdaCategory}</dd>
+                </div>
+                <div>
+                  <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium">
+                    Reclassification
+                  </dt>
+                  <dd className="text-sm mt-1 capitalize">{compound.regulatoryStatus.reclassificationStatus}</dd>
+                </div>
+                {compound.regulatoryStatus.dateRestricted && (
+                  <div>
+                    <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium">
+                      Date Restricted
+                    </dt>
+                    <dd className="text-sm mt-1">{compound.regulatoryStatus.dateRestricted}</dd>
+                  </div>
+                )}
+                {compound.regulatoryStatus.dateAnnouncedReturn && (
+                  <div>
+                    <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium">
+                      Announced Return
+                    </dt>
+                    <dd className="text-sm mt-1">{compound.regulatoryStatus.dateAnnouncedReturn}</dd>
+                  </div>
+                )}
+              </div>
+            </Card>
+          </section>
+        </>
+      )}
 
       <hr className="border-border mb-8" />
 

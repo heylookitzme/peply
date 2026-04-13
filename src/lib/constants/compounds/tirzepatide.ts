@@ -44,6 +44,8 @@ export const tirzepatide: Compound = {
     },
   ],
   regulatoryStatus: {
+    currentCategory: "approved",
+    reclassificationStatus: "stable",
     fdaCategory: "FDA-approved (NDA 215866)",
     lastUpdated: "2024-01-01",
   },
