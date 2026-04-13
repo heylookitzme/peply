@@ -119,6 +119,48 @@ export default async function CompoundPage({
         </Card>
       </section>
 
+      {/* Regulatory Status (for non-approved compounds) */}
+      {compound.regulatoryStatus.currentCategory !== "approved" && (
+        <>
+          <hr className="border-border mb-8" />
+          <section className="mb-8">
+            <h2 className="text-base font-semibold mb-4">Regulatory Status</h2>
+            <Card>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium">
+                    FDA Category
+                  </dt>
+                  <dd className="text-sm mt-1">{compound.regulatoryStatus.fdaCategory}</dd>
+                </div>
+                <div>
+                  <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium">
+                    Reclassification
+                  </dt>
+                  <dd className="text-sm mt-1 capitalize">{compound.regulatoryStatus.reclassificationStatus}</dd>
+                </div>
+                {compound.regulatoryStatus.dateRestricted && (
+                  <div>
+                    <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium">
+                      Date Restricted
+                    </dt>
+                    <dd className="text-sm mt-1">{compound.regulatoryStatus.dateRestricted}</dd>
+                  </div>
+                )}
+                {compound.regulatoryStatus.dateAnnouncedReturn && (
+                  <div>
+                    <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium">
+                      Announced Return
+                    </dt>
+                    <dd className="text-sm mt-1">{compound.regulatoryStatus.dateAnnouncedReturn}</dd>
+                  </div>
+                )}
+              </div>
+            </Card>
+          </section>
+        </>
+      )}
+
       <hr className="border-border mb-8" />
 
       {/* Titration Protocols */}

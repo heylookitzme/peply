@@ -1,0 +1,65 @@
+import type { Compound } from "@/types/content";
+
+export const bpc157: Compound = {
+  id: "bpc-157",
+  slug: "bpc-157",
+  name: "BPC-157",
+  aliases: ["Body Protection Compound-157"],
+  category: "growth-recovery",
+  approvalStatus: "research",
+  summary:
+    "Gastric pentadecapeptide researched for tissue repair, angiogenesis, and anti-inflammatory effects. Not FDA-approved for any indication.",
+  mechanism:
+    "Gastric pentadecapeptide. Promotes angiogenesis, tendon/ligament healing, and nitric oxide signaling. Modulates growth factor expression.",
+  halfLife: "Estimated 4 hours (limited human PK data)",
+  manufacturer: "Research peptide (multiple suppliers)",
+  defaultRoute: "subcutaneous",
+  commonVialSizes: [
+    { amount: 5, unit: "mg", label: "5 mg vial" },
+    { amount: 10, unit: "mg", label: "10 mg vial" },
+  ],
+  defaultBacWaterMl: 2,
+  clinicalDoseRange: {
+    min: 200,
+    max: 800,
+    unit: "mcg",
+    frequency: "daily",
+    frequencyLabel: "1-2x daily",
+  },
+  titrationProtocols: [
+    {
+      name: "Research Dosing Protocol",
+      source: "Sikiric et al., Current Pharmaceutical Design, 2018",
+      sourceUrl: "https://doi.org/10.2174/1381612824666180713101408",
+      steps: [
+        {
+          dose: 250,
+          unit: "mcg",
+          durationWeeks: 0,
+          notes: "Typical research dose, no titration",
+        },
+      ],
+    },
+  ],
+  regulatoryStatus: {
+    currentCategory: "cat2",
+    reclassificationStatus: "pending",
+    fdaCategory: "Research peptide (FDA Category 2)",
+    dateRestricted: "2023-09-29",
+    dateAnnouncedReturn: "2026-02-27",
+    lastUpdated: "2026-02-27",
+    sourcingNote:
+      "Not FDA-approved for any indication. Currently FDA Category 2 (restricted). Pending return to Category 1 availability.",
+  },
+  citations: [
+    {
+      id: "bpc157-review",
+      label: "Sikiric 2018 Review",
+      title: "Stable Gastric Pentadecapeptide BPC 157: Novel Therapy",
+      source: "Current Pharmaceutical Design, 24(18), 2012-2032",
+      sourceUrl: "https://doi.org/10.2174/1381612824666180713101408",
+      publishedAt: "2018-01-01",
+      lastReviewedAt: "2026-02-27",
+    },
+  ],
+};

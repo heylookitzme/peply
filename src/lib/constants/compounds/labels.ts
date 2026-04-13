@@ -5,6 +5,10 @@ export const CATEGORY_LABELS: Record<CompoundCategory, string> = {
   "dual-agonist": "Dual Agonist",
   "triple-agonist": "Triple Agonist",
   "growth-hormone": "Growth Hormone",
+  "growth-recovery": "Growth & Recovery",
+  "gh-secretagogue": "GH Secretagogue",
+  neuropeptide: "Neuropeptide",
+  "longevity-immune": "Longevity & Immune",
   other: "Other",
 };
 

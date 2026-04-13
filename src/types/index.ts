@@ -22,6 +22,8 @@ export type {
   ApprovalStatus,
   Route,
   EvidenceLevel,
+  RegulatoryCategory,
+  ReclassificationStatus,
   DoseRange,
   VialSize,
   TitrationStep,
@@ -38,4 +40,6 @@ export {
   APPROVAL_STATUSES,
   ROUTES,
   EVIDENCE_LEVELS,
+  REGULATORY_CATEGORIES,
+  RECLASSIFICATION_STATUSES,
 } from "./content";

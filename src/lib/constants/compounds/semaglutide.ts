@@ -51,6 +51,8 @@ export const semaglutide: Compound = {
     },
   ],
   regulatoryStatus: {
+    currentCategory: "approved",
+    reclassificationStatus: "stable",
     fdaCategory: "FDA-approved (BLA 215256 / NDA 209637)",
     lastUpdated: "2024-01-01",
   },
