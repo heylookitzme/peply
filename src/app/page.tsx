@@ -1,6 +1,59 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 
+const FEATURES = [
+  {
+    title: "Reconstitution Calculator",
+    description:
+      "Vial strength, diluent volume, target dose — get exact concentration, draw volume, and syringe units. Smart warnings for measurement accuracy and syringe capacity.",
+    href: "/calculator",
+    cta: "Open Calculator",
+  },
+  {
+    title: "21 Compounds",
+    description:
+      "Published dose ranges, titration protocols, mechanisms, and citations from FDA labels, NEJM trials, and peer-reviewed research. Not vendor marketing copy.",
+    href: "/compounds",
+    cta: "Browse Compounds",
+  },
+  {
+    title: "Stack Protocols",
+    description:
+      "Wolverine, Glow, Klow, GH/Muscle, and Metabolic — community-derived multi-compound protocols with coordinated dosing and per-compound reconstitution math.",
+    href: "/stacks",
+    cta: "View Stacks",
+  },
+  {
+    title: "FDA Regulatory Tracker",
+    description:
+      "Category 2 to Category 1 reclassification status. Timeline, compound-by-compound tracking, and sourcing guidance based on published FDA communications.",
+    href: "/regulatory",
+    cta: "View Tracker",
+  },
+  {
+    title: "Community Data",
+    description:
+      "Anonymous experience submissions from real users. Structured data, not forums or opinions. Helping build a more complete reference.",
+    href: "/submit",
+    cta: "Submit Data",
+  },
+  {
+    title: "Vendor Portal",
+    description:
+      "Licensed compounding pharmacies and suppliers can submit Certificate of Analysis data to improve compound quality information.",
+    href: "/vendor/register",
+    cta: "Register as Vendor",
+  },
+] as const;
+
+const STATS = [
+  "21 compounds",
+  "5 stacks",
+  "287+ tests",
+  "Published clinical data",
+  "Zero vendor affiliations",
+] as const;
+
 export default function HomePage(): React.ReactElement {
   return (
     <>
@@ -8,17 +61,17 @@ export default function HomePage(): React.ReactElement {
       <section className="pt-24 pb-16 text-center">
         <div className="mx-auto max-w-[720px] px-6">
           <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent mb-3">
-            Reconstitution Calculator
+            Peptide Reference Tool
           </p>
           <h1 className="font-serif text-[40px] sm:text-[56px] leading-[1.1] tracking-tight mb-6">
             Precise dosing.
             <br />
             Every <em className="text-accent">time</em>.
           </h1>
-          <p className="text-lg text-text-secondary max-w-[520px] mx-auto mb-8 leading-relaxed">
-            Calculate reconstitution math for peptides and injectable
-            medications. Concentration, draw volume, and syringe units with
-            smart warnings.
+          <p className="text-lg text-text-secondary max-w-[560px] mx-auto mb-8 leading-relaxed">
+            The peptide reference tool built on published clinical data.
+            Calculator, compound database, stack protocols, regulatory tracking,
+            and community data — with zero vendor affiliations.
           </p>
           <div className="flex items-center justify-center gap-3">
             <Link
@@ -31,7 +84,7 @@ export default function HomePage(): React.ReactElement {
               href="/compounds"
               className="inline-block rounded-lg border border-border text-text px-8 py-3.5 text-[15px] font-medium hover:border-text-secondary transition-colors duration-150"
             >
-              View Compounds
+              Browse Compounds
             </Link>
           </div>
         </div>
@@ -45,39 +98,40 @@ export default function HomePage(): React.ReactElement {
       {/* Features */}
       <section className="py-16">
         <div className="mx-auto max-w-[960px] px-6">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <Card>
-              <h2 className="text-base font-semibold mb-2">Accurate Math</h2>
-              <p className="text-sm text-text-secondary leading-relaxed">
-                Concentration, mL draw, and syringe unit outputs from any vial
-                and diluent combination.
-              </p>
-            </Card>
-            <Card>
-              <h2 className="text-base font-semibold mb-2">Smart Warnings</h2>
-              <p className="text-sm text-text-secondary leading-relaxed">
-                Alerts for low-accuracy draws, syringe overflow, and awkward
-                dilution ratios.
-              </p>
-            </Card>
-            <Card>
-              <h2 className="text-base font-semibold mb-2">
-                Transparent Results
-              </h2>
-              <p className="text-sm text-text-secondary leading-relaxed">
-                Every calculation shows the formula inputs and outputs so you
-                can verify the math.
-              </p>
-            </Card>
-            <Card>
-              <h2 className="text-base font-semibold mb-2">
-                Regulatory Tracker
-              </h2>
-              <p className="text-sm text-text-secondary leading-relaxed">
-                FDA Category 1 and Category 2 peptide status with
-                reclassification timeline and compound-level tracking.
-              </p>
-            </Card>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map((feature) => (
+              <Card key={feature.title} className="flex flex-col">
+                <h2 className="font-serif text-xl mb-3">{feature.title}</h2>
+                <p className="text-sm text-text-secondary leading-relaxed flex-1 mb-4">
+                  {feature.description}
+                </p>
+                <Link
+                  href={feature.href}
+                  className="text-[13px] text-accent hover:underline self-start"
+                >
+                  {feature.cta} &rarr;
+                </Link>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats strip */}
+      <div className="mx-auto max-w-[960px] px-6">
+        <hr className="border-border" />
+      </div>
+      <section className="py-8">
+        <div className="mx-auto max-w-[960px] px-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-text-secondary">
+            {STATS.map((stat, i) => (
+              <span key={stat} className="flex items-center gap-6">
+                {i > 0 && (
+                  <span className="text-border hidden sm:inline">&middot;</span>
+                )}
+                <span>{stat}</span>
+              </span>
+            ))}
           </div>
         </div>
       </section>

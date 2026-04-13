@@ -2,8 +2,8 @@
 
 import { useState, useCallback } from "react";
 import { COMPOUNDS } from "@/lib/constants/compounds";
-import { formatDropdownLabel } from "@/lib/formatDoseRange";
 import { Button } from "@/components/ui/Button";
+import { CompoundCombobox } from "@/components/ui/CompoundCombobox";
 import {
   EFFECT_OPTIONS,
   ROUTE_OPTIONS,
@@ -21,6 +21,7 @@ const selectClass =
 export function SubmitForm(): React.ReactElement {
   const [result, setResult] = useState<SubmitResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [compoundSlug, setCompoundSlug] = useState("");
   const [effectsNotes, setEffectsNotes] = useState("");
   const [bloodworkRows, setBloodworkRows] = useState<
     { marker: string; before: string; after: string }[]
@@ -48,6 +49,7 @@ export function SubmitForm(): React.ReactElement {
 
       if (res.success) {
         (e.target as HTMLFormElement).reset();
+        setCompoundSlug("");
         setEffectsNotes("");
         setBloodworkRows([]);
       }
@@ -105,14 +107,15 @@ export function SubmitForm(): React.ReactElement {
         <label htmlFor="compound_slug" className="block text-[13px] font-medium text-text-secondary">
           Compound <span className="text-error">*</span>
         </label>
-        <select id="compound_slug" name="compound_slug" required className={`w-full ${selectClass}`}>
-          <option value="">Select a compound</option>
-          {COMPOUNDS.map((c) => (
-            <option key={c.slug} value={c.slug}>
-              {formatDropdownLabel(c)}
-            </option>
-          ))}
-        </select>
+        <CompoundCombobox
+          id="compound_slug"
+          name="compound_slug"
+          required
+          compounds={COMPOUNDS}
+          value={compoundSlug}
+          onChange={setCompoundSlug}
+          placeholder="Select a compound"
+        />
       </div>
 
       {/* Dose + Unit */}
