@@ -5,6 +5,7 @@ import { STACKS, getStackBySlug } from "@/lib/constants/stacks";
 import { getCompoundBySlug } from "@/lib/constants/compounds";
 import { Card } from "@/components/ui/Card";
 import { STACK_CATEGORY_LABELS, EVIDENCE_STYLES } from "@/lib/constants/stacks/labels";
+import { StackCalculatorSection } from "@/components/calculator/StackCalculatorSection";
 
 interface StackPageProps {
   params: Promise<{ slug: string }>;
@@ -203,6 +204,11 @@ export default async function StackPage({
           </table>
         </div>
       </section>
+
+      <hr className="border-border mb-8" />
+
+      {/* Stack Calculator */}
+      <StackCalculatorSection stack={stack} />
 
       <hr className="border-border mb-8" />
 
