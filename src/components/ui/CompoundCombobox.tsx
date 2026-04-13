@@ -230,6 +230,8 @@ export function CompoundCombobox({
             {/* Manual entry option */}
             <button
               type="button"
+              role="option"
+              aria-selected={value === ""}
               data-combobox-item
               onClick={() => selectSlug("")}
               className={`w-full text-left px-3.5 py-3 text-sm transition-colors duration-100 min-h-[44px] flex items-center ${
@@ -264,6 +266,8 @@ export function CompoundCombobox({
                     <button
                       key={c.slug}
                       type="button"
+                      role="option"
+                      aria-selected={value === c.slug}
                       data-combobox-item
                       onClick={() => selectSlug(c.slug)}
                       className={`w-full text-left px-3.5 py-2.5 min-h-[44px] flex flex-col transition-colors duration-100 ${

@@ -166,7 +166,7 @@
 
 ### Landing Page
 - Hero: centered text, section-label above Instrument Serif headline, body text, primary + ghost CTAs. 96px top padding.
-- Features: 2-column card grid at sm (640px+), 4-column at lg (1024px+) at 960px max width. Stacks to single column on mobile.
+- Features: 2-column card grid at sm (640px+), 3-column at lg (1024px+) at 960px max width. 6 feature cards with serif headlines and CTA links. Stacks to single column on mobile.
 - Footer: centered disclaimer text, 1px top border.
 
 ### Calculator Page
