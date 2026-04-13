@@ -102,12 +102,18 @@ export function VendorSubmitForm(): React.ReactElement {
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="coa_file_url" className="block text-[13px] font-medium text-text-secondary">
-          COA file URL
+        <label htmlFor="coa_file" className="block text-[13px] font-medium text-text-secondary">
+          Certificate of Analysis
         </label>
-        <input id="coa_file_url" name="coa_file_url" type="url" placeholder="https://..." className={inputClass} />
+        <input
+          id="coa_file"
+          name="coa_file"
+          type="file"
+          accept=".pdf,.jpg,.jpeg,.png"
+          className={`${inputClass} file:mr-3 file:rounded-md file:border-0 file:bg-accent/10 file:px-3 file:py-1 file:text-[13px] file:font-medium file:text-accent hover:file:bg-accent/20`}
+        />
         <p className="text-[11px] text-text-secondary">
-          Upload your COA PDF to Supabase Storage and paste the public URL here.
+          PDF, JPEG, or PNG. Max 10 MB.
         </p>
       </div>
 
