@@ -273,12 +273,11 @@ Pre-commit hooks via Husky and lint-staged are recommended once the repo is scaf
 
 ## Deployment
 
-- **Source of truth:** JAWC-HOLDINGS-LLC/inject-wise (GitHub, origin remote)
-- **Vercel fork:** heylookitzme/peply (GitHub, vercel-fork remote)
+- **Source of truth:** heylookitzme/peply (GitHub, origin remote)
+- **Archive:** JAWC-HOLDINGS-LLC/inject-wise (upstream remote, read-only)
 - **Live URL:** https://peply-nine.vercel.app
-- **Production branch:** main (auto-deploys on push to vercel-fork main)
-- **Sync before deploying:** `git push vercel-fork main` after merging to main on origin
-- **CI:** GitHub Actions on origin repo (lint, typecheck, test, build)
+- **Production branch:** main (Vercel auto-deploys on push)
+- **CI:** GitHub Actions (lint, typecheck, test, build)
 
 ## Security And Secrets
 
