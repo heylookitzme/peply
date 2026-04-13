@@ -62,6 +62,12 @@ export default function RootLayout({
                 >
                   Calculator
                 </Link>
+                <Link
+                  href="/compounds"
+                  className="text-text-secondary hover:text-text transition-colors duration-150"
+                >
+                  Compounds
+                </Link>
               </nav>
               <ThemeToggle />
             </div>

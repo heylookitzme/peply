@@ -27,12 +27,12 @@ export default function HomePage(): React.ReactElement {
             >
               Open Calculator
             </Link>
-            <span
-              className="inline-block rounded-lg border border-border text-text px-8 py-3.5 text-[15px] font-medium opacity-50 cursor-default"
-              title="Coming in Sprint 2"
+            <Link
+              href="/compounds"
+              className="inline-block rounded-lg border border-border text-text px-8 py-3.5 text-[15px] font-medium hover:border-text-secondary transition-colors duration-150"
             >
               View Compounds
-            </span>
+            </Link>
           </div>
         </div>
       </section>
