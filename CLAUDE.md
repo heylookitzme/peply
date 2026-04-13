@@ -336,7 +336,7 @@ Pre-commit hooks via Husky and lint-staged are recommended once the repo is scaf
 
 - **Source of truth:** heylookitzme/peply (GitHub, origin remote)
 - **Archive:** JAWC-HOLDINGS-LLC/inject-wise (upstream remote, read-only)
-- **Live URL:** https://peply-nine.vercel.app
+- **Live URL:** https://peply.bio
 - **Production branch:** main (Vercel auto-deploys on push)
 - **CI:** GitHub Actions (lint, typecheck, test, build)
 

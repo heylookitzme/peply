@@ -99,7 +99,7 @@ Sprint 3.0 deployment and CI infrastructure.
 ### Added
 
 - GitHub Actions CI pipeline (lint, typecheck, test with coverage, build)
-- Vercel deployment connected (peply.vercel.app)
+- Vercel deployment connected (peply.bio)
 - CI triggers on push to main/develop and PRs against both branches
 
 ---

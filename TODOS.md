@@ -26,7 +26,7 @@ Last updated: 2026-04-13
 - [x] Set up Husky + lint-staged pre-commit hooks (v0.1.0)
 - [x] Install `@vitest/coverage-v8` for coverage reporting (v0.1.1.0)
 - [x] Set up GitHub Actions CI pipeline (lint, typecheck, test, build) (v0.1.3.1)
-- [x] Connect Vercel for preview deployments (v0.1.3.1, peply-nine.vercel.app)
+- [x] Connect Vercel for preview deployments (v0.1.3.1, peply.bio)
 - [x] Rename all references to Peply (v0.1.1.0)
 
 ## Sprint 1 — Calculator MVP

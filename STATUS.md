@@ -205,12 +205,12 @@ Per CLAUDE.md sprint sequence:
 
 | Item | Status |
 |------|--------|
-| Vercel connected | **No** - no `.vercel` directory or `vercel.json` |
-| Supabase set up | **No** (correctly deferred per CLAUDE.md) |
-| `.env.example` | **No** - does not exist |
-| `.gitignore` | **No** - does not exist |
-| CI/CD (GitHub Actions) | **No** - no `.github/` directory |
-| Husky pre-commit hooks | **No** - not configured |
+| Vercel connected | **Yes** - production at https://peply.bio |
+| Supabase set up | **Yes** - @supabase/ssr + @supabase/supabase-js integrated |
+| `.env.example` | **Yes** - Supabase placeholders |
+| `.gitignore` | **Yes** - includes .env.local |
+| CI/CD (GitHub Actions) | **Yes** - lint, typecheck, test, build |
+| Husky pre-commit hooks | **Yes** - lint-staged configured |
 
 ---
 
