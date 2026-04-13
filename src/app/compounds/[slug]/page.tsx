@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { calculateSyringeUnits, formatSyringeUnits } from "@/lib/calculations";
 import { CATEGORY_LABELS, STATUS_LABELS } from "@/lib/constants/compounds/labels";
+import { formatDoseRange } from "@/lib/formatDoseRange";
 
 interface CompoundPageProps {
   params: Promise<{ slug: string }>;
@@ -104,12 +105,10 @@ export default async function CompoundPage({
         <Card>
           <div className="flex items-baseline gap-2 mb-2">
             <span className="font-mono text-2xl font-medium">
-              {compound.clinicalDoseRange.min === compound.clinicalDoseRange.max
-                ? compound.clinicalDoseRange.min
-                : `${compound.clinicalDoseRange.min}-${compound.clinicalDoseRange.max}`}
+              {formatDoseRange(compound.clinicalDoseRange)}
             </span>
             <span className="text-sm text-text-secondary">
-              {compound.clinicalDoseRange.unit} {compound.clinicalDoseRange.frequencyLabel.toLowerCase()}
+              {compound.clinicalDoseRange.frequencyLabel.toLowerCase()}
             </span>
           </div>
           {compound.regulatoryStatus.sourcingNote && (

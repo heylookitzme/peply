@@ -5,6 +5,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { CATEGORY_LABELS, STATUS_LABELS } from "@/lib/constants/compounds/labels";
+import { formatDoseRange } from "@/lib/formatDoseRange";
 
 export const metadata: Metadata = {
   title: "Compounds - Peply",
@@ -39,7 +40,7 @@ export default function CompoundsPage(): React.ReactElement {
               </p>
               <div className="flex items-center gap-4 text-[13px] text-text-secondary border-t border-border pt-3">
                 <span className="font-mono">
-                  {compound.clinicalDoseRange.min}-{compound.clinicalDoseRange.max} {compound.clinicalDoseRange.unit}
+                  {formatDoseRange(compound.clinicalDoseRange)}
                 </span>
                 <span>{compound.clinicalDoseRange.frequencyLabel}</span>
               </div>
