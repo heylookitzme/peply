@@ -50,6 +50,12 @@ export default async function CompoundPage({
         &larr; All Compounds
       </Link>
 
+      {/* Non-endorsement notice */}
+      <p className="text-[12px] text-text-secondary mb-6">
+        Inclusion of a compound does not constitute endorsement. Information
+        sourced from published research and regulatory filings.
+      </p>
+
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
         <h1 className="font-serif text-[36px] leading-tight">{compound.name}</h1>
@@ -169,6 +175,18 @@ export default async function CompoundPage({
                   </div>
                 )}
               </div>
+              <p className="text-[12px] text-text-secondary mt-4">
+                Status based on publicly available FDA communications. Verify at{" "}
+                <a
+                  href="https://www.fda.gov"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline"
+                >
+                  FDA.gov
+                </a>{" "}
+                for authoritative guidance.
+              </p>
             </Card>
           </section>
         </>

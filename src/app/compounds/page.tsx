@@ -6,7 +6,7 @@ import { CompoundFilters } from "@/components/compounds/CompoundFilters";
 export const metadata: Metadata = {
   title: "Compounds - Peply",
   description:
-    "Curated compound reference for peptides and injectable medications. Clinical dose ranges, titration protocols, and regulatory status.",
+    "Compound reference for peptides and injectable medications. Published clinical dose ranges, titration protocols, and regulatory status.",
 };
 
 export default function CompoundsPage(): React.ReactElement {
@@ -14,9 +14,9 @@ export default function CompoundsPage(): React.ReactElement {
     <div className="mx-auto max-w-[960px] px-6 py-12">
       <SectionHeader
         label="Compounds"
-        title="Supported Compounds"
-        emphasisWord="Compounds"
-        subtitle="Curated clinical data, titration protocols, and regulatory status for supported peptides and injectables."
+        title="Compound Reference"
+        emphasisWord="Reference"
+        subtitle="Published clinical data, titration protocols, and regulatory status for referenced peptides and injectables."
       />
       <CompoundFilters compounds={COMPOUNDS} />
     </div>

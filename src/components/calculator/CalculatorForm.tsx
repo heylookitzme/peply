@@ -266,10 +266,17 @@ export function CalculatorForm(): React.ReactElement {
         </div>
       </div>
 
-      {/* Calculate Button */}
-      <Button type="button" variant="primary" fullWidth onClick={handleCalculate}>
-        Calculate
-      </Button>
+      {/* Disclaimer + Calculate Button */}
+      <div className="space-y-3">
+        <p className="text-[12px] text-text-secondary text-center">
+          This calculator performs mathematical conversions only. Verify all
+          results independently. Not a substitute for professional medical
+          guidance.
+        </p>
+        <Button type="button" variant="primary" fullWidth onClick={handleCalculate}>
+          Calculate
+        </Button>
+      </div>
 
       {/* Error */}
       {error && (
