@@ -1,14 +1,14 @@
-# ARCHITECTURE.md - InjectWise
+# ARCHITECTURE.md - Peply
 
 Last updated: 2026-04-12
 
 ## Purpose
 
-This document describes the **actual current architecture** of InjectWise (formerly InjectWise) as built. It reflects what exists in code today, not aspirational design. Planned-but-unbuilt features are noted in the "Not Yet Built" section.
+This document describes the **actual current architecture** of Peply (formerly Peply) as built. It reflects what exists in code today, not aspirational design. Planned-but-unbuilt features are noted in the "Not Yet Built" section.
 
 ## System Overview
 
-InjectWise is a mostly-static Next.js application with a single interactive surface: the reconstitution calculator. All calculation logic is pure TypeScript with no framework dependencies. Content types and validation schemas are defined but no compound data exists yet.
+Peply is a mostly-static Next.js application with a single interactive surface: the reconstitution calculator. All calculation logic is pure TypeScript with no framework dependencies. Content types and validation schemas are defined but no compound data exists yet.
 
 ### Current routes
 
@@ -45,7 +45,7 @@ InjectWise is a mostly-static Next.js application with a single interactive surf
 ## Project Structure (Actual)
 
 ```
-InjectWise/
+Peply/
 ├── src/
 │   ├── app/
 │   │   ├── globals.css              # Tailwind base + custom properties
@@ -92,7 +92,7 @@ InjectWise/
 ├── STATUS.md                         # Project audit (2026-04-12)
 ├── TODOS.md                          # Sprint task backlog
 ├── BUILD-READY-NOTES.md              # Pre-build planning notes
-├── inject-wise-product-brief-tightened.md# Product brief
+├── peply-product-brief-tightened.md# Product brief
 ├── package.json
 ├── tsconfig.json
 ├── vitest.config.ts
@@ -118,7 +118,7 @@ InjectWise/
 
 ## Calculation Engine
 
-The engine is the core of InjectWise. All functions are pure, framework-agnostic, and live in `src/lib/calculations/`.
+The engine is the core of Peply. All functions are pure, framework-agnostic, and live in `src/lib/calculations/`.
 
 ### Pipeline
 

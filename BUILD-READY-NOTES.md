@@ -1,10 +1,10 @@
-# InjectWise Build-Ready Notes
+# Peply Build-Ready Notes
 
 ## Status
 
-InjectWise is ready for planning and architecture work after the decisions in this document are adopted.
+Peply is ready for planning and architecture work after the decisions in this document are adopted.
 
-InjectWise is not ready for unrestricted implementation if the current scope still includes:
+Peply is not ready for unrestricted implementation if the current scope still includes:
 
 - real-time regulatory tracking without a verified source-of-record workflow
 - broad compound coverage at launch
@@ -44,13 +44,13 @@ The first public wedge should be a neutral, high-trust calculation product with 
 
 ## Product Positioning
 
-InjectWise should present itself as:
+Peply should present itself as:
 
 - a calculator
 - a protocol reference layer for a small curated set of compounds
 - a neutral, citation-backed tool
 
-InjectWise should not present itself as:
+Peply should not present itself as:
 
 - a live legal-status authority
 - a prescribing aid
@@ -238,6 +238,6 @@ Complete these before broad implementation starts:
 
 ## Bottom Line
 
-InjectWise becomes build-ready once it is reframed as a high-trust calculator with a narrow, curated protocol layer.
+Peply becomes build-ready once it is reframed as a high-trust calculator with a narrow, curated protocol layer.
 
 If you keep the current broader scope and speculative regulatory framing, the project will accumulate product risk faster than code risk.

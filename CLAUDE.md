@@ -1,8 +1,8 @@
-# CLAUDE.md - InjectWise
+# CLAUDE.md - Peply
 
 ## Purpose
 
-This document is the operating contract for building, maintaining, and extending InjectWise (formerly InjectWise).
+This document is the operating contract for building, maintaining, and extending Peply (formerly Peply).
 
 It defines:
 
@@ -16,15 +16,15 @@ If this document conflicts with older planning notes, this document wins unless 
 
 ## Project Identity
 
-InjectWise is a public web application for peptide and injectable medication reconstitution calculations and a small citation-backed protocol reference layer.
+Peply is a public web application for peptide and injectable medication reconstitution calculations and a small citation-backed protocol reference layer.
 
-InjectWise is:
+Peply is:
 
 - a neutral calculation tool
 - a protocol reference product for a narrow curated set of compounds
 - a public, mobile-first web app
 
-InjectWise is not:
+Peply is not:
 
 - a prescribing platform
 - a medical advice product
@@ -82,9 +82,9 @@ Use `/browse` from gstack for web browsing when external research is needed. Nev
 
 Available skills: `/office-hours`, `/plan-ceo-review`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/design-shotgun`, `/review`, `/ship`, `/land-and-deploy`, `/canary`, `/benchmark`, `/browse`, `/connect-chrome`, `/qa`, `/qa-only`, `/design-review`, `/setup-browser-cookies`, `/setup-deploy`, `/retro`, `/investigate`, `/document-release`, `/codex`, `/cso`, `/autoplan`, `/careful`, `/freeze`, `/guard`, `/unfreeze`, `/gstack-upgrade`.
 
-### InjectWise Sprint Process
+### Peply Sprint Process
 
-Use the subset below for InjectWise.
+Use the subset below for Peply.
 
 ### Vision And Planning
 
@@ -198,7 +198,7 @@ For the MVP, prefer:
 
 ## Content And Editorial Rules
 
-These rules are mandatory because InjectWise includes health-adjacent reference content.
+These rules are mandatory because Peply includes health-adjacent reference content.
 
 - every supported protocol must include at least one citation
 - every displayed approval or investigational status must include a citation
@@ -218,7 +218,7 @@ These rules are mandatory because InjectWise includes health-adjacent reference 
 
 ## Calculation Engine Rules
 
-The dosing and reconstitution math is the core of InjectWise and must be extremely reliable.
+The dosing and reconstitution math is the core of Peply and must be extremely reliable.
 
 - all calculation logic lives in `/lib/calculations/` as pure functions
 - every function is unit tested, including zero, negative, divide-by-zero, and extreme inputs
@@ -334,6 +334,13 @@ These documents should exist as the project matures:
 - `TODOS.md` - active backlog and checkpoints
 
 Write them when their contents are real. Do not create placeholder documents just to fill out structure.
+
+## Design System
+
+Always read DESIGN.md before making any visual or UI decisions.
+All font choices, colors, spacing, and aesthetic direction are defined there.
+Do not deviate without explicit user approval.
+In QA mode, flag any code that does not match DESIGN.md.
 
 Last updated: 2026-04-12
 Owner: Wilbur Chu

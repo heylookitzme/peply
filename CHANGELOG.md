@@ -1,8 +1,52 @@
-# CHANGELOG.md - InjectWise
+# CHANGELOG.md - Peply
 
 All notable changes to this project will be documented in this file.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+---
+
+## [0.1.2.0] - 2026-04-12
+
+Sprint 2 design system and UI overhaul. Complete visual redesign based on DESIGN.md.
+
+### Added
+
+- `DESIGN.md` with complete design system: color tokens, typography scale, spacing, component patterns
+- 8 UI primitive components in `src/components/ui/`: Button, Card, Input, Badge, Warning, SectionHeader, DataDisplay, ThemeToggle
+- Instrument Serif font for display headlines (editorial authority)
+- DM Sans font for body text (clean, humanist)
+- Dark mode as primary theme with localStorage-persisted light/dark toggle
+- CSS custom properties for all design tokens integrated with Tailwind `@theme inline`
+- Terracotta/copper accent color (#C8572D) across CTAs and emphasis elements
+
+### Changed
+
+- Landing page redesigned: serif hero headline, feature cards with subtle borders, horizontal rule dividers
+- Calculator page redesigned: SectionHeader with italic emphasis, 2-column form grid, DataDisplay with 28px mono results, severity-coded warning cards
+- Root layout updated: new font stack, theme toggle in header, design token-based styling throughout
+- Project renamed from InjectWise to Peply across all 30 files (package.json, metadata, docs, source)
+
+---
+
+## [0.1.1.0] - 2026-04-12
+
+Sprint 1 QA and review pass. First formal review and QA cycle on the calculator.
+
+### Fixed
+
+- Home page "Open Calculator" link now uses Next.js `<Link>` instead of raw `<a>` tag (eliminates full page reload)
+- Geist font now renders correctly (removed `font-family: Arial` override in globals.css)
+- Duplicate `formatMl` function in `evaluateWarnings.ts` replaced with import from `formatResult.ts`
+- Unreachable fallback in `convertDoseUnit` now throws instead of silently returning unconverted value
+- Sub-centiliter draw volumes now display `< 0.01 mL` instead of misleading `0.00 mL`
+- Sub-unit syringe draws now display `< 1 units` instead of misleading `0 units`
+- Zod validation errors now show human-readable messages instead of raw JSON objects
+
+### Added
+
+- `.env.example` placeholder for future environment variables
+- `VERSION` file (4-digit format)
 
 ---
 
@@ -16,7 +60,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- Project renamed from InjectWise to InjectWise (rename pass pending across codebase)
+- Project renamed from Peply to Peply (rename pass pending across codebase)
 
 ---
 
@@ -74,4 +118,4 @@ Initial scaffolding and calculator core implementation.
 - Lint error in `layout.tsx:34`: `<a>` tag used for internal navigation (should be `<Link>`)
 - `@vitest/coverage-v8` not installed (coverage reporting unavailable)
 - No `.gitignore` (added in subsequent commit)
-- All references still say "InjectWise" (rename to InjectWise pending)
+- All references still say "Peply" (rename to Peply pending)

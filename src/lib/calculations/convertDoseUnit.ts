@@ -12,7 +12,7 @@ export function convertDoseUnit(
   if (fromUnit === toUnit) return value;
   if (fromUnit === "mg" && toUnit === "mcg") return value * 1000;
   if (fromUnit === "mcg" && toUnit === "mg") return value / 1000;
-  return value;
+  throw new Error(`Unsupported unit conversion: ${fromUnit} to ${toUnit}`);
 }
 
 /**
