@@ -45,7 +45,7 @@ export default function HomePage(): React.ReactElement {
       {/* Features */}
       <section className="py-16">
         <div className="mx-auto max-w-[960px] px-6">
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Card>
               <h2 className="text-base font-semibold mb-2">Accurate Math</h2>
               <p className="text-sm text-text-secondary leading-relaxed">
@@ -67,6 +67,15 @@ export default function HomePage(): React.ReactElement {
               <p className="text-sm text-text-secondary leading-relaxed">
                 Every calculation shows the formula inputs and outputs so you
                 can verify the math.
+              </p>
+            </Card>
+            <Card>
+              <h2 className="text-base font-semibold mb-2">
+                Regulatory Tracker
+              </h2>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                FDA Category 1 and Category 2 peptide status with
+                reclassification timeline and compound-level tracking.
               </p>
             </Card>
           </div>

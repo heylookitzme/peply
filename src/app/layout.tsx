@@ -74,6 +74,12 @@ export default function RootLayout({
                 >
                   Stacks
                 </Link>
+                <Link
+                  href="/regulatory"
+                  className="text-text-secondary hover:text-text transition-colors duration-150"
+                >
+                  Regulatory
+                </Link>
               </nav>
               <ThemeToggle />
             </div>
