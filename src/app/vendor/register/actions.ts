@@ -32,7 +32,14 @@ export async function registerVendor(formData: FormData): Promise<RegisterResult
 
   if (authError) {
     console.error("[vendor-register] auth error:", authError.message);
-    return { success: false, error: `Registration error: ${authError.message}` };
+    const msg = authError.message.toLowerCase();
+    if (msg.includes("password")) {
+      return { success: false, error: authError.message };
+    }
+    if (msg.includes("rate limit")) {
+      return { success: false, error: "Too many attempts. Please try again later." };
+    }
+    return { success: false, error: "Registration failed. Please check your details and try again." };
   }
 
   if (!authData.user) {
@@ -49,7 +56,7 @@ export async function registerVendor(formData: FormData): Promise<RegisterResult
 
   if (vendorError) {
     console.error("[vendor-register] vendor_accounts insert error:", vendorError.message);
-    return { success: false, error: `Profile error: ${vendorError.message}` };
+    return { success: false, error: "Account created but vendor profile failed. Contact support." };
   }
 
   return { success: true };
