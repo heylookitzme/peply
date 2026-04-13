@@ -7,6 +7,7 @@ export const COMPOUND_CATEGORIES = [
   "gh-secretagogue",
   "neuropeptide",
   "longevity-immune",
+  "metabolic",
   "other",
 ] as const;
 export type CompoundCategory = (typeof COMPOUND_CATEGORIES)[number];

@@ -9,6 +9,7 @@ export const CATEGORY_LABELS: Record<CompoundCategory, string> = {
   "gh-secretagogue": "GH Secretagogue",
   neuropeptide: "Neuropeptide",
   "longevity-immune": "Longevity & Immune",
+  metabolic: "Metabolic",
   other: "Other",
 };
 

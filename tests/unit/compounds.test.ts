@@ -11,8 +11,8 @@ import {
 import type { Compound } from "@/types/content";
 
 describe("compound data integrity", () => {
-  it("exports 19 compounds in the COMPOUNDS array", () => {
-    expect(COMPOUNDS).toHaveLength(19);
+  it("exports 21 compounds in the COMPOUNDS array", () => {
+    expect(COMPOUNDS).toHaveLength(21);
   });
 
   it("all compounds have unique ids", () => {
@@ -247,7 +247,7 @@ describe("data corrections (audit-verified)", () => {
 describe("dosing evidence disclaimers", () => {
   it("all research compounds have dosingEvidence field", () => {
     const research = COMPOUNDS.filter((c) => c.approvalStatus === "research");
-    expect(research.length).toBe(15);
+    expect(research.length).toBe(17);
     for (const c of research) {
       expect(c.dosingEvidence).toBeDefined();
       expect(["preclinical", "limited-human"]).toContain(c.dosingEvidence);
@@ -259,7 +259,7 @@ describe("dosing evidence disclaimers", () => {
     const preclinical = COMPOUNDS.filter(
       (c) => c.dosingEvidence === "preclinical",
     );
-    expect(preclinical.length).toBe(8);
+    expect(preclinical.length).toBe(10);
     for (const c of preclinical) {
       expect(c.dosingEvidenceNote).toContain("animal studies");
     }

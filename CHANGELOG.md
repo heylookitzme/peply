@@ -6,6 +6,29 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.3.0.0] - 2026-04-12
+
+Sprint 4: Stacks system, 2 new compounds, combination protocol pages.
+
+### Added
+
+- **Stacks system** with type definitions, 5 curated combination protocols:
+  - Wolverine Stack (BPC-157 + TB-500, recovery)
+  - Glow Stack (+ GHK-Cu, collagen/skin)
+  - Klow Stack (+ KPV, anti-inflammatory)
+  - GH/Muscle Growth Stack (CJC-1295 no DAC + Ipamorelin)
+  - Metabolic/Fat-Loss Stack (Semaglutide + 5-Amino-1MQ)
+- `/stacks` list page with evidence level badges and compound chips
+- `/stacks/[slug]` detail pages with rationale, compound cards, protocol, reconstitution quick reference, citations
+- **5-Amino-1MQ** compound (metabolic category, small molecule NNMT inhibitor, not a peptide)
+- **IGF-1 LR3** compound (growth-recovery, long-acting IGF-1 analog)
+- "Metabolic" category added to compound filters
+- "Stacks" link in header navigation
+- Shared stack label constants (STACK_CATEGORY_LABELS, EVIDENCE_STYLES)
+- 37 new tests (25 stack tests, compound count updates)
+
+---
+
 ## [0.2.1.0] - 2026-04-12
 
 Data corrections from independent audit, evidence disclaimers, and display fixes.

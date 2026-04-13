@@ -17,6 +17,7 @@ const FILTER_OPTIONS: { value: CompoundCategory | "all"; label: string }[] = [
   { value: "gh-secretagogue", label: "GH Secretagogues" },
   { value: "neuropeptide", label: "Neuropeptides" },
   { value: "longevity-immune", label: "Longevity & Immune" },
+  { value: "metabolic", label: "Metabolic" },
   { value: "growth-hormone", label: "Growth Hormone" },
 ];
 
