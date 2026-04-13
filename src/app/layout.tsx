@@ -137,12 +137,19 @@ export default function RootLayout({
                 Privacy
               </Link>
               <span className="text-border">|</span>
-              <a
-                href="mailto:privacy@peply.bio"
+              <Link
+                href="/contact"
                 className="hover:text-text transition-colors duration-150"
               >
                 Contact
-              </a>
+              </Link>
+              <span className="text-border">|</span>
+              <Link
+                href="/vendor/login"
+                className="hover:text-text transition-colors duration-150"
+              >
+                Vendor Portal
+              </Link>
             </div>
           </div>
         </footer>
