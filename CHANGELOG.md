@@ -6,6 +6,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.1.3.2] - 2026-04-12
+
+Production deployment and dose display fix.
+
+### Fixed
+
+- Fixed-dose compounds (Tesamorelin) now display "2 mg" instead of "2-2 mg" everywhere (compound list, detail page, calculator selector)
+
+### Added
+
+- `formatDoseRange` utility for consistent dose range display across all pages
+- Vercel deployment documentation in CLAUDE.md (fork, live URL, sync instructions)
+
+---
+
 ## [0.1.3.1] - 2026-04-12
 
 Sprint 3.0 deployment and CI infrastructure.
