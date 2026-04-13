@@ -80,6 +80,12 @@ export default function RootLayout({
                 >
                   Regulatory
                 </Link>
+                <Link
+                  href="/submit"
+                  className="text-text-secondary hover:text-text transition-colors duration-150"
+                >
+                  Submit Data
+                </Link>
               </nav>
               <ThemeToggle />
             </div>
