@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { COMPOUNDS, getCompoundBySlug } from "@/lib/constants/compounds";
 import { Card } from "@/components/ui/Card";
-import { calculateSyringeUnits, formatSyringeUnits } from "@/lib/calculations";
+import { calculateSyringeUnits, formatSyringeUnits, convertDoseUnit } from "@/lib/calculations";
 import { CATEGORY_LABELS } from "@/lib/constants/compounds/labels";
 import { getRegulatoryBadge } from "@/lib/constants/compounds/regulatoryBadge";
 import { formatDoseRange } from "@/lib/formatDoseRange";
@@ -213,9 +213,13 @@ export default async function CompoundPage({
                 </thead>
                 <tbody>
                   {protocol.steps.map((step, i) => {
+                    const normalizedDose =
+                      defaultVial && step.unit !== defaultVial.unit
+                        ? convertDoseUnit(step.dose, step.unit, defaultVial.unit)
+                        : step.dose;
                     const drawMl =
                       defaultConcentration > 0
-                        ? step.dose / defaultConcentration
+                        ? normalizedDose / defaultConcentration
                         : 0;
                     const units =
                       drawMl > 0
