@@ -6,6 +6,27 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.1.3.0] - 2026-04-12
+
+Sprint 2.5 compound data layer. Four launch compounds with clinical data, titration protocols, and regulatory status.
+
+### Added
+
+- Compound data types: `Compound`, `TitrationProtocol`, `TitrationStep`, `RegulatoryStatus`, `DoseRange`, `VialSize`
+- 4 compound data modules: Semaglutide, Tirzepatide, Retatrutide, Tesamorelin
+- Compound list page (`/compounds`) with cards, badges, and dose ranges
+- Compound detail pages (`/compounds/[slug]`) with About, Clinical Dosing, Titration Protocols (with calculated draw volumes), Vial Sizes, and Citations
+- Compound selector in calculator that auto-populates vial size, BAC water volume, and shows clinical dose range hint
+- Shared label constants for compound categories and approval statuses
+- 36 new compound data integrity tests (105 total)
+
+### Fixed
+
+- Deduplicated `CATEGORY_LABELS` and `STATUS_LABELS` into shared `labels.ts` (review finding)
+- Protocol table now uses `formatSyringeUnits` for consistent sub-unit display (review finding)
+
+---
+
 ## [0.1.2.0] - 2026-04-12
 
 Sprint 2 design system and UI overhaul. Complete visual redesign based on DESIGN.md.
