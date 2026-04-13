@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Instrument_Serif, DM_Sans, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/ui/Header";
+import { ServiceWorkerRegistration } from "@/components/ui/ServiceWorkerRegistration";
+import { InstallPrompt } from "@/components/ui/InstallPrompt";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -57,6 +59,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <meta name="theme-color" content="#0C0C0C" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="apple-touch-icon" href="/icons/icon.svg" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`,
@@ -64,6 +70,8 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-text font-sans">
+        <ServiceWorkerRegistration />
+        <InstallPrompt />
         <Header />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-border">
