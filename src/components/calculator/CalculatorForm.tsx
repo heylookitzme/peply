@@ -12,8 +12,9 @@ import { SYRINGE_TYPES } from "@/types/calculator";
 import type { Compound } from "@/types/content";
 import { COMPOUNDS } from "@/lib/constants/compounds";
 import { calculate } from "@/lib/calculations";
-import { formatDoseRange, formatDropdownLabel } from "@/lib/formatDoseRange";
+import { formatDoseRange } from "@/lib/formatDoseRange";
 import { Button } from "@/components/ui/Button";
+import { CompoundCombobox } from "@/components/ui/CompoundCombobox";
 import { CalculatorResults } from "./CalculatorResults";
 import { CalculatorWarnings } from "./CalculatorWarnings";
 
@@ -47,8 +48,7 @@ export function CalculatorForm(): React.ReactElement {
   const [error, setError] = useState<string | null>(null);
 
   const handleCompoundChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const slug = e.target.value;
+    (slug: string) => {
       if (!slug) {
         setSelectedCompound(null);
         return;
@@ -126,19 +126,12 @@ export function CalculatorForm(): React.ReactElement {
         >
           Compound (optional)
         </label>
-        <select
+        <CompoundCombobox
           id="compound"
+          compounds={COMPOUNDS}
           value={selectedCompound?.slug ?? ""}
           onChange={handleCompoundChange}
-          className={`w-full ${selectClass}`}
-        >
-          <option value="">Custom / Manual Entry</option>
-          {COMPOUNDS.map((c) => (
-            <option key={c.slug} value={c.slug}>
-              {formatDropdownLabel(c)}
-            </option>
-          ))}
-        </select>
+        />
       </div>
 
       {/* Form Grid */}
