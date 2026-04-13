@@ -6,6 +6,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.1.3.1] - 2026-04-12
+
+Sprint 3.0 deployment and CI infrastructure.
+
+### Added
+
+- GitHub Actions CI pipeline (lint, typecheck, test with coverage, build)
+- Vercel deployment connected (peply.vercel.app)
+- CI triggers on push to main/develop and PRs against both branches
+
+---
+
 ## [0.1.3.0] - 2026-04-12
 
 Sprint 2.5 compound data layer. Four launch compounds with clinical data, titration protocols, and regulatory status.
