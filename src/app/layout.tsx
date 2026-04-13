@@ -83,10 +83,15 @@ export default function RootLayout({
         <footer className="border-t border-border py-8 text-center text-[13px] text-text-secondary">
           <div className="mx-auto max-w-[720px] px-6 space-y-1">
             <p>
-              Peply is a calculation tool, not medical advice. Always consult a
-              qualified healthcare provider.
+              Peply is an educational reference tool for reconstitution
+              calculations and published compound data. It does not provide
+              medical advice, diagnosis, or treatment recommendations.
             </p>
-            <p>Results should be verified independently before use.</p>
+            <p>
+              Consult a licensed healthcare provider before using any compound.
+              Peply has no affiliation with any manufacturer, pharmacy, or
+              vendor.
+            </p>
           </div>
         </footer>
       </body>

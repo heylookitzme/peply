@@ -8,7 +8,7 @@ import { STACK_CATEGORY_LABELS, EVIDENCE_STYLES } from "@/lib/constants/stacks/l
 export const metadata: Metadata = {
   title: "Stacks - Peply",
   description:
-    "Curated peptide stacks and combination protocols. Recovery, growth, and metabolic stacks with dosing guidelines and evidence levels.",
+    "Community-derived peptide stacks and combination protocols. Recovery, growth, and metabolic stacks with documented dosing and evidence levels.",
 };
 
 export default function StacksPage(): React.ReactElement {
@@ -18,7 +18,7 @@ export default function StacksPage(): React.ReactElement {
         label="Stacks"
         title="Combination Protocols"
         emphasisWord="Protocols"
-        subtitle="Curated multi-compound stacks with dosing guidelines, timing protocols, and evidence context."
+        subtitle="Community-derived multi-compound stacks with documented dosing, timing protocols, and evidence context."
       />
 
       <p className="mt-4 text-[12px] text-warning/80 italic max-w-[600px]">

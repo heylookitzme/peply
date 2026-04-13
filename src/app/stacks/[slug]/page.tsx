@@ -43,6 +43,12 @@ export default async function StackPage({
         &larr; All Stacks
       </Link>
 
+      {/* Community-derived notice */}
+      <p className="text-[12px] text-text-secondary mb-6">
+        Community-derived protocol. No clinical trials have studied this specific
+        combination. For educational reference only.
+      </p>
+
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
         <h1 className="font-serif text-[36px] leading-tight">{stack.name}</h1>

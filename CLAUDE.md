@@ -14,6 +14,28 @@ It defines:
 
 If this document conflicts with older planning notes, this document wins unless the owner explicitly approves a change.
 
+## Table of Contents
+
+- [Project Identity](#project-identity)
+- [Current Product Scope](#current-product-scope)
+- [Product Principles](#product-principles)
+- [gstack](#gstack)
+- [Tech Stack](#tech-stack)
+- [Code Standards](#code-standards)
+- [Content And Editorial Rules](#content-and-editorial-rules)
+- [Content Language Guidelines](#content-language-guidelines)
+- [Data Model Rules](#data-model-rules)
+- [Calculation Engine Rules](#calculation-engine-rules)
+- [Git Workflow](#git-workflow)
+- [CI](#ci)
+- [Deployment](#deployment)
+- [Security And Secrets](#security-and-secrets)
+- [Performance Targets](#performance-targets)
+- [AI Agent Guidelines](#ai-agent-guidelines)
+- [Definition Of Done](#definition-of-done)
+- [Documents Written After Planning](#documents-written-after-planning)
+- [Design System](#design-system)
+
 ## Project Identity
 
 Peply is a public web application for peptide and injectable medication reconstitution calculations and a small citation-backed protocol reference layer.
@@ -208,6 +230,45 @@ These rules are mandatory because Peply includes health-adjacent reference conte
 - do not use speculative regulatory language as if it were settled fact
 - do not present future reclassification timelines as product truth
 
+## Content Language Guidelines
+
+Peply is a neutral reference tool. Every word choice must reflect that positioning. These rules apply to all UI text, page copy, compound descriptions, stack descriptions, and metadata.
+
+### Never use (in any user-facing context):
+
+- "Recommended" / "we recommend" → use "published," "documented," or "clinical trial"
+- "Safe" / "safety profile" → use "published adverse event data" or "tolerability data"
+- "Effective" / "proven" → use "studied for," "investigated for," or "associated with"
+- "Benefits" → use "studied effects" or "reported effects"
+- "Works by" → use "mechanism of action involves"
+- "Take" / "use" (as instructions) → use "administered at" or "dosed at"
+- "Our compounds" / "we support" → Peply does not own or endorse compounds
+- "Supported" (implying endorsement) → use "referenced" or "included"
+- "Best" / "optimal" / "ideal" (about dosing) → use "published range" or "clinical trial dose"
+- "You should" / "we suggest" → never give directives
+
+### Always use:
+
+- "Published clinical data" not "curated clinical data"
+- "Community-derived protocol" for any stack or dosing not from a clinical trial
+- "Preclinical" or "limited human data" where applicable
+- "Consult a licensed healthcare provider" not "talk to your doctor"
+- "Educational reference" not "guide" or "recommendation"
+
+### Disclaimer placement:
+
+- Global footer: liability disclaimer on every page
+- Calculator: math-only disclaimer above the calculate action
+- Compound detail pages: non-endorsement notice at top
+- Stack pages: community-derived notice at top
+- Regulatory tracker: verification notice referencing FDA.gov
+- Disclaimers must be visible but not intrusive — one line of secondary text, not a modal or banner
+
+### Exceptions:
+
+- Direct quotes from citation titles or published paper names are exempt (e.g., a paper titled "Safety and Efficacy of..." keeps its original wording)
+- FDA label language can be referenced as-is when citing approved indications
+
 ## Data Model Rules
 
 - do not compress protocol data into one flat dose-range field
@@ -350,5 +411,5 @@ All font choices, colors, spacing, and aesthetic direction are defined there.
 Do not deviate without explicit user approval.
 In QA mode, flag any code that does not match DESIGN.md.
 
-Last updated: 2026-04-12
+Last updated: 2026-04-13
 Owner: Wilbur Chu
