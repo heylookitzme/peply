@@ -30,7 +30,8 @@ export async function submitContact(formData: FormData): Promise<ContactResult> 
   const email = (formData.get("email") as string)?.trim();
   const category = formData.get("category") as string;
   const message = (formData.get("message") as string)?.trim();
-  const name = (formData.get("name") as string)?.trim() || null;
+  const nameRaw = (formData.get("name") as string)?.trim() || null;
+  const name = nameRaw && nameRaw.length <= 200 ? nameRaw : nameRaw?.slice(0, 200) ?? null;
 
   if (!email || !category || !message) {
     return { success: false, error: "Please fill in all required fields." };
