@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { COMPOUNDS, getCompoundBySlug } from "@/lib/constants/compounds";
-import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { calculateSyringeUnits, formatSyringeUnits } from "@/lib/calculations";
-import { CATEGORY_LABELS, STATUS_LABELS } from "@/lib/constants/compounds/labels";
+import { CATEGORY_LABELS } from "@/lib/constants/compounds/labels";
+import { getRegulatoryBadge } from "@/lib/constants/compounds/regulatoryBadge";
 import { formatDoseRange } from "@/lib/formatDoseRange";
 
 interface CompoundPageProps {
@@ -53,9 +53,14 @@ export default async function CompoundPage({
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
         <h1 className="font-serif text-[36px] leading-tight">{compound.name}</h1>
-        <Badge status={compound.approvalStatus}>
-          {STATUS_LABELS[compound.approvalStatus]}
-        </Badge>
+        {(() => {
+          const badge = getRegulatoryBadge(compound);
+          return (
+            <span className={`inline-block shrink-0 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${badge.style}`}>
+              {badge.label}
+            </span>
+          );
+        })()}
       </div>
       <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent mb-4">
         {CATEGORY_LABELS[compound.category]} &middot; {compound.manufacturer}
