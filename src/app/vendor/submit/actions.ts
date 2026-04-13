@@ -74,7 +74,12 @@ export async function submitVendorData(formData: FormData): Promise<VendorSubmit
       return { success: false, error: "COA file must be a PDF, JPEG, or PNG." };
     }
 
-    const ext = coaFile.name.split(".").pop()?.toLowerCase() ?? "pdf";
+    const mimeToExt: Record<string, string> = {
+      "application/pdf": "pdf",
+      "image/jpeg": "jpg",
+      "image/png": "png",
+    };
+    const ext = mimeToExt[coaFile.type] ?? "pdf";
     const safeName = `${user.id}/${Date.now()}-${crypto.randomUUID()}.${ext}`;
 
     const { error: uploadError } = await supabase.storage
