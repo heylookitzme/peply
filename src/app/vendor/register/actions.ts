@@ -32,6 +32,11 @@ export async function registerVendor(formData: FormData): Promise<RegisterResult
 
   if (authError) {
     console.error("[vendor-register] auth error:", authError.message);
+    // Surface password-related errors directly, genericize the rest
+    const msg = authError.message.toLowerCase();
+    if (msg.includes("password")) {
+      return { success: false, error: authError.message };
+    }
     return { success: false, error: "Registration failed. Please check your details and try again." };
   }
 
