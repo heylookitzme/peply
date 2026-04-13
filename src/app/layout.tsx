@@ -68,6 +68,12 @@ export default function RootLayout({
                 >
                   Compounds
                 </Link>
+                <Link
+                  href="/stacks"
+                  className="text-text-secondary hover:text-text transition-colors duration-150"
+                >
+                  Stacks
+                </Link>
               </nav>
               <ThemeToggle />
             </div>

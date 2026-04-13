@@ -31,6 +31,12 @@ import { motsc } from "./motsc";
 import { kpv } from "./kpv";
 import { kisspeptin10 } from "./kisspeptin10";
 
+// Metabolic
+import { fiveAmino1mq } from "./fiveAmino1mq";
+
+// Additional Growth & Recovery
+import { igf1lr3 } from "./igf1lr3";
+
 export const COMPOUNDS: readonly Compound[] = [
   semaglutide,
   tirzepatide,
@@ -51,6 +57,10 @@ export const COMPOUNDS: readonly Compound[] = [
   motsc,
   kpv,
   kisspeptin10,
+  // Metabolic
+  fiveAmino1mq,
+  // Additional Growth & Recovery
+  igf1lr3,
 ] as const;
 
 export function getCompoundBySlug(slug: string): Compound | undefined {
@@ -81,4 +91,6 @@ export {
   motsc,
   kpv,
   kisspeptin10,
+  fiveAmino1mq,
+  igf1lr3,
 };
