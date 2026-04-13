@@ -335,5 +335,12 @@ These documents should exist as the project matures:
 
 Write them when their contents are real. Do not create placeholder documents just to fill out structure.
 
+## Design System
+
+Always read DESIGN.md before making any visual or UI decisions.
+All font choices, colors, spacing, and aesthetic direction are defined there.
+Do not deviate without explicit user approval.
+In QA mode, flag any code that does not match DESIGN.md.
+
 Last updated: 2026-04-12
 Owner: Wilbur Chu

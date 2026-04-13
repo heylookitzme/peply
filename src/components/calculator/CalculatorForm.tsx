@@ -10,6 +10,7 @@ import type {
 } from "@/types/calculator";
 import { SYRINGE_TYPES } from "@/types/calculator";
 import { calculate } from "@/lib/calculations";
+import { Button } from "@/components/ui/Button";
 import { CalculatorResults } from "./CalculatorResults";
 import { CalculatorWarnings } from "./CalculatorWarnings";
 
@@ -24,6 +25,12 @@ const DOSE_UNIT_OPTIONS: { value: DoseUnit; label: string }[] = [
   { value: "mg", label: "mg" },
   { value: "mcg", label: "mcg" },
 ];
+
+const inputClass =
+  "w-full rounded-lg border border-border bg-surface px-3.5 py-3 text-[15px] text-text placeholder:text-text-secondary/50 focus:border-accent focus:outline-none transition-colors duration-150";
+
+const selectClass =
+  "rounded-lg border border-border bg-surface px-3 py-3 text-[15px] text-text focus:border-accent focus:outline-none transition-colors duration-150";
 
 export function CalculatorForm(): React.ReactElement {
   const [vialAmount, setVialAmount] = useState("");
@@ -78,10 +85,11 @@ export function CalculatorForm(): React.ReactElement {
 
   return (
     <div className="space-y-8">
+      {/* Form Grid */}
       <div className="grid gap-6 sm:grid-cols-2">
         {/* Vial Amount */}
-        <div className="space-y-2">
-          <label htmlFor="vialAmount" className="block text-sm font-medium">
+        <div className="space-y-1.5">
+          <label htmlFor="vialAmount" className="block text-[13px] font-medium text-text-secondary">
             Vial Amount
           </label>
           <div className="flex gap-2">
@@ -94,13 +102,13 @@ export function CalculatorForm(): React.ReactElement {
               placeholder="e.g. 5"
               value={vialAmount}
               onChange={(e) => setVialAmount(e.target.value)}
-              className="flex-1 rounded-md border border-gray-300 dark:border-gray-700 bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-foreground/20"
+              className={`flex-1 ${inputClass}`}
             />
             <select
               aria-label="Vial amount unit"
               value={vialAmountUnit}
               onChange={(e) => setVialAmountUnit(e.target.value as DoseUnit)}
-              className="rounded-md border border-gray-300 dark:border-gray-700 bg-transparent px-3 py-2 text-sm"
+              className={`w-20 ${selectClass}`}
             >
               {DOSE_UNIT_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -112,11 +120,8 @@ export function CalculatorForm(): React.ReactElement {
         </div>
 
         {/* Diluent Volume */}
-        <div className="space-y-2">
-          <label
-            htmlFor="diluentVolumeMl"
-            className="block text-sm font-medium"
-          >
+        <div className="space-y-1.5">
+          <label htmlFor="diluentVolumeMl" className="block text-[13px] font-medium text-text-secondary">
             Diluent Volume (mL)
           </label>
           <input
@@ -128,13 +133,13 @@ export function CalculatorForm(): React.ReactElement {
             placeholder="e.g. 2"
             value={diluentVolumeMl}
             onChange={(e) => setDiluentVolumeMl(e.target.value)}
-            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-foreground/20"
+            className={inputClass}
           />
         </div>
 
         {/* Target Dose */}
-        <div className="space-y-2">
-          <label htmlFor="targetDose" className="block text-sm font-medium">
+        <div className="space-y-1.5">
+          <label htmlFor="targetDose" className="block text-[13px] font-medium text-text-secondary">
             Target Dose
           </label>
           <div className="flex gap-2">
@@ -147,13 +152,13 @@ export function CalculatorForm(): React.ReactElement {
               placeholder="e.g. 0.25"
               value={targetDose}
               onChange={(e) => setTargetDose(e.target.value)}
-              className="flex-1 rounded-md border border-gray-300 dark:border-gray-700 bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-foreground/20"
+              className={`flex-1 ${inputClass}`}
             />
             <select
               aria-label="Target dose unit"
               value={targetDoseUnit}
               onChange={(e) => setTargetDoseUnit(e.target.value as DoseUnit)}
-              className="rounded-md border border-gray-300 dark:border-gray-700 bg-transparent px-3 py-2 text-sm"
+              className={`w-20 ${selectClass}`}
             >
               {DOSE_UNIT_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -165,15 +170,15 @@ export function CalculatorForm(): React.ReactElement {
         </div>
 
         {/* Syringe Type */}
-        <div className="space-y-2">
-          <label htmlFor="syringeType" className="block text-sm font-medium">
+        <div className="space-y-1.5">
+          <label htmlFor="syringeType" className="block text-[13px] font-medium text-text-secondary">
             Syringe Type
           </label>
           <select
             id="syringeType"
             value={syringeType}
             onChange={(e) => setSyringeType(e.target.value as SyringeType)}
-            className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-transparent px-3 py-2 text-sm"
+            className={`w-full ${selectClass}`}
           >
             {SYRINGE_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -184,23 +189,27 @@ export function CalculatorForm(): React.ReactElement {
         </div>
       </div>
 
-      <button
+      {/* Calculate Button */}
+      <Button
         type="button"
+        variant="primary"
+        fullWidth
         onClick={handleCalculate}
-        className="w-full rounded-lg bg-foreground text-background py-3 text-sm font-medium hover:opacity-90 transition-opacity"
       >
         Calculate
-      </button>
+      </Button>
 
+      {/* Error */}
       {error && (
         <div
           role="alert"
-          className="rounded-md border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-950 px-4 py-3 text-sm text-red-700 dark:text-red-300"
+          className="rounded-lg border border-error/25 bg-error/[0.08] px-5 py-4 text-sm text-error"
         >
           {error}
         </div>
       )}
 
+      {/* Results + Warnings */}
       {result && (
         <div className="space-y-6">
           <CalculatorResults result={result} />

@@ -1,50 +1,77 @@
 import Link from "next/link";
+import { Card } from "@/components/ui/Card";
 
 export default function HomePage(): React.ReactElement {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16">
-      <div className="text-center space-y-6">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Peptide Reconstitution Calculator
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Calculate accurate reconstitution math for peptides and injectable
-          medications. Get concentration, draw volume, and syringe unit outputs
-          with smart warnings.
-        </p>
-        <div className="pt-4">
-          <Link
-            href="/calculator"
-            className="inline-block rounded-lg bg-foreground text-background px-6 py-3 text-sm font-medium hover:opacity-90 transition-opacity"
-          >
-            Open Calculator
-          </Link>
+    <>
+      {/* Hero */}
+      <section className="pt-24 pb-16 text-center">
+        <div className="mx-auto max-w-[720px] px-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent mb-3">
+            Reconstitution Calculator
+          </p>
+          <h1 className="font-serif text-[40px] sm:text-[56px] leading-[1.1] tracking-tight mb-6">
+            Precise dosing.
+            <br />
+            Every <em className="text-accent">time</em>.
+          </h1>
+          <p className="text-lg text-text-secondary max-w-[520px] mx-auto mb-8 leading-relaxed">
+            Calculate reconstitution math for peptides and injectable
+            medications. Concentration, draw volume, and syringe units with
+            smart warnings.
+          </p>
+          <div className="flex items-center justify-center gap-3">
+            <Link
+              href="/calculator"
+              className="inline-block rounded-lg bg-accent text-white px-8 py-3.5 text-[15px] font-medium hover:bg-accent-hover transition-colors duration-150"
+            >
+              Open Calculator
+            </Link>
+            <span
+              className="inline-block rounded-lg border border-border text-text px-8 py-3.5 text-[15px] font-medium opacity-50 cursor-default"
+              title="Coming in Sprint 2"
+            >
+              View Compounds
+            </span>
+          </div>
         </div>
+      </section>
+
+      {/* Divider */}
+      <div className="mx-auto max-w-[720px] px-6">
+        <hr className="border-border" />
       </div>
 
-      <div className="mt-16 grid gap-8 sm:grid-cols-3">
-        <div className="space-y-2">
-          <h2 className="font-semibold">Accurate Math</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Concentration, mL draw, and syringe unit outputs from any vial and
-            diluent combination.
-          </p>
+      {/* Features */}
+      <section className="py-16">
+        <div className="mx-auto max-w-[960px] px-6">
+          <div className="grid gap-6 sm:grid-cols-3">
+            <Card>
+              <h2 className="text-base font-semibold mb-2">Accurate Math</h2>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                Concentration, mL draw, and syringe unit outputs from any vial
+                and diluent combination.
+              </p>
+            </Card>
+            <Card>
+              <h2 className="text-base font-semibold mb-2">Smart Warnings</h2>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                Alerts for low-accuracy draws, syringe overflow, and awkward
+                dilution ratios.
+              </p>
+            </Card>
+            <Card>
+              <h2 className="text-base font-semibold mb-2">
+                Transparent Results
+              </h2>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                Every calculation shows the formula inputs and outputs so you
+                can verify the math.
+              </p>
+            </Card>
+          </div>
         </div>
-        <div className="space-y-2">
-          <h2 className="font-semibold">Smart Warnings</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Alerts for low-accuracy draws, syringe overflow, and awkward
-            dilution ratios.
-          </p>
-        </div>
-        <div className="space-y-2">
-          <h2 className="font-semibold">Transparent Results</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Every calculation shows the formula inputs and outputs so you can
-            verify the math.
-          </p>
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
