@@ -22,9 +22,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Peply - Peptide Reconstitution Calculator",
+  metadataBase: new URL("https://peply.bio"),
+  title: {
+    default: "Peply - Peptide Reconstitution Calculator",
+    template: "%s | Peply",
+  },
   description:
     "Accurate peptide and injectable reconstitution calculations with concentration, draw volume, and syringe unit outputs.",
+  openGraph: {
+    type: "website",
+    siteName: "Peply",
+    title: "Peply - Peptide Reconstitution Calculator",
+    description:
+      "Accurate peptide and injectable reconstitution calculations with concentration, draw volume, and syringe unit outputs.",
+    url: "https://peply.bio",
+  },
+  twitter: {
+    card: "summary",
+    title: "Peply - Peptide Reconstitution Calculator",
+    description:
+      "Accurate peptide and injectable reconstitution calculations with concentration, draw volume, and syringe unit outputs.",
+  },
 };
 
 export default function RootLayout({
@@ -104,6 +122,35 @@ export default function RootLayout({
               Peply has no affiliation with any manufacturer, pharmacy, or
               vendor.
             </p>
+            <div className="flex items-center justify-center gap-4 mt-3">
+              <Link
+                href="/terms"
+                className="hover:text-text transition-colors duration-150"
+              >
+                Terms
+              </Link>
+              <span className="text-border">|</span>
+              <Link
+                href="/privacy"
+                className="hover:text-text transition-colors duration-150"
+              >
+                Privacy
+              </Link>
+              <span className="text-border">|</span>
+              <Link
+                href="/contact"
+                className="hover:text-text transition-colors duration-150"
+              >
+                Contact
+              </Link>
+              <span className="text-border">|</span>
+              <Link
+                href="/vendor/login"
+                className="hover:text-text transition-colors duration-150"
+              >
+                Vendor Portal
+              </Link>
+            </div>
           </div>
         </footer>
       </body>

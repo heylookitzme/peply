@@ -62,13 +62,19 @@ create policy "Anyone can insert anonymous submissions"
   to anon, authenticated
   with check (true);
 
--- user_submissions: allow SELECT for rate limiting (ip_hash lookups only)
--- This returns count only (head: true) — individual rows are not exposed
-create policy "Allow rate limit checks on submissions"
-  on public.user_submissions
-  for select
-  to anon, authenticated
-  using (true);
+-- Rate limiting function (SECURITY DEFINER — bypasses RLS to count by ip_hash)
+-- No SELECT policy on user_submissions — data is private to service_role only
+create or replace function public.check_rate_limit(p_ip_hash text, p_max_per_hour int default 10)
+returns boolean
+language sql
+security definer
+set search_path = ''
+as $$
+  select count(*) < p_max_per_hour
+  from public.user_submissions
+  where ip_hash = p_ip_hash
+    and created_at > now() - interval '1 hour';
+$$;
 
 -- vendor_accounts: authenticated users can create their own account
 create policy "Users can create their own vendor account"

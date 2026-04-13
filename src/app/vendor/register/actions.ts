@@ -31,7 +31,7 @@ export async function registerVendor(formData: FormData): Promise<RegisterResult
   });
 
   if (authError) {
-    // Return generic error to avoid leaking account existence info
+    console.error("[vendor-register] auth error:", authError.message);
     return { success: false, error: "Registration failed. Please check your details and try again." };
   }
 
@@ -48,6 +48,7 @@ export async function registerVendor(formData: FormData): Promise<RegisterResult
   });
 
   if (vendorError) {
+    console.error("[vendor-register] vendor_accounts insert error:", vendorError.message);
     return { success: false, error: "Account created but vendor profile failed. Contact support." };
   }
 
