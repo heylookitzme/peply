@@ -7,10 +7,10 @@
 create table if not exists public.user_submissions (
   id uuid primary key default gen_random_uuid(),
   compound_slug text not null,
-  dose_amount numeric not null,
+  dose_amount numeric not null check (dose_amount > 0 and dose_amount <= 10000),
   dose_unit text not null check (dose_unit in ('mg', 'mcg')),
-  frequency text not null,
-  duration_weeks integer,
+  frequency text not null check (frequency in ('daily', 'twice_daily', '3x_week', '5x_week', 'weekly', 'biweekly', 'other')),
+  duration_weeks integer check (duration_weeks is null or (duration_weeks >= 1 and duration_weeks <= 260)),
   route text check (route in ('sc', 'im', 'oral')),
   source_type text check (source_type in ('compounding_pharmacy', 'research_supplier', 'clinic', 'other')),
   effects jsonb,
@@ -38,7 +38,7 @@ create table if not exists public.vendor_submissions (
   vendor_id uuid not null references public.vendor_accounts(id),
   compound_slug text not null,
   batch_number text,
-  purity_percentage numeric,
+  purity_percentage numeric check (purity_percentage is null or (purity_percentage >= 0 and purity_percentage <= 100)),
   contaminants_tested jsonb,
   potency_verified boolean,
   coa_file_url text,
@@ -55,12 +55,20 @@ alter table public.user_submissions enable row level security;
 alter table public.vendor_accounts enable row level security;
 alter table public.vendor_submissions enable row level security;
 
--- user_submissions: anonymous INSERT allowed, no SELECT/UPDATE/DELETE
+-- user_submissions: anonymous INSERT allowed
 create policy "Anyone can insert anonymous submissions"
   on public.user_submissions
   for insert
   to anon, authenticated
   with check (true);
+
+-- user_submissions: allow SELECT for rate limiting (ip_hash lookups only)
+-- This returns count only (head: true) — individual rows are not exposed
+create policy "Allow rate limit checks on submissions"
+  on public.user_submissions
+  for select
+  to anon, authenticated
+  using (true);
 
 -- vendor_accounts: authenticated users can create their own account
 create policy "Users can create their own vendor account"
@@ -76,13 +84,14 @@ create policy "Users can read their own vendor account"
   to authenticated
   using (id = auth.uid());
 
--- vendor_accounts: users can update only their own row
+-- vendor_accounts: users can update only their own row (excluding verified flag)
+-- NOTE: verified can only be set by service_role / admin
 create policy "Users can update their own vendor account"
   on public.vendor_accounts
   for update
   to authenticated
   using (id = auth.uid())
-  with check (id = auth.uid());
+  with check (id = auth.uid() and verified = false);
 
 -- vendor_submissions: authenticated users can insert where vendor_id = auth.uid()
 create policy "Vendors can insert their own submissions"

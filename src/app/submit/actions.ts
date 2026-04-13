@@ -32,6 +32,12 @@ export async function submitAnonymous(formData: FormData): Promise<SubmitResult>
     return { success: false, error: "Invalid dose unit." };
   }
 
+  // Validate frequency
+  const validFrequencies = ["daily", "twice_daily", "3x_week", "5x_week", "weekly", "biweekly", "other"];
+  if (!validFrequencies.includes(frequency)) {
+    return { success: false, error: "Invalid frequency selected." };
+  }
+
   // Validate compound exists
   const compoundExists = COMPOUNDS.some((c) => c.slug === compoundSlug);
   if (!compoundExists) {
@@ -62,23 +68,67 @@ export async function submitAnonymous(formData: FormData): Promise<SubmitResult>
     return { success: false, error: "Too many submissions. Please try again later." };
   }
 
-  // Parse optional fields
-  const durationWeeks = formData.get("duration_weeks")
+  // Validate dose_amount range
+  if (doseAmount <= 0 || doseAmount > 10000) {
+    return { success: false, error: "Dose amount must be between 0 and 10,000." };
+  }
+
+  // Parse and validate optional fields
+  const durationWeeksRaw = formData.get("duration_weeks")
     ? parseInt(formData.get("duration_weeks") as string, 10)
     : null;
-  const route = (formData.get("route") as string) || null;
-  const sourceType = (formData.get("source_type") as string) || null;
-  const wouldSubmitAgain = (formData.get("would_submit_again") as string) || "unsure";
+  const durationWeeks = durationWeeksRaw !== null && durationWeeksRaw >= 1 && durationWeeksRaw <= 260
+    ? durationWeeksRaw
+    : null;
 
-  // Parse effects checkboxes
-  const effects = formData.getAll("effects") as string[];
+  const routeRaw = (formData.get("route") as string) || null;
+  const validRoutes = ["sc", "im", "oral"];
+  const route = routeRaw && validRoutes.includes(routeRaw) ? routeRaw : null;
 
-  // Parse bloodwork changes
+  const sourceRaw = (formData.get("source_type") as string) || null;
+  const validSources = ["compounding_pharmacy", "research_supplier", "clinic", "other"];
+  const sourceType = sourceRaw && validSources.includes(sourceRaw) ? sourceRaw : null;
+
+  const submitAgainRaw = (formData.get("would_submit_again") as string) || "unsure";
+  const validSubmitAgain = ["yes", "no", "unsure"];
+  const wouldSubmitAgain = validSubmitAgain.includes(submitAgainRaw) ? submitAgainRaw : "unsure";
+
+  // Parse and validate effects checkboxes
+  const validEffects = [
+    "desired_effects", "gi_side_effects", "injection_site_reaction",
+    "headache", "fatigue", "mood_changes", "sleep_changes",
+    "no_notable_effects", "other",
+  ];
+  const effects = (formData.getAll("effects") as string[]).filter((e) => validEffects.includes(e));
+
+  // Parse and validate bloodwork changes
   const bloodworkJson = formData.get("bloodwork_changes") as string;
   let bloodworkChanges: { marker: string; before: string; after: string }[] = [];
   if (bloodworkJson) {
     try {
-      bloodworkChanges = JSON.parse(bloodworkJson);
+      const parsed: unknown = JSON.parse(bloodworkJson);
+      if (
+        Array.isArray(parsed) &&
+        parsed.every(
+          (item: unknown) =>
+            typeof item === "object" &&
+            item !== null &&
+            "marker" in item &&
+            "before" in item &&
+            "after" in item &&
+            typeof (item as Record<string, unknown>).marker === "string" &&
+            typeof (item as Record<string, unknown>).before === "string" &&
+            typeof (item as Record<string, unknown>).after === "string",
+        )
+      ) {
+        bloodworkChanges = (parsed as { marker: string; before: string; after: string }[])
+          .slice(0, 20)
+          .map((item) => ({
+            marker: String(item.marker).slice(0, 100),
+            before: String(item.before).slice(0, 100),
+            after: String(item.after).slice(0, 100),
+          }));
+      }
     } catch {
       // Invalid JSON, skip bloodwork
     }

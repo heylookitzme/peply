@@ -31,7 +31,8 @@ export async function registerVendor(formData: FormData): Promise<RegisterResult
   });
 
   if (authError) {
-    return { success: false, error: authError.message };
+    // Return generic error to avoid leaking account existence info
+    return { success: false, error: "Registration failed. Please check your details and try again." };
   }
 
   if (!authData.user) {

@@ -40,11 +40,34 @@ export async function submitVendorData(formData: FormData): Promise<VendorSubmit
   }
 
   const purityStr = formData.get("purity_percentage") as string;
-  const purityPercentage = purityStr ? parseFloat(purityStr) : null;
+  let purityPercentage: number | null = null;
+  if (purityStr) {
+    const parsed = parseFloat(purityStr);
+    if (!isNaN(parsed) && parsed >= 0 && parsed <= 100) {
+      purityPercentage = parsed;
+    } else {
+      return { success: false, error: "Purity percentage must be between 0 and 100." };
+    }
+  }
 
-  const contaminants = formData.getAll("contaminants_tested") as string[];
+  const validContaminants = ["heavy_metals", "endotoxins", "residual_solvents", "microbial", "other"];
+  const contaminants = (formData.getAll("contaminants_tested") as string[]).filter(
+    (c) => validContaminants.includes(c),
+  );
   const potencyVerified = formData.get("potency_verified") === "yes";
-  const coaFileUrl = (formData.get("coa_file_url") as string) || "";
+
+  const coaFileUrlRaw = (formData.get("coa_file_url") as string) || "";
+  let coaFileUrl = "";
+  if (coaFileUrlRaw) {
+    try {
+      const url = new URL(coaFileUrlRaw);
+      if (url.protocol === "https:") {
+        coaFileUrl = url.toString();
+      }
+    } catch {
+      return { success: false, error: "COA file URL must be a valid HTTPS URL." };
+    }
+  }
 
   const { error } = await supabase.from("vendor_submissions").insert({
     vendor_id: user.id,
