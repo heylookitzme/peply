@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { COMPOUNDS, getCompoundBySlug } from "@/lib/constants/compounds";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
-import { calculateSyringeUnits } from "@/lib/calculations";
+import { calculateSyringeUnits, formatSyringeUnits } from "@/lib/calculations";
+import { CATEGORY_LABELS, STATUS_LABELS } from "@/lib/constants/compounds/labels";
 
 interface CompoundPageProps {
   params: Promise<{ slug: string }>;
@@ -25,20 +26,6 @@ export async function generateMetadata({
     description: compound.summary,
   };
 }
-
-const CATEGORY_LABELS: Record<string, string> = {
-  glp1: "GLP-1 Agonist",
-  "dual-agonist": "Dual Agonist",
-  "triple-agonist": "Triple Agonist",
-  "growth-hormone": "Growth Hormone",
-  other: "Other",
-};
-
-const STATUS_LABELS: Record<string, string> = {
-  approved: "FDA Approved",
-  investigational: "Investigational",
-  research: "Research",
-};
 
 export default async function CompoundPage({
   params,
@@ -197,7 +184,7 @@ export default async function CompoundPage({
                         </td>
                         {defaultVial && (
                           <td className="font-mono text-sm px-4 py-3 border-b border-border">
-                            {drawMl.toFixed(2)} mL ({Math.round(units)} units)
+                            {drawMl.toFixed(2)} mL ({formatSyringeUnits(units)} units)
                           </td>
                         )}
                         <td className="text-sm text-text-secondary px-4 py-3 border-b border-border">

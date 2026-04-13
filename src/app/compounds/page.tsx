@@ -4,25 +4,12 @@ import { COMPOUNDS } from "@/lib/constants/compounds";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
+import { CATEGORY_LABELS, STATUS_LABELS } from "@/lib/constants/compounds/labels";
 
 export const metadata: Metadata = {
   title: "Compounds - Peply",
   description:
     "Curated compound reference for peptides and injectable medications. Clinical dose ranges, titration protocols, and regulatory status.",
-};
-
-const CATEGORY_LABELS: Record<string, string> = {
-  glp1: "GLP-1 Agonist",
-  "dual-agonist": "Dual Agonist",
-  "triple-agonist": "Triple Agonist",
-  "growth-hormone": "Growth Hormone",
-  other: "Other",
-};
-
-const STATUS_LABELS: Record<string, string> = {
-  approved: "FDA Approved",
-  investigational: "Investigational",
-  research: "Research",
 };
 
 export default function CompoundsPage(): React.ReactElement {
