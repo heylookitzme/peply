@@ -124,6 +124,11 @@ export default async function CompoundPage({
               {compound.regulatoryStatus.sourcingNote}
             </p>
           )}
+          {compound.dosingEvidenceNote && (
+            <p className="text-[12px] text-warning/80 mt-3 italic">
+              {compound.dosingEvidenceNote}
+            </p>
+          )}
         </Card>
       </section>
 

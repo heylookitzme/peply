@@ -26,6 +26,9 @@ export const cjc1295dac: Compound = {
     frequency: "weekly",
     frequencyLabel: "Once weekly",
   },
+  dosingEvidence: "limited-human",
+  dosingEvidenceNote:
+    "Dosing based on small human studies or early-phase trials. Not established by Phase 3 evidence.",
   titrationProtocols: [
     {
       name: "Research Protocol",

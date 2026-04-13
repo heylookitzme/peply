@@ -18,7 +18,7 @@ export const ghkcu: Compound = {
     { amount: 50, unit: "mg", label: "50 mg vial" },
     { amount: 100, unit: "mg", label: "100 mg vial" },
   ],
-  defaultBacWaterMl: 2,
+  defaultBacWaterMl: 4,
   clinicalDoseRange: {
     min: 1,
     max: 3,
@@ -26,6 +26,9 @@ export const ghkcu: Compound = {
     frequency: "daily",
     frequencyLabel: "Once daily",
   },
+  dosingEvidence: "preclinical",
+  dosingEvidenceNote:
+    "Dosing extrapolated from animal studies and community protocols. No large-scale human clinical trials.",
   titrationProtocols: [
     {
       name: "Research Protocol",

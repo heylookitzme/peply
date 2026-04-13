@@ -26,6 +26,9 @@ export const dsip: Compound = {
     frequency: "daily",
     frequencyLabel: "Once daily (before sleep)",
   },
+  dosingEvidence: "limited-human",
+  dosingEvidenceNote:
+    "Dosing based on small human studies or early-phase trials. Not established by Phase 3 evidence.",
   titrationProtocols: [
     {
       name: "Research Protocol",
@@ -57,6 +60,7 @@ export const dsip: Compound = {
       label: "Kovalzon 2006",
       title: "Delta Sleep-Inducing Peptide: An Update",
       source: "Peptides, 27(6), 1455-1461",
+      sourceUrl: "https://doi.org/10.1016/j.peptides.2005.10.020",
       publishedAt: "2006-06-01",
       lastReviewedAt: "2026-02-27",
     },

@@ -26,6 +26,9 @@ export const aod9604: Compound = {
     frequency: "daily",
     frequencyLabel: "Once daily",
   },
+  dosingEvidence: "preclinical",
+  dosingEvidenceNote:
+    "Dosing extrapolated from animal studies and community protocols. No large-scale human clinical trials.",
   titrationProtocols: [
     {
       name: "Research Protocol",
@@ -56,7 +59,7 @@ export const aod9604: Compound = {
       id: "aod-obesity",
       label: "Heffernan 2001",
       title:
-        "Effects of a Modified Fragment of Growth Hormone on Body Composition",
+        "Effects of a Modified Fragment of Growth Hormone on Body Composition (mouse study; human SC dosing is community-derived)",
       source: "Obesity Research, 9(S4), A51",
       sourceUrl: "https://doi.org/10.1038/oby.2001.120",
       publishedAt: "2001-01-01",

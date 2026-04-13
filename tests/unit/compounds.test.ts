@@ -215,3 +215,80 @@ describe("regulatory status consistency", () => {
     }
   });
 });
+
+describe("data corrections (audit-verified)", () => {
+  it("BPC-157 half-life is 15-30 minutes, not 4 hours", () => {
+    const bpc = getCompoundBySlug("bpc-157");
+    expect(bpc!.halfLife).toContain("15-30 minutes");
+  });
+
+  it("Kisspeptin-10 dose range is weight-based (75-750 mcg for ~75kg)", () => {
+    const kiss = getCompoundBySlug("kisspeptin-10");
+    expect(kiss!.clinicalDoseRange.min).toBe(75);
+    expect(kiss!.clinicalDoseRange.max).toBe(750);
+    expect(kiss!.clinicalDoseRange.frequencyLabel).toContain("mcg/kg");
+  });
+
+  it("Retatrutide has Phase 3 TRIUMPH protocol with 9mg step", () => {
+    const reta = getCompoundBySlug("retatrutide");
+    const triumph = reta!.titrationProtocols.find((p) =>
+      p.name.includes("TRIUMPH"),
+    );
+    expect(triumph).toBeDefined();
+    expect(triumph!.steps.some((s) => s.dose === 9)).toBe(true);
+  });
+
+  it("GHK-Cu default BAC water is 4mL for 50mg vials", () => {
+    const ghk = getCompoundBySlug("ghk-cu");
+    expect(ghk!.defaultBacWaterMl).toBe(4);
+  });
+});
+
+describe("dosing evidence disclaimers", () => {
+  it("all research compounds have dosingEvidence field", () => {
+    const research = COMPOUNDS.filter((c) => c.approvalStatus === "research");
+    expect(research.length).toBe(15);
+    for (const c of research) {
+      expect(c.dosingEvidence).toBeDefined();
+      expect(["preclinical", "limited-human"]).toContain(c.dosingEvidence);
+      expect(c.dosingEvidenceNote).toBeTruthy();
+    }
+  });
+
+  it("preclinical compounds have correct disclaimer text", () => {
+    const preclinical = COMPOUNDS.filter(
+      (c) => c.dosingEvidence === "preclinical",
+    );
+    expect(preclinical.length).toBe(8);
+    for (const c of preclinical) {
+      expect(c.dosingEvidenceNote).toContain("animal studies");
+    }
+  });
+
+  it("limited-human compounds have correct disclaimer text", () => {
+    const limited = COMPOUNDS.filter(
+      (c) => c.dosingEvidence === "limited-human",
+    );
+    expect(limited.length).toBe(7);
+    for (const c of limited) {
+      expect(c.dosingEvidenceNote).toContain("small human studies");
+    }
+  });
+
+  it("approved compounds do not have dosingEvidence", () => {
+    const approved = COMPOUNDS.filter(
+      (c) => c.approvalStatus === "approved",
+    );
+    for (const c of approved) {
+      expect(c.dosingEvidence).toBeUndefined();
+    }
+  });
+
+  it("all citation objects have sourceUrl", () => {
+    for (const c of COMPOUNDS) {
+      for (const citation of c.citations) {
+        expect(citation.sourceUrl).toBeTruthy();
+      }
+    }
+  });
+});

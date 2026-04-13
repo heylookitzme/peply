@@ -26,6 +26,9 @@ export const motsc: Compound = {
     frequency: "other",
     frequencyLabel: "3-5x/week",
   },
+  dosingEvidence: "preclinical",
+  dosingEvidenceNote:
+    "Dosing extrapolated from animal studies and community protocols. No large-scale human clinical trials.",
   titrationProtocols: [
     {
       name: "Research Protocol",
@@ -58,6 +61,7 @@ export const motsc: Compound = {
       title:
         "The Mitochondrial-Derived Peptide MOTS-c Promotes Metabolic Homeostasis and Reduces Obesity and Insulin Resistance",
       source: "Cell Metabolism, 21(3), 443-454",
+      sourceUrl: "https://doi.org/10.1016/j.cmet.2015.02.009",
       publishedAt: "2015-03-03",
       lastReviewedAt: "2026-02-27",
     },

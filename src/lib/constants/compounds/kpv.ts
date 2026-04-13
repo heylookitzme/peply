@@ -26,6 +26,9 @@ export const kpv: Compound = {
     frequency: "daily",
     frequencyLabel: "Once daily",
   },
+  dosingEvidence: "preclinical",
+  dosingEvidenceNote:
+    "Dosing extrapolated from animal studies and community protocols. No large-scale human clinical trials.",
   titrationProtocols: [
     {
       name: "Research Protocol",
@@ -58,6 +61,7 @@ export const kpv: Compound = {
       title:
         "Alpha-MSH and Related Tripeptides: Biochemistry, Anti-Inflammatory and Protective Effects",
       source: "Endocrine Reviews, 29(5), 581-602",
+      sourceUrl: "https://doi.org/10.1210/er.2007-0029",
       publishedAt: "2008-08-01",
       lastReviewedAt: "2026-02-27",
     },

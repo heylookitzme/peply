@@ -27,6 +27,9 @@ export const selank: Compound = {
     frequency: "daily",
     frequencyLabel: "Once daily (intranasal or SC)",
   },
+  dosingEvidence: "limited-human",
+  dosingEvidenceNote:
+    "Dosing based on small human studies or early-phase trials. Not established by Phase 3 evidence.",
   titrationProtocols: [
     {
       name: "Research Protocol",
@@ -60,6 +63,7 @@ export const selank: Compound = {
       title: "Selank: A Novel Anxiolytic Peptide",
       source:
         "Bulletin of Experimental Biology and Medicine, 145(2), 225-227",
+      sourceUrl: "https://doi.org/10.1007/s10517-008-0006-0",
       publishedAt: "2008-02-01",
       lastReviewedAt: "2026-02-27",
     },

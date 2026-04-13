@@ -27,6 +27,9 @@ export const semax: Compound = {
     frequency: "daily",
     frequencyLabel: "Once daily (intranasal or SC)",
   },
+  dosingEvidence: "limited-human",
+  dosingEvidenceNote:
+    "Dosing based on small human studies or early-phase trials. Not established by Phase 3 evidence.",
   titrationProtocols: [
     {
       name: "Research Protocol",
@@ -59,6 +62,7 @@ export const semax: Compound = {
       title:
         "ACTH/MSH-like Peptide Semax: Mechanisms of Action and Clinical Applications",
       source: "Doklady Biological Sciences, 402(1), 195-197",
+      sourceUrl: "https://doi.org/10.1007/s10630-005-0008-4",
       publishedAt: "2005-01-01",
       lastReviewedAt: "2026-02-27",
     },

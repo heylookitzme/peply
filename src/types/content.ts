@@ -98,6 +98,14 @@ export interface Citation {
   lastReviewedAt: string;
 }
 
+export const DOSING_EVIDENCE_LEVELS = [
+  "label",
+  "phase3",
+  "limited-human",
+  "preclinical",
+] as const;
+export type DosingEvidence = (typeof DOSING_EVIDENCE_LEVELS)[number];
+
 export interface Compound {
   id: string;
   slug: string;
@@ -113,6 +121,8 @@ export interface Compound {
   commonVialSizes: VialSize[];
   defaultBacWaterMl: number;
   clinicalDoseRange: DoseRange;
+  dosingEvidence?: DosingEvidence;
+  dosingEvidenceNote?: string;
   titrationProtocols: TitrationProtocol[];
   regulatoryStatus: RegulatoryStatus;
   citations: Citation[];
