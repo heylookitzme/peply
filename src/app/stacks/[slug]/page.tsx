@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { STACKS, getStackBySlug } from "@/lib/constants/stacks";
 import { getCompoundBySlug } from "@/lib/constants/compounds";
 import { Card } from "@/components/ui/Card";
-import { calculateSyringeUnits, formatSyringeUnits, convertDoseUnit } from "@/lib/calculations";
+import { STACK_CATEGORY_LABELS, EVIDENCE_STYLES } from "@/lib/constants/stacks/labels";
 
 interface StackPageProps {
   params: Promise<{ slug: string }>;
@@ -25,20 +25,6 @@ export async function generateMetadata({
     description: stack.summary,
   };
 }
-
-const CATEGORY_LABELS: Record<string, string> = {
-  recovery: "Recovery",
-  growth: "Growth",
-  metabolic: "Metabolic",
-  cognitive: "Cognitive",
-  immune: "Immune",
-};
-
-const EVIDENCE_STYLES: Record<string, string> = {
-  clinical: "bg-success/15 text-success border-success/30",
-  community: "bg-warning/15 text-warning border-warning/30",
-  theoretical: "bg-info/15 text-info border-info/30",
-};
 
 export default async function StackPage({
   params,
@@ -67,7 +53,7 @@ export default async function StackPage({
         </span>
       </div>
       <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent mb-4">
-        {CATEGORY_LABELS[stack.category]} &middot; {stack.compounds.length}{" "}
+        {STACK_CATEGORY_LABELS[stack.category]} &middot; {stack.compounds.length}{" "}
         compounds
       </p>
       <p className="text-[15px] text-text-secondary leading-relaxed mb-4">

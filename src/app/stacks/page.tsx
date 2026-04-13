@@ -3,25 +3,12 @@ import Link from "next/link";
 import { STACKS } from "@/lib/constants/stacks";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Card } from "@/components/ui/Card";
+import { STACK_CATEGORY_LABELS, EVIDENCE_STYLES } from "@/lib/constants/stacks/labels";
 
 export const metadata: Metadata = {
   title: "Stacks - Peply",
   description:
     "Curated peptide stacks and combination protocols. Recovery, growth, and metabolic stacks with dosing guidelines and evidence levels.",
-};
-
-const CATEGORY_LABELS: Record<string, string> = {
-  recovery: "Recovery",
-  growth: "Growth",
-  metabolic: "Metabolic",
-  cognitive: "Cognitive",
-  immune: "Immune",
-};
-
-const EVIDENCE_STYLES: Record<string, string> = {
-  clinical: "bg-success/15 text-success border-success/30",
-  community: "bg-warning/15 text-warning border-warning/30",
-  theoretical: "bg-info/15 text-info border-info/30",
 };
 
 export default function StacksPage(): React.ReactElement {
@@ -52,7 +39,7 @@ export default function StacksPage(): React.ReactElement {
                 </span>
               </div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent mb-2">
-                {CATEGORY_LABELS[stack.category]} &middot;{" "}
+                {STACK_CATEGORY_LABELS[stack.category]} &middot;{" "}
                 {stack.compounds.length} compounds
               </p>
               <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-2">
