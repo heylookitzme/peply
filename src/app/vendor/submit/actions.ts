@@ -3,6 +3,13 @@
 import { createClient } from "@/utils/supabase/server";
 import { COMPOUNDS } from "@/lib/constants/compounds";
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const ALLOWED_MIME_TYPES = [
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+] as const;
+
 export interface VendorSubmitResult {
   success: boolean;
   error?: string;
@@ -56,17 +63,38 @@ export async function submitVendorData(formData: FormData): Promise<VendorSubmit
   );
   const potencyVerified = formData.get("potency_verified") === "yes";
 
-  const coaFileUrlRaw = (formData.get("coa_file_url") as string) || "";
-  let coaFileUrl = "";
-  if (coaFileUrlRaw) {
-    try {
-      const url = new URL(coaFileUrlRaw);
-      if (url.protocol === "https:") {
-        coaFileUrl = url.toString();
-      }
-    } catch {
-      return { success: false, error: "COA file URL must be a valid HTTPS URL." };
+  // Handle COA file upload
+  let coaFilePath: string | null = null;
+  const coaFile = formData.get("coa_file") as File | null;
+  if (coaFile && coaFile.size > 0) {
+    if (coaFile.size > MAX_FILE_SIZE) {
+      return { success: false, error: "COA file must be 10 MB or smaller." };
     }
+    if (!ALLOWED_MIME_TYPES.includes(coaFile.type as (typeof ALLOWED_MIME_TYPES)[number])) {
+      return { success: false, error: "COA file must be a PDF, JPEG, or PNG." };
+    }
+
+    const mimeToExt: Record<string, string> = {
+      "application/pdf": "pdf",
+      "image/jpeg": "jpg",
+      "image/png": "png",
+    };
+    const ext = mimeToExt[coaFile.type] ?? "pdf";
+    const safeName = `${user.id}/${Date.now()}-${crypto.randomUUID()}.${ext}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("coa-files")
+      .upload(safeName, coaFile, {
+        contentType: coaFile.type,
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.error("[vendor-submit] storage upload error:", uploadError.message);
+      return { success: false, error: "COA file upload failed. Please try again." };
+    }
+
+    coaFilePath = safeName;
   }
 
   const { error } = await supabase.from("vendor_submissions").insert({
@@ -76,7 +104,7 @@ export async function submitVendorData(formData: FormData): Promise<VendorSubmit
     purity_percentage: purityPercentage,
     contaminants_tested: contaminants.length > 0 ? contaminants : null,
     potency_verified: potencyVerified,
-    coa_file_url: coaFileUrl || null,
+    coa_file_url: coaFilePath,
     notes: notes || null,
   });
 
