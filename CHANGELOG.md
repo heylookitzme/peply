@@ -6,6 +6,30 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.2.1.0] - 2026-04-12
+
+Data corrections from independent audit, evidence disclaimers, and display fixes.
+
+### Fixed
+
+- BPC-157 half-life corrected from 4 hours to 15-30 minutes (He 2022 PK data)
+- Kisspeptin-10 dose range changed from flat 1-10 mcg to weight-based 75-750 mcg (1-10 mcg/kg)
+- GHK-Cu default BAC water changed from 2 mL to 4 mL (appropriate for 50mg vials)
+- Titration table syringe unit calculation: mcg doses now properly converted to mg before dividing by mg/mL concentration
+- AOD-9604 citation clarified as mouse study (human SC dosing is community-derived)
+- TB-500 protocol source clarified as community-derived (Goldstein 2012 is a review, not a trial)
+- Missing citation sourceUrl added to 7 compounds (Semax, Selank, DSIP, Epitalon, MOTS-C, KPV, Kisspeptin-10)
+
+### Added
+
+- Dosing evidence disclaimers on all 15 research compounds (preclinical or limited-human)
+- Tooltips on regulatory status badges explaining Cat 1/Cat 2 categories
+- Retatrutide TRIUMPH Phase 3 protocol (2→4→6→9→12 mg, skips 8mg step)
+- COMPOUND_AUDIT.md with full 836-line verbatim data extraction for owner verification
+- 17 new tests: titration draw calculations (8), audit-verified data corrections (9)
+
+---
+
 ## [0.2.0.0] - 2026-04-12
 
 Sprint 3.5: Compound database expansion to 19 compounds with regulatory status tracker.

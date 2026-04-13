@@ -27,10 +27,13 @@ export const tb500: Compound = {
     frequency: "twice_weekly",
     frequencyLabel: "2x/week (loading), 1x/week (maintenance)",
   },
+  dosingEvidence: "preclinical",
+  dosingEvidenceNote:
+    "Dosing extrapolated from animal studies and community protocols. No large-scale human clinical trials.",
   titrationProtocols: [
     {
       name: "Loading/Maintenance Protocol",
-      source: "Goldstein et al., Expert Opinion on Biological Therapy, 2012",
+      source: "Community protocol (loading/maintenance). Goldstein et al., 2012 is a review of Thymosin Beta-4 biology, not a clinical dosing study.",
       sourceUrl: "https://doi.org/10.1517/14712598.2012.697527",
       steps: [
         {

@@ -4,6 +4,7 @@ import { STATUS_LABELS } from "./labels";
 export interface RegulatoryBadgeInfo {
   label: string;
   style: string;
+  tooltip: string;
 }
 
 const REG_BADGE_STYLES: Record<string, string> = {
@@ -16,16 +17,36 @@ const REG_BADGE_STYLES: Record<string, string> = {
 
 export function getRegulatoryBadge(compound: Compound): RegulatoryBadgeInfo {
   if (compound.regulatoryStatus.currentCategory === "approved") {
-    return { label: STATUS_LABELS[compound.approvalStatus], style: REG_BADGE_STYLES.approved };
+    return {
+      label: STATUS_LABELS[compound.approvalStatus],
+      style: REG_BADGE_STYLES.approved,
+      tooltip: "FDA-approved medication available through licensed pharmacies.",
+    };
   }
   if (compound.regulatoryStatus.currentCategory === "investigational") {
-    return { label: "Investigational", style: REG_BADGE_STYLES.investigational };
+    return {
+      label: "Investigational",
+      style: REG_BADGE_STYLES.investigational,
+      tooltip: "Currently in clinical trials. Not yet FDA-approved.",
+    };
   }
   if (compound.regulatoryStatus.reclassificationStatus === "pending") {
-    return { label: "Cat 2 → Pending Cat 1", style: REG_BADGE_STYLES.pending };
+    return {
+      label: "Cat 2 \u2192 Pending Cat 1",
+      style: REG_BADGE_STYLES.pending,
+      tooltip: "Restricted from compounding pharmacies since Sept 2023. Announced to return to legal compounding availability (Feb 2026).",
+    };
   }
   if (compound.regulatoryStatus.currentCategory === "cat2") {
-    return { label: "Category 2", style: REG_BADGE_STYLES.cat2 };
+    return {
+      label: "Category 2",
+      style: REG_BADGE_STYLES.cat2,
+      tooltip: "Currently restricted from compounding pharmacies by FDA.",
+    };
   }
-  return { label: STATUS_LABELS[compound.approvalStatus], style: REG_BADGE_STYLES.approved };
+  return {
+    label: STATUS_LABELS[compound.approvalStatus],
+    style: REG_BADGE_STYLES.approved,
+    tooltip: "",
+  };
 }

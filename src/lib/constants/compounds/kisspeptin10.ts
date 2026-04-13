@@ -20,12 +20,15 @@ export const kisspeptin10: Compound = {
   ],
   defaultBacWaterMl: 2,
   clinicalDoseRange: {
-    min: 1,
-    max: 10,
+    min: 75,
+    max: 750,
     unit: "mcg",
     frequency: "other",
-    frequencyLabel: "Single dose / research protocol",
+    frequencyLabel: "Single dose (weight-based: 1-10 mcg/kg)",
   },
+  dosingEvidence: "preclinical",
+  dosingEvidenceNote:
+    "Dosing extrapolated from animal studies and community protocols. No large-scale human clinical trials.",
   titrationProtocols: [
     {
       name: "Research Protocol",
@@ -60,6 +63,7 @@ export const kisspeptin10: Compound = {
         "Kisspeptin-54 Stimulates the Hypothalamic-Pituitary-Gonadal Axis in Human Males",
       source:
         "Journal of Clinical Endocrinology & Metabolism, 90(12), 6609-6615",
+      sourceUrl: "https://doi.org/10.1210/jc.2005-1468",
       publishedAt: "2005-12-01",
       lastReviewedAt: "2026-02-27",
     },

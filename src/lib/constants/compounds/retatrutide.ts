@@ -40,6 +40,18 @@ export const retatrutide: Compound = {
         { dose: 12, unit: "mg", durationWeeks: 0, notes: "Target dose" },
       ],
     },
+    {
+      name: "TRIUMPH Phase 3 (12 mg target)",
+      source: "Eli Lilly TRIUMPH-4 results, Dec 2025",
+      sourceUrl: "https://clinicaltrials.gov/study/NCT05929066",
+      steps: [
+        { dose: 2, unit: "mg", durationWeeks: 4, notes: "Starting dose" },
+        { dose: 4, unit: "mg", durationWeeks: 4, notes: "First escalation" },
+        { dose: 6, unit: "mg", durationWeeks: 4, notes: "Second escalation" },
+        { dose: 9, unit: "mg", durationWeeks: 4, notes: "Third escalation (skips 8mg)" },
+        { dose: 12, unit: "mg", durationWeeks: 0, notes: "Target dose" },
+      ],
+    },
   ],
   regulatoryStatus: {
     currentCategory: "investigational",

@@ -11,7 +11,7 @@ export const bpc157: Compound = {
     "Gastric pentadecapeptide researched for tissue repair, angiogenesis, and anti-inflammatory effects. Not FDA-approved for any indication.",
   mechanism:
     "Gastric pentadecapeptide. Promotes angiogenesis, tendon/ligament healing, and nitric oxide signaling. Modulates growth factor expression.",
-  halfLife: "Estimated 4 hours (limited human PK data)",
+  halfLife: "Estimated 15-30 minutes (rapid clearance per He 2022 PK data)",
   manufacturer: "Research peptide (multiple suppliers)",
   defaultRoute: "subcutaneous",
   commonVialSizes: [
@@ -26,6 +26,9 @@ export const bpc157: Compound = {
     frequency: "daily",
     frequencyLabel: "1-2x daily",
   },
+  dosingEvidence: "preclinical",
+  dosingEvidenceNote:
+    "Dosing extrapolated from animal studies and community protocols. No large-scale human clinical trials.",
   titrationProtocols: [
     {
       name: "Research Dosing Protocol",

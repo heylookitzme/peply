@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { COMPOUNDS, getCompoundBySlug } from "@/lib/constants/compounds";
 import { Card } from "@/components/ui/Card";
-import { calculateSyringeUnits, formatSyringeUnits } from "@/lib/calculations";
+import { calculateSyringeUnits, formatSyringeUnits, convertDoseUnit } from "@/lib/calculations";
 import { CATEGORY_LABELS } from "@/lib/constants/compounds/labels";
 import { getRegulatoryBadge } from "@/lib/constants/compounds/regulatoryBadge";
 import { formatDoseRange } from "@/lib/formatDoseRange";
@@ -56,7 +56,10 @@ export default async function CompoundPage({
         {(() => {
           const badge = getRegulatoryBadge(compound);
           return (
-            <span className={`inline-block shrink-0 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${badge.style}`}>
+            <span
+              className={`inline-block shrink-0 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide cursor-help ${badge.style}`}
+              title={badge.tooltip}
+            >
               {badge.label}
             </span>
           );
@@ -119,6 +122,11 @@ export default async function CompoundPage({
           {compound.regulatoryStatus.sourcingNote && (
             <p className="text-[13px] text-text-secondary mt-2">
               {compound.regulatoryStatus.sourcingNote}
+            </p>
+          )}
+          {compound.dosingEvidenceNote && (
+            <p className="text-[12px] text-warning/80 mt-3 italic">
+              {compound.dosingEvidenceNote}
             </p>
           )}
         </Card>
@@ -210,9 +218,13 @@ export default async function CompoundPage({
                 </thead>
                 <tbody>
                   {protocol.steps.map((step, i) => {
+                    const normalizedDose =
+                      defaultVial && step.unit !== defaultVial.unit
+                        ? convertDoseUnit(step.dose, step.unit, defaultVial.unit)
+                        : step.dose;
                     const drawMl =
                       defaultConcentration > 0
-                        ? step.dose / defaultConcentration
+                        ? normalizedDose / defaultConcentration
                         : 0;
                     const units =
                       drawMl > 0

@@ -27,6 +27,9 @@ export const thymosinAlpha1: Compound = {
     frequency: "twice_weekly",
     frequencyLabel: "2x/week",
   },
+  dosingEvidence: "limited-human",
+  dosingEvidenceNote:
+    "Dosing based on small human studies or early-phase trials. Not established by Phase 3 evidence.",
   titrationProtocols: [
     {
       name: "Zadaxin Label Protocol",

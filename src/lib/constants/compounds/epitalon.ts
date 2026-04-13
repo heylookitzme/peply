@@ -27,6 +27,9 @@ export const epitalon: Compound = {
     frequency: "daily",
     frequencyLabel: "Daily in 10-day cycles",
   },
+  dosingEvidence: "preclinical",
+  dosingEvidenceNote:
+    "Dosing extrapolated from animal studies and community protocols. No large-scale human clinical trials.",
   titrationProtocols: [
     {
       name: "Research Cycling Protocol",
@@ -61,6 +64,7 @@ export const epitalon: Compound = {
         "Epithalon Peptide Induces Telomerase Activity and Telomere Elongation in Human Somatic Cells",
       source:
         "Bulletin of Experimental Biology and Medicine, 135(6), 590-592",
+      sourceUrl: "https://doi.org/10.1023/A:1024626105532",
       publishedAt: "2003-06-01",
       lastReviewedAt: "2026-02-27",
     },
