@@ -3,9 +3,9 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { CalculatorForm } from "@/components/calculator/CalculatorForm";
 
 export const metadata: Metadata = {
-  title: "Calculator - Peply",
+  title: "Reconstitution Calculator",
   description:
-    "Universal peptide reconstitution calculator. Enter vial amount, diluent volume, target dose, and syringe type to get accurate draw calculations.",
+    "Peptide reconstitution calculator. Enter vial amount, diluent volume, and target dose for concentration, draw volume, and syringe unit outputs.",
 };
 
 export default function CalculatorPage(): React.ReactElement {

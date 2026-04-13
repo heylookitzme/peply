@@ -10,9 +10,9 @@ import {
 } from "@/lib/constants/regulatory";
 
 export const metadata: Metadata = {
-  title: "FDA Regulatory Tracker - Peply",
+  title: "FDA Regulatory Tracker",
   description:
-    "FDA regulatory status tracker. Category 1 and Category 2 compounding classification, reclassification timeline, and compound status table.",
+    "FDA peptide reclassification tracker. Category 2 to Category 1 status, timeline, and compound-by-compound tracking for compounding pharmacies.",
 };
 
 export default function RegulatoryPage(): React.ReactElement {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Instrument_Serif, DM_Sans, Geist_Mono } from "next/font/google";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Header } from "@/components/ui/Header";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -24,24 +24,24 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://peply.bio"),
   title: {
-    default: "Peply - Peptide Reconstitution Calculator",
-    template: "%s | Peply",
+    default: "Peply — Peptide Reconstitution Calculator & Reference",
+    template: "%s — Peply",
   },
   description:
-    "Accurate peptide and injectable reconstitution calculations with concentration, draw volume, and syringe unit outputs.",
+    "Peptide reconstitution calculator with published compound data, stack protocols, FDA regulatory tracking, and community submissions. Zero vendor affiliations.",
   openGraph: {
     type: "website",
     siteName: "Peply",
-    title: "Peply - Peptide Reconstitution Calculator",
+    title: "Peply — Peptide Reconstitution Calculator & Reference",
     description:
-      "Accurate peptide and injectable reconstitution calculations with concentration, draw volume, and syringe unit outputs.",
+      "Peptide reconstitution calculator with published compound data, stack protocols, FDA regulatory tracking, and community submissions.",
     url: "https://peply.bio",
   },
   twitter: {
     card: "summary",
-    title: "Peply - Peptide Reconstitution Calculator",
+    title: "Peply — Peptide Reconstitution Calculator & Reference",
     description:
-      "Accurate peptide and injectable reconstitution calculations with concentration, draw volume, and syringe unit outputs.",
+      "Peptide reconstitution calculator with published compound data, stack protocols, FDA regulatory tracking, and community submissions.",
   },
 };
 
@@ -64,92 +64,70 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-text font-sans">
-        <header className="border-b border-border">
-          <div className="mx-auto max-w-[960px] px-6 py-5 flex items-center justify-between">
-            <Link
-              href="/"
-              className="font-serif italic text-2xl tracking-tight"
-            >
-              Peply
-            </Link>
-            <div className="flex items-center gap-6">
-              <nav className="flex gap-6 text-sm">
-                <Link
-                  href="/calculator"
-                  className="text-text-secondary hover:text-text transition-colors duration-150"
-                >
-                  Calculator
-                </Link>
-                <Link
-                  href="/compounds"
-                  className="text-text-secondary hover:text-text transition-colors duration-150"
-                >
-                  Compounds
-                </Link>
-                <Link
-                  href="/stacks"
-                  className="text-text-secondary hover:text-text transition-colors duration-150"
-                >
-                  Stacks
-                </Link>
-                <Link
-                  href="/regulatory"
-                  className="text-text-secondary hover:text-text transition-colors duration-150"
-                >
-                  Regulatory
-                </Link>
-                <Link
-                  href="/submit"
-                  className="text-text-secondary hover:text-text transition-colors duration-150"
-                >
-                  Submit Data
-                </Link>
-              </nav>
-              <ThemeToggle />
+        <Header />
+        <main className="flex-1">{children}</main>
+        <footer className="border-t border-border">
+          {/* About line */}
+          <div className="mx-auto max-w-[960px] px-6 pt-10 pb-6">
+            <p className="text-[13px] text-text-secondary text-center mb-8">
+              Peply is a neutral, vendor-independent peptide reference tool
+              built on published clinical data.
+            </p>
+
+            {/* Link columns */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-[13px]">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-accent mb-3">
+                  Tools
+                </p>
+                <div className="flex flex-col gap-2">
+                  <Link href="/calculator" className="text-text-secondary hover:text-text transition-colors duration-150">Calculator</Link>
+                  <Link href="/compounds" className="text-text-secondary hover:text-text transition-colors duration-150">Compounds</Link>
+                  <Link href="/stacks" className="text-text-secondary hover:text-text transition-colors duration-150">Stacks</Link>
+                </div>
+              </div>
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-accent mb-3">
+                  Resources
+                </p>
+                <div className="flex flex-col gap-2">
+                  <Link href="/regulatory" className="text-text-secondary hover:text-text transition-colors duration-150">Regulatory</Link>
+                  <Link href="/submit" className="text-text-secondary hover:text-text transition-colors duration-150">Community</Link>
+                </div>
+              </div>
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-accent mb-3">
+                  Legal
+                </p>
+                <div className="flex flex-col gap-2">
+                  <Link href="/terms" className="text-text-secondary hover:text-text transition-colors duration-150">Terms</Link>
+                  <Link href="/privacy" className="text-text-secondary hover:text-text transition-colors duration-150">Privacy</Link>
+                  <Link href="/contact" className="text-text-secondary hover:text-text transition-colors duration-150">Contact</Link>
+                </div>
+              </div>
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-accent mb-3">
+                  For Vendors
+                </p>
+                <div className="flex flex-col gap-2">
+                  <Link href="/vendor/login" className="text-text-secondary hover:text-text transition-colors duration-150">Vendor Portal</Link>
+                </div>
+              </div>
             </div>
           </div>
-        </header>
-        <main className="flex-1">{children}</main>
-        <footer className="border-t border-border py-8 text-center text-[13px] text-text-secondary">
-          <div className="mx-auto max-w-[720px] px-6 space-y-1">
-            <p>
-              Peply is an educational reference tool for reconstitution
-              calculations and published compound data. It does not provide
-              medical advice, diagnosis, or treatment recommendations.
-            </p>
-            <p>
-              Consult a licensed healthcare provider before using any compound.
-              Peply has no affiliation with any manufacturer, pharmacy, or
-              vendor.
-            </p>
-            <div className="flex items-center justify-center gap-4 mt-3">
-              <Link
-                href="/terms"
-                className="hover:text-text transition-colors duration-150"
-              >
-                Terms
-              </Link>
-              <span className="text-border">|</span>
-              <Link
-                href="/privacy"
-                className="hover:text-text transition-colors duration-150"
-              >
-                Privacy
-              </Link>
-              <span className="text-border">|</span>
-              <Link
-                href="/contact"
-                className="hover:text-text transition-colors duration-150"
-              >
-                Contact
-              </Link>
-              <span className="text-border">|</span>
-              <Link
-                href="/vendor/login"
-                className="hover:text-text transition-colors duration-150"
-              >
-                Vendor Portal
-              </Link>
+
+          {/* Disclaimer */}
+          <div className="border-t border-border py-6">
+            <div className="mx-auto max-w-[720px] px-6 text-center text-[12px] text-text-secondary space-y-1">
+              <p>
+                Peply does not provide medical advice, diagnosis, or treatment
+                recommendations. Consult a licensed healthcare provider before
+                using any compound.
+              </p>
+              <p>
+                21 compounds · 5 protocols · Published clinical data ·
+                Community-driven · Zero vendor affiliations
+              </p>
             </div>
           </div>
         </footer>

@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { VendorSubmitForm } from "./VendorSubmitForm";
 
 export const metadata: Metadata = {
-  title: "Vendor Submit - Peply",
+  title: "Vendor Portal",
   description: "Submit compound quality and testing data as a verified vendor.",
 };
 

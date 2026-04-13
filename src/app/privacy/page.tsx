@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Card } from "@/components/ui/Card";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Peply",
+  title: "Privacy Policy",
   description:
     "Privacy policy for Peply. What data is collected, how it is stored, and how it is used.",
 };
