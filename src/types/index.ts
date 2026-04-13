@@ -22,10 +22,15 @@ export type {
   ApprovalStatus,
   Route,
   EvidenceLevel,
+  DoseRange,
+  VialSize,
+  TitrationStep,
+  TitrationProtocol,
+  RegulatoryStatus,
+  Citation,
   Compound,
   Protocol,
   ProtocolStep,
-  Citation,
 } from "./content";
 
 export {

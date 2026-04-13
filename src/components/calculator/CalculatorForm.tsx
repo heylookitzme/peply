@@ -9,6 +9,8 @@ import type {
   SyringeType,
 } from "@/types/calculator";
 import { SYRINGE_TYPES } from "@/types/calculator";
+import type { Compound } from "@/types/content";
+import { COMPOUNDS } from "@/lib/constants/compounds";
 import { calculate } from "@/lib/calculations";
 import { Button } from "@/components/ui/Button";
 import { CalculatorResults } from "./CalculatorResults";
@@ -33,6 +35,7 @@ const selectClass =
   "rounded-lg border border-border bg-surface px-3 py-3 text-[15px] text-text focus:border-accent focus:outline-none transition-colors duration-150";
 
 export function CalculatorForm(): React.ReactElement {
+  const [selectedCompound, setSelectedCompound] = useState<Compound | null>(null);
   const [vialAmount, setVialAmount] = useState("");
   const [vialAmountUnit, setVialAmountUnit] = useState<DoseUnit>("mg");
   const [diluentVolumeMl, setDiluentVolumeMl] = useState("");
@@ -41,6 +44,31 @@ export function CalculatorForm(): React.ReactElement {
   const [syringeType, setSyringeType] = useState<SyringeType>("u100_1ml");
   const [result, setResult] = useState<CalculatorResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const handleCompoundChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const slug = e.target.value;
+      if (!slug) {
+        setSelectedCompound(null);
+        return;
+      }
+      const compound = COMPOUNDS.find((c) => c.slug === slug) ?? null;
+      setSelectedCompound(compound);
+      if (compound) {
+        const vial = compound.commonVialSizes[0];
+        if (vial) {
+          setVialAmount(String(vial.amount));
+          setVialAmountUnit(vial.unit);
+        }
+        setDiluentVolumeMl(String(compound.defaultBacWaterMl));
+        setTargetDoseUnit(compound.clinicalDoseRange.unit);
+        setTargetDose("");
+        setResult(null);
+        setError(null);
+      }
+    },
+    [],
+  );
 
   const handleCalculate = useCallback(() => {
     setError(null);
@@ -83,13 +111,43 @@ export function CalculatorForm(): React.ReactElement {
     syringeType,
   ]);
 
+  const doseHint = selectedCompound
+    ? `${selectedCompound.clinicalDoseRange.min}-${selectedCompound.clinicalDoseRange.max} ${selectedCompound.clinicalDoseRange.unit} ${selectedCompound.clinicalDoseRange.frequencyLabel.toLowerCase()}`
+    : null;
+
   return (
     <div className="space-y-8">
+      {/* Compound Selector */}
+      <div className="space-y-1.5">
+        <label
+          htmlFor="compound"
+          className="block text-[13px] font-medium text-text-secondary"
+        >
+          Compound (optional)
+        </label>
+        <select
+          id="compound"
+          value={selectedCompound?.slug ?? ""}
+          onChange={handleCompoundChange}
+          className={`w-full ${selectClass}`}
+        >
+          <option value="">Custom / Manual Entry</option>
+          {COMPOUNDS.map((c) => (
+            <option key={c.slug} value={c.slug}>
+              {c.name} ({c.clinicalDoseRange.min}-{c.clinicalDoseRange.max} {c.clinicalDoseRange.unit})
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* Form Grid */}
       <div className="grid gap-6 sm:grid-cols-2">
         {/* Vial Amount */}
         <div className="space-y-1.5">
-          <label htmlFor="vialAmount" className="block text-[13px] font-medium text-text-secondary">
+          <label
+            htmlFor="vialAmount"
+            className="block text-[13px] font-medium text-text-secondary"
+          >
             Vial Amount
           </label>
           <div className="flex gap-2">
@@ -121,7 +179,10 @@ export function CalculatorForm(): React.ReactElement {
 
         {/* Diluent Volume */}
         <div className="space-y-1.5">
-          <label htmlFor="diluentVolumeMl" className="block text-[13px] font-medium text-text-secondary">
+          <label
+            htmlFor="diluentVolumeMl"
+            className="block text-[13px] font-medium text-text-secondary"
+          >
             Diluent Volume (mL)
           </label>
           <input
@@ -139,7 +200,10 @@ export function CalculatorForm(): React.ReactElement {
 
         {/* Target Dose */}
         <div className="space-y-1.5">
-          <label htmlFor="targetDose" className="block text-[13px] font-medium text-text-secondary">
+          <label
+            htmlFor="targetDose"
+            className="block text-[13px] font-medium text-text-secondary"
+          >
             Target Dose
           </label>
           <div className="flex gap-2">
@@ -149,7 +213,11 @@ export function CalculatorForm(): React.ReactElement {
               inputMode="decimal"
               min="0"
               step="any"
-              placeholder="e.g. 0.25"
+              placeholder={
+                selectedCompound
+                  ? `e.g. ${selectedCompound.clinicalDoseRange.min}`
+                  : "e.g. 0.25"
+              }
               value={targetDose}
               onChange={(e) => setTargetDose(e.target.value)}
               className={`flex-1 ${inputClass}`}
@@ -167,11 +235,19 @@ export function CalculatorForm(): React.ReactElement {
               ))}
             </select>
           </div>
+          {doseHint && (
+            <p className="text-[12px] text-text-secondary">
+              Clinical range: {doseHint}
+            </p>
+          )}
         </div>
 
         {/* Syringe Type */}
         <div className="space-y-1.5">
-          <label htmlFor="syringeType" className="block text-[13px] font-medium text-text-secondary">
+          <label
+            htmlFor="syringeType"
+            className="block text-[13px] font-medium text-text-secondary"
+          >
             Syringe Type
           </label>
           <select
@@ -190,12 +266,7 @@ export function CalculatorForm(): React.ReactElement {
       </div>
 
       {/* Calculate Button */}
-      <Button
-        type="button"
-        variant="primary"
-        fullWidth
-        onClick={handleCalculate}
-      >
+      <Button type="button" variant="primary" fullWidth onClick={handleCalculate}>
         Calculate
       </Button>
 
