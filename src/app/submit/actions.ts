@@ -57,14 +57,13 @@ export async function submitAnonymous(formData: FormData): Promise<SubmitResult>
 
   const supabase = await createClient();
 
-  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-  const { count } = await supabase
-    .from("user_submissions")
-    .select("id", { count: "exact", head: true })
-    .gte("created_at", oneHourAgo)
-    .eq("ip_hash", ipHash);
+  // Rate limit check via Postgres function (bypasses RLS safely)
+  const { data: withinLimit } = await supabase.rpc("check_rate_limit", {
+    p_ip_hash: ipHash,
+    p_max_per_hour: MAX_SUBMISSIONS_PER_HOUR,
+  });
 
-  if ((count ?? 0) >= MAX_SUBMISSIONS_PER_HOUR) {
+  if (withinLimit === false) {
     return { success: false, error: "Too many submissions. Please try again later." };
   }
 

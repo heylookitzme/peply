@@ -7,8 +7,9 @@ const MAX_SUBMISSIONS_PER_HOUR = 10;
 export { MAX_SUBMISSIONS_PER_HOUR };
 
 export async function hashIp(ip: string): Promise<string> {
+  const salt = process.env.IP_HASH_SALT ?? "peply-default-salt";
   const encoder = new TextEncoder();
-  const data = encoder.encode(ip + "peply-salt-2026");
+  const data = encoder.encode(ip + salt);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
