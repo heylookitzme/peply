@@ -53,7 +53,13 @@ describe("regulatory tracker data", () => {
     expect(cat2.length).toBeGreaterThan(0);
     for (const c of cat2) {
       expect(c.regulatoryStatus.dateRestricted).toBe("2023-09-29");
-      expect(c.regulatoryStatus.dateAnnouncedReturn).toBe("2026-02-27");
+      // Compounds returning to Cat 1 carry an announced return date.
+      // Compounds that stay restricted (reclassificationStatus "stable") do not.
+      if (c.regulatoryStatus.reclassificationStatus !== "stable") {
+        expect(c.regulatoryStatus.dateAnnouncedReturn).toBe("2026-02-27");
+      } else {
+        expect(c.regulatoryStatus.dateAnnouncedReturn).toBeUndefined();
+      }
     }
   });
 

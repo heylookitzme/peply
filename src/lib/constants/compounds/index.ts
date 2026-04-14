@@ -19,11 +19,14 @@ import { thymosinAlpha1 } from "./thymosinAlpha1";
 import { ipamorelin } from "./ipamorelin";
 import { cjc1295nodac } from "./cjc1295nodac";
 import { cjc1295dac } from "./cjc1295dac";
+import { sermorelin } from "./sermorelin";
+import { mk677 } from "./mk677";
 
 // Neuropeptides
 import { semax } from "./semax";
 import { selank } from "./selank";
 import { dsip } from "./dsip";
+import { ptBremelanotide } from "./ptBremelanotide";
 
 // Longevity & Immune
 import { epitalon } from "./epitalon";
@@ -50,9 +53,12 @@ export const COMPOUNDS: readonly Compound[] = [
   ipamorelin,
   cjc1295nodac,
   cjc1295dac,
+  sermorelin,
+  mk677,
   semax,
   selank,
   dsip,
+  ptBremelanotide,
   epitalon,
   motsc,
   kpv,
@@ -84,9 +90,12 @@ export {
   ipamorelin,
   cjc1295nodac,
   cjc1295dac,
+  sermorelin,
+  mk677,
   semax,
   selank,
   dsip,
+  ptBremelanotide,
   epitalon,
   motsc,
   kpv,
