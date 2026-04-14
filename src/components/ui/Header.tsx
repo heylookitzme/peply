@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { AuthMenu } from "@/components/auth/AuthMenu";
 
 const NAV_LINKS = [
   { href: "/calculator", label: "Calculator" },
@@ -53,6 +54,7 @@ export function Header(): React.ReactElement {
               </Link>
             ))}
           </nav>
+          <AuthMenu variant="desktop" />
           <ThemeToggle />
         </div>
 
@@ -104,6 +106,7 @@ export function Header(): React.ReactElement {
                   {link.label}
                 </Link>
               ))}
+              <AuthMenu variant="mobile" onNavigate={closeMenu} />
             </div>
             <div className="px-6 py-4 border-t border-border">
               <div className="flex items-center justify-between">

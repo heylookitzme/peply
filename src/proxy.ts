@@ -15,5 +15,8 @@ export const config = {
     // Only run proxy on auth-required routes
     "/submit/:path*",
     "/vendor/:path*",
+    "/account/:path*",
+    "/favorites/:path*",
+    "/auth/:path*",
   ],
 };

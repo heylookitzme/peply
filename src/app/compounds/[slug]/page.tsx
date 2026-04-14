@@ -8,6 +8,7 @@ import { CATEGORY_LABELS } from "@/lib/constants/compounds/labels";
 import { getRegulatoryBadge } from "@/lib/constants/compounds/regulatoryBadge";
 import { formatDoseRange } from "@/lib/formatDoseRange";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { FavoriteButton } from "@/components/auth/FavoriteButton";
 
 interface CompoundPageProps {
   params: Promise<{ slug: string }>;
@@ -77,17 +78,20 @@ export default async function CompoundPage({
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
         <h1 className="font-serif text-[36px] leading-tight">{compound.name}</h1>
-        {(() => {
-          const badge = getRegulatoryBadge(compound);
-          return (
-            <span
-              className={`inline-block shrink-0 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide cursor-help ${badge.style}`}
-              title={badge.tooltip}
-            >
-              {badge.label}
-            </span>
-          );
-        })()}
+        <div className="flex items-center gap-3 shrink-0">
+          {(() => {
+            const badge = getRegulatoryBadge(compound);
+            return (
+              <span
+                className={`inline-block rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide cursor-help ${badge.style}`}
+                title={badge.tooltip}
+              >
+                {badge.label}
+              </span>
+            );
+          })()}
+          <FavoriteButton kind="compound" slug={compound.slug} />
+        </div>
       </div>
       <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent mb-4">
         {CATEGORY_LABELS[compound.category]} &middot; {compound.manufacturer}

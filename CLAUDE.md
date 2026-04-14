@@ -70,11 +70,23 @@ Build only the smallest credible public wedge:
 - citation-backed protocol reference views for supported compounds
 - clear disclaimers and neutral language
 
+### Active Scope Beyond MVP
+
+Sprint 13 (2026-04-14) expanded scope to include a minimal, optional
+account layer. Accounts are additive — every feature still works without
+one. Accounts store only preferences (display name, favorite compound
+slugs, favorite stack slugs, calculator presets). Peply does NOT store
+health data, dosing history, lab results, or any personal medical
+information under any circumstance.
+
+- user accounts (magic-link email only, no passwords)
+- saved calculator presets
+- saved favorites (compounds and stacks)
+
 ### Explicit Non-Goals For v1
 
 Do not build these into the first release:
 
-- user accounts
 - personal tracking
 - injection logs
 - site rotation maps
@@ -345,7 +357,8 @@ Pre-commit hooks via Husky and lint-staged are recommended once the repo is scaf
 - never commit secrets
 - maintain `.env.example` with dummy values
 - use Vercel environment variables for deployment secrets
-- do not add auth or persistence infrastructure without a concrete scope need
+- do not expand the authenticated data model beyond preferences (favorites, presets, display name) without explicit approval
+- never store health data, dosing history, bloodwork, or PHI in the authenticated schema
 - run `/cso` before public launch
 
 ## Performance Targets
