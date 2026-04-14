@@ -18,15 +18,15 @@ describe("Sermorelin", () => {
     expect(sermorelin.defaultRoute).toBe("subcutaneous");
   });
 
-  it("exposes 3/9/15 mg vials and 2 mL default diluent", () => {
+  it("exposes 2/5/9/15 mg vials and 2 mL default diluent", () => {
     const amounts = sermorelin.commonVialSizes.map((v) => v.amount);
-    expect(amounts).toEqual([3, 9, 15]);
+    expect(amounts).toEqual([2, 5, 9, 15]);
     expect(sermorelin.defaultBacWaterMl).toBe(2);
   });
 
-  it("dose range is 100-300 mcg daily", () => {
-    expect(sermorelin.clinicalDoseRange.min).toBe(100);
-    expect(sermorelin.clinicalDoseRange.max).toBe(300);
+  it("dose range is 200-500 mcg daily", () => {
+    expect(sermorelin.clinicalDoseRange.min).toBe(200);
+    expect(sermorelin.clinicalDoseRange.max).toBe(500);
     expect(sermorelin.clinicalDoseRange.unit).toBe("mcg");
   });
 
@@ -53,6 +53,15 @@ describe("PT-141 (Bremelanotide)", () => {
     expect(ptBremelanotide.clinicalDoseRange.min).toBe(1.75);
     expect(ptBremelanotide.clinicalDoseRange.max).toBe(1.75);
     expect(ptBremelanotide.clinicalDoseRange.unit).toBe("mg");
+  });
+
+  it("exposes 1/2/5 mg vial sizes", () => {
+    const amounts = ptBremelanotide.commonVialSizes.map((v) => v.amount);
+    expect(amounts).toEqual([1, 2, 5]);
+  });
+
+  it("half-life is approximately 2.5 hours", () => {
+    expect(ptBremelanotide.halfLife.toLowerCase()).toContain("2.5");
   });
 
   it("carries the Vyleesi label citation", () => {
@@ -84,8 +93,13 @@ describe("MK-677 (Ibutamoren)", () => {
     expect(mk677.clinicalDoseRange.unit).toBe("mg");
   });
 
-  it("stays on Category 2 (restricted)", () => {
-    expect(mk677.regulatoryStatus.currentCategory).toBe("cat2");
+  it("is investigational (oral small molecule, not peptide Cat 2)", () => {
+    expect(mk677.regulatoryStatus.currentCategory).toBe("investigational");
+    expect(mk677.regulatoryStatus.dateRestricted).toBeUndefined();
+  });
+
+  it("half-life reflects the ~24h GH/IGF-1 elevation", () => {
+    expect(mk677.halfLife.toLowerCase()).toContain("24");
   });
 
   it("notes oral administration in the sourcingNote", () => {

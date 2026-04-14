@@ -15,14 +15,15 @@ export const sermorelin: Compound = {
   manufacturer: "Compounded (historical innovator: Serono — Geref)",
   defaultRoute: "subcutaneous",
   commonVialSizes: [
-    { amount: 3, unit: "mg", label: "3 mg vial" },
+    { amount: 2, unit: "mg", label: "2 mg vial" },
+    { amount: 5, unit: "mg", label: "5 mg vial" },
     { amount: 9, unit: "mg", label: "9 mg vial" },
     { amount: 15, unit: "mg", label: "15 mg vial" },
   ],
   defaultBacWaterMl: 2,
   clinicalDoseRange: {
-    min: 100,
-    max: 300,
+    min: 200,
+    max: 500,
     unit: "mcg",
     frequency: "daily",
     frequencyLabel: "Daily before bed",
@@ -37,16 +38,16 @@ export const sermorelin: Compound = {
       sourceUrl: "https://doi.org/10.1111/j.1365-2265.2006.02531.x",
       steps: [
         {
-          dose: 100,
+          dose: 200,
           unit: "mcg",
           durationWeeks: 2,
           notes: "Initial dose at bedtime, subcutaneous",
         },
         {
-          dose: 200,
+          dose: 300,
           unit: "mcg",
           durationWeeks: 0,
-          notes: "Typical maintenance range (200-300 mcg nightly)",
+          notes: "Typical maintenance range (200-500 mcg nightly)",
         },
       ],
     },

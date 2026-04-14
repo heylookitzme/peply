@@ -11,11 +11,13 @@ export const ptBremelanotide: Compound = {
     "Melanocortin-4 receptor agonist approved by the FDA in 2019 as Vyleesi for hypoactive sexual desire disorder (HSDD) in premenopausal women. Acts centrally on nervous system pathways rather than on the vascular system.",
   mechanism:
     "Synthetic cyclic heptapeptide, non-selective melanocortin receptor agonist with preferential activity at MC4R. Activates central nervous system pathways involved in sexual arousal. Does not act on PDE5 or the vasculature.",
-  halfLife: "~2.7 hours (Vyleesi label)",
+  halfLife: "Approximately 2.5 hours",
   manufacturer: "Palatin Technologies (Vyleesi)",
   defaultRoute: "subcutaneous",
   commonVialSizes: [
-    { amount: 10, unit: "mg", label: "10 mg vial" },
+    { amount: 1, unit: "mg", label: "1 mg vial" },
+    { amount: 2, unit: "mg", label: "2 mg vial" },
+    { amount: 5, unit: "mg", label: "5 mg vial" },
   ],
   defaultBacWaterMl: 2,
   clinicalDoseRange: {
