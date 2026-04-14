@@ -6,6 +6,56 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.4.0.0] - 2026-04-14
+
+Sprint 13: Minimal, optional user accounts. Privacy-first — accounts store only
+preferences (favorites, calculator presets, optional display name). No health
+data, dosing history, bloodwork, or PHI is stored.
+
+### Added
+
+- **Supabase Auth** with magic-link email sign-in and Google OAuth
+- **User profile schema** — `user_profiles` (1:1 with `auth.users`) with
+  favorite compound and favorite stack slug arrays; `calculator_presets`
+  table for saved calculator inputs. Full RLS on both tables. Auto-creation
+  of profile row on signup via trigger. Self-service account deletion via
+  `public.delete_me()` RPC (SECURITY DEFINER, cascades preferences)
+- **Auth UI** — `/auth/login` page with magic-link form, "or" divider, and
+  "Sign in with Google" button; `/auth/callback` route for session exchange
+- **Header integration** — signed-in dropdown menu with Favorites, Presets,
+  Account, Sign out; mobile hamburger gains the same entries
+- **Favorites** — icon-only heart toggle on compound and stack detail pages;
+  `/favorites` page with server-rendered grid of saved compounds and stacks
+- **Calculator presets** — save-preset CTA card under calculator results;
+  `/account/presets` page with Load (pre-fills calculator via `?preset=<id>`)
+  and Delete actions
+- **Account page** — `/account` with email, favorites count, preset count,
+  editable display name, data export (JSON download), and account deletion
+- **Privacy policy** — new "User Accounts" section documenting what is and
+  is not stored, plus deletion and export flows
+- **Tests** — 13 new unit tests for auth utilities and preferences queries
+  (312 total, all passing)
+
+### Changed
+
+- Proxy middleware session refresh now covers `/account/*`, `/favorites/*`,
+  and `/auth/*` in addition to existing `/submit` and `/vendor` routes
+- Calculator form accepts optional `initialValues` and exposes a save-preset
+  build callback; calculator page server-fetches preset data via RLS
+
+### Fixed
+
+- Open redirect in `/auth/callback` — rejected external `next` targets
+  (protocol-relative and backslash-prefixed values)
+
+### Security
+
+- All user-owned tables protected by RLS with per-row `auth.uid()` checks
+- Account deletion RPC is SECURITY DEFINER with fixed `search_path` and
+  revoked public execute
+
+---
+
 ## [0.3.0.0] - 2026-04-12
 
 Sprint 4: Stacks system, 2 new compounds, combination protocol pages.
