@@ -15,12 +15,14 @@ export function AccountClient({
   initialDisplayName,
   favoritesCount,
   presetsCount,
+  suggestionsCount,
 }: {
   userId: string;
   email: string;
   initialDisplayName: string;
   favoritesCount: number;
   presetsCount: number;
+  suggestionsCount: number;
 }): React.ReactElement {
   const router = useRouter();
   const [displayName, setDisplayNameState] = useState(initialDisplayName);
@@ -108,7 +110,7 @@ export function AccountClient({
   return (
     <div className="space-y-6">
       <Card>
-        <dl className="grid gap-4 sm:grid-cols-3">
+        <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary">
               Email
@@ -126,6 +128,12 @@ export function AccountClient({
               Presets
             </dt>
             <dd className="font-mono text-[22px] mt-1">{presetsCount}</dd>
+          </div>
+          <div>
+            <dt className="text-[11px] uppercase tracking-[0.08em] text-text-secondary">
+              Suggestions
+            </dt>
+            <dd className="font-mono text-[22px] mt-1">{suggestionsCount}</dd>
           </div>
         </dl>
       </Card>
