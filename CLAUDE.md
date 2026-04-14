@@ -54,8 +54,8 @@ Peply is not:
 - a legal or regulatory authority
 - a community platform
 
-Owner: Wilbur Chu (@heylookitzme on GitHub)
-Decision model: AI agents propose. Wilbur disposes. No code ships without explicit approval.
+Owner: @heylookitzme
+Decision model: AI agents propose. @heylookitzme disposes. No code ships without explicit approval.
 
 ## Current Product Scope
 
@@ -425,4 +425,4 @@ Do not deviate without explicit user approval.
 In QA mode, flag any code that does not match DESIGN.md.
 
 Last updated: 2026-04-13
-Owner: Wilbur Chu
+Owner: @heylookitzme
