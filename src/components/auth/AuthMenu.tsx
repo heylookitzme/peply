@@ -20,7 +20,7 @@ export function AuthMenu({
   variant?: "desktop" | "mobile";
   onNavigate?: () => void;
 }): React.ReactElement | null {
-  const { user, loading } = useAuth();
+  const { user, displayName, loading } = useAuth();
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [open, setOpen] = useState(false);
@@ -103,7 +103,7 @@ export function AuthMenu({
     );
   }
 
-  const label = user.email ?? "Account";
+  const label = displayName?.trim() || user.email || "Account";
 
   return (
     <div ref={containerRef} className="relative text-sm">

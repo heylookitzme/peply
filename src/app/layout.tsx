@@ -65,10 +65,19 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>): Promise<React.ReactElement> {
   let initialUser = null;
+  let initialDisplayName: string | null = null;
   try {
     const supabase = await createClient();
     const { data } = await supabase.auth.getUser();
     initialUser = data.user;
+    if (initialUser) {
+      const { data: profile } = await supabase
+        .from("user_profiles")
+        .select("display_name")
+        .eq("id", initialUser.id)
+        .maybeSingle<{ display_name: string | null }>();
+      initialDisplayName = profile?.display_name ?? null;
+    }
   } catch {
     // Supabase misconfigured or unreachable — render as unauthenticated
   }
@@ -92,7 +101,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-text font-sans">
-        <AuthProvider initialUser={initialUser}>
+        <AuthProvider initialUser={initialUser} initialDisplayName={initialDisplayName}>
           <ServiceWorkerRegistration />
           <InstallPrompt />
           <Header />

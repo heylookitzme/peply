@@ -38,7 +38,7 @@ export function FeedbackForm({
       <div className="rounded-lg border border-accent/40 bg-accent/[0.08] p-5">
         <p className="text-[15px] text-text mb-1">Thanks — we got it.</p>
         <p className="text-[13px] text-text-secondary">
-          Your suggestion is now visible in the list below.
+          We review every suggestion.
         </p>
         <button
           type="button"
@@ -156,8 +156,9 @@ export function FeedbackForm({
       </Button>
 
       <p className="text-[12px] text-text-secondary">
-        Suggestions are public and visible to other users. Peply does not
-        respond to individual suggestions, but we read them all.
+        Suggestions go directly to the Peply team. They are not published
+        publicly. We read every submission, though we may not respond
+        individually.
       </p>
     </form>
   );
