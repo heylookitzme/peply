@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     languages: { en: "/" },
   },
   title: {
-    default: "Peply — Peptide Reconstitution Calculator & Reference",
+    default: "Peply — Peptide Reference Tool",
     template: "%s — Peply",
   },
   description:
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Peply",
-    title: "Peply — Peptide Reconstitution Calculator & Reference",
+    title: "Peply — Peptide Reference Tool",
     description:
       "Peptide reconstitution calculator with published compound data, stack protocols, FDA regulatory tracking, and community submissions.",
     url: "https://peply.bio",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Peply — Peptide Reconstitution Calculator & Reference",
+    title: "Peply — Peptide Reference Tool",
     description:
       "Peptide reconstitution calculator with published compound data, stack protocols, FDA regulatory tracking, and community submissions.",
   },
