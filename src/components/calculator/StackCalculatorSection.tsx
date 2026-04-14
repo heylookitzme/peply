@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { Stack } from "@/types/stack";
 import { StackCalculator } from "./StackCalculator";
 
@@ -27,13 +28,21 @@ export function StackCalculatorSection({
       </div>
 
       {!expanded && (
-        <button
-          type="button"
-          onClick={() => setExpanded(true)}
-          className="w-full rounded-lg border border-dashed border-accent/30 py-4 text-[14px] text-accent hover:bg-accent/5 transition-colors duration-150"
-        >
-          Calculate reconstitution for all {stack.compounds.length} compounds at once
-        </button>
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="flex-1 rounded-lg border border-dashed border-accent/30 py-4 text-[14px] text-accent hover:bg-accent/5 transition-colors duration-150"
+          >
+            Calculate reconstitution
+          </button>
+          <Link
+            href={`/calculator/cost?stack=${stack.slug}`}
+            className="flex-1 rounded-lg border border-dashed border-accent/30 py-4 text-[14px] text-accent hover:bg-accent/5 transition-colors duration-150 text-center"
+          >
+            Estimate cost
+          </Link>
+        </div>
       )}
 
       {expanded && <StackCalculator stack={stack} />}
