@@ -22,12 +22,12 @@ export default function CalculatorPage(): React.ReactElement {
         <CalculatorForm />
       </div>
 
-      <div className="mt-12 text-center">
-        <Link
-          href="/calculator/stacks"
-          className="text-[13px] text-accent hover:underline"
-        >
+      <div className="mt-12 flex items-center justify-center gap-6 text-[13px]">
+        <Link href="/calculator/stacks" className="text-accent hover:underline">
           Calculate a full stack &rarr;
+        </Link>
+        <Link href="/calculator/cost" className="text-accent hover:underline">
+          Estimate protocol costs &rarr;
         </Link>
       </div>
     </div>
