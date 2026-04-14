@@ -22,19 +22,31 @@ const iconsDir = resolve(root, "public/icons");
 const publicDir = resolve(root, "public");
 mkdirSync(iconsDir, { recursive: true });
 
-const fontPath = resolve(
-  root,
-  "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2",
-);
-const fontBase64 = readFileSync(fontPath).toString("base64");
-const fontFaceStyle = `
-    @font-face {
-      font-family: 'Instrument Serif';
-      font-style: normal;
-      font-weight: 400;
-      src: url(data:font/woff2;base64,${fontBase64}) format('woff2');
-    }
-  `.trim();
+function inlineFont(family, style, weight, relPath) {
+  const b64 = readFileSync(resolve(root, relPath)).toString("base64");
+  return `@font-face{font-family:'${family}';font-style:${style};font-weight:${weight};src:url(data:font/woff2;base64,${b64}) format('woff2');}`;
+}
+
+const fontFaceStyle = [
+  inlineFont(
+    "Instrument Serif",
+    "normal",
+    "400",
+    "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2",
+  ),
+  inlineFont(
+    "Instrument Serif",
+    "italic",
+    "400",
+    "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2",
+  ),
+  inlineFont(
+    "DM Sans",
+    "normal",
+    "400",
+    "node_modules/@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2",
+  ),
+].join("\n");
 
 const BG = "#0C0C0C";
 const ACCENT = "#C8572D";
@@ -94,12 +106,57 @@ async function writePng(svg, out, width) {
   console.log(`  wrote ${out}`);
 }
 
+function xBannerSvg() {
+  const W = 1500;
+  const H = 500;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+  <style>${fontFaceStyle}</style>
+  <rect width="${W}" height="${H}" fill="${BG}"/>
+
+  <!-- Left block: wordmark + tagline -->
+  <g>
+    <text x="100" y="260"
+          font-family="Instrument Serif, Georgia, serif"
+          font-size="140"
+          fill="${TEXT}">Peply</text>
+
+    <!-- Thin terracotta rule, the one spot of colour -->
+    <line x1="100" y1="298" x2="200" y2="298" stroke="${ACCENT}" stroke-width="2"/>
+
+    <text x="100" y="348"
+          font-family="DM Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="28"
+          fill="#A1A1AA">Precise dosing. Every time.</text>
+  </g>
+
+  <!-- Right block: feature highlights, small and muted -->
+  <g>
+    <text x="${W - 100}" y="260"
+          text-anchor="end"
+          font-family="DM Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="22"
+          letter-spacing="0.08em"
+          fill="#A1A1AA">24 COMPOUNDS  ·  5 STACKS  ·  FDA TRACKER  ·  FREE</text>
+    <text x="${W - 100}" y="298"
+          text-anchor="end"
+          font-family="DM Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="16"
+          letter-spacing="0.12em"
+          fill="${ACCENT}">PEPLY.BIO</text>
+  </g>
+</svg>`;
+}
+
 async function main() {
   console.log("Writing SVG sources…");
   const logo512 = logoSvg(512);
   const og = ogSvg();
+  const banner = xBannerSvg();
   writeFileSync(resolve(iconsDir, "peply-logo.svg"), logo512);
   writeFileSync(resolve(publicDir, "og-default.svg"), og);
+
+  mkdirSync(resolve(publicDir, "images"), { recursive: true });
+  writeFileSync(resolve(publicDir, "images/x-banner.svg"), banner);
 
   console.log("Rasterizing PNGs…");
   await writePng(logo512, resolve(iconsDir, "icon-512.png"), 512);
@@ -107,6 +164,7 @@ async function main() {
   await writePng(logo512, resolve(iconsDir, "apple-touch-icon.png"), 180);
   await writePng(logo512, resolve(iconsDir, "favicon.png"), 48);
   await writePng(og, resolve(publicDir, "og-default.png"), 1200);
+  await writePng(banner, resolve(publicDir, "images/x-banner.png"), 1500);
 
   console.log("Done.");
 }
