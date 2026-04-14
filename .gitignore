@@ -39,3 +39,7 @@ Thumbs.db
 npm-debug.log*
 pnpm-debug.log*
 .gstack/
+
+# local notes (never commit)
+Wilbur Schedule.md
+*.private.md

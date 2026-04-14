@@ -6,6 +6,35 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.5.0.0] - 2026-04-14
+
+Sprint 12: Public product feedback board. One-way suggestion box — not a
+forum, no replies, no user-to-user discussion. Anonymous by default for
+both signed-out and signed-in submitters; attribution is opt-in.
+
+### Added
+
+- `suggestions` table with `hidden` flag, opt-in `show_attribution`, and
+  IP-hash rate limiting (5 per hour for anonymous submitters)
+- `suggestion_votes` table with triggers that maintain the `upvotes`
+  counter on `suggestions`
+- `/feedback` page: submit form (honeypot + length limits) plus a
+  community feed sortable by Most Upvoted or Most Recent and filterable
+  by category
+- Per-user upvote toggle (one vote per suggestion per user, delete to
+  unvote) — authenticated only
+- `set_suggestion_hidden` RPC reserved for `service_role` (admin
+  moderation)
+- Footer link under Resources; `/account` shows a Suggestions count
+
+### Changed
+
+- CLAUDE.md: feedback board added to Active Scope Beyond MVP with the
+  explicit "not a forum" carve-out; non-goals list clarifies that
+  user-to-user discussion remains out of scope
+
+---
+
 ## [0.4.0.0] - 2026-04-14
 
 Sprint 13: Minimal, optional user accounts. Privacy-first — accounts store only
