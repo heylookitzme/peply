@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { JsonLd } from "@/components/seo/JsonLd";
 import {
   Beaker,
   Dna,
@@ -71,6 +72,22 @@ const STATS = [
 export default function HomePage(): React.ReactElement {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Peply",
+          url: "https://peply.bio",
+          description:
+            "Peptide reconstitution calculator and reference tool with published clinical data, stack protocols, FDA regulatory tracking, and community data.",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: "https://peply.bio/compounds?q={search_term_string}",
+            "query-input": "required name=search_term_string",
+          },
+        }}
+      />
+
       {/* Hero */}
       <section className="pt-28 pb-20 text-center">
         <div className="mx-auto max-w-[720px] px-6">

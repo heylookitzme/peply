@@ -7,6 +7,7 @@ import { calculateSyringeUnits, formatSyringeUnits, convertDoseUnit } from "@/li
 import { CATEGORY_LABELS } from "@/lib/constants/compounds/labels";
 import { getRegulatoryBadge } from "@/lib/constants/compounds/regulatoryBadge";
 import { formatDoseRange } from "@/lib/formatDoseRange";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 interface CompoundPageProps {
   params: Promise<{ slug: string }>;
@@ -49,6 +50,23 @@ export default async function CompoundPage({
       >
         &larr; All Compounds
       </Link>
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "MedicalWebPage",
+          name: compound.name,
+          description: compound.summary,
+          url: `https://peply.bio/compounds/${compound.slug}`,
+          lastReviewed: compound.citations[0]?.lastReviewedAt,
+          about: {
+            "@type": "Drug",
+            name: compound.name,
+            activeIngredient: compound.name,
+            mechanismOfAction: compound.mechanism,
+          },
+        }}
+      />
 
       {/* Non-endorsement notice */}
       <p className="text-[12px] text-text-secondary mb-6">
