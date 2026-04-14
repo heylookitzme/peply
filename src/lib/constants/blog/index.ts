@@ -2,9 +2,11 @@ import type { BlogPost } from "@/types/blog";
 import { peplyLaunch } from "./peplyLaunch";
 import { retatrutide2026 } from "./retatrutide2026";
 
+// Order matters for ties in publishedAt: Array.sort is stable, so posts with
+// the same date appear in registration order. Keep launch announcement first.
 export const BLOG_POSTS: readonly BlogPost[] = [
-  retatrutide2026,
   peplyLaunch,
+  retatrutide2026,
 ] as const;
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
