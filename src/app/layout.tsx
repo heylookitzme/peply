@@ -70,8 +70,7 @@ export default function RootLayout({
     >
       <head>
         <meta name="theme-color" content="#0C0C0C" />
-        {/* Google Search Console — replace content with your verification code */}
-        <meta name="google-site-verification" content="PLACEHOLDER" />
+        <meta name="google-site-verification" content="ASHCvXTC_CS11PY947F5xO3kMj2tVzLho9YzYMVmOME" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="apple-touch-icon" href="/icons/icon.svg" />
