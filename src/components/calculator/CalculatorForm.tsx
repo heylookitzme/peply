@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/Button";
 import { CompoundCombobox } from "@/components/ui/CompoundCombobox";
 import { CalculatorResults } from "./CalculatorResults";
 import { CalculatorWarnings } from "./CalculatorWarnings";
+import { SavePresetButton } from "./SavePresetButton";
+import type { PresetInput } from "@/lib/preferences/queries";
 
 const SYRINGE_OPTIONS: { value: SyringeType; label: string }[] = (
   Object.entries(SYRINGE_TYPES) as [SyringeType, (typeof SYRINGE_TYPES)[SyringeType]][]
@@ -36,14 +38,42 @@ const inputClass =
 const selectClass =
   "rounded-lg border border-border bg-surface px-3 py-3 text-[15px] text-text focus:border-accent focus:outline-none transition-colors duration-150";
 
-export function CalculatorForm(): React.ReactElement {
-  const [selectedCompound, setSelectedCompound] = useState<Compound | null>(null);
-  const [vialAmount, setVialAmount] = useState("");
-  const [vialAmountUnit, setVialAmountUnit] = useState<DoseUnit>("mg");
-  const [diluentVolumeMl, setDiluentVolumeMl] = useState("");
-  const [targetDose, setTargetDose] = useState("");
-  const [targetDoseUnit, setTargetDoseUnit] = useState<DoseUnit>("mg");
-  const [syringeType, setSyringeType] = useState<SyringeType>("u100_1ml");
+export type CalculatorInitialValues = {
+  compoundSlug?: string | null;
+  vialAmount?: string;
+  vialAmountUnit?: DoseUnit;
+  diluentVolumeMl?: string;
+  targetDose?: string;
+  targetDoseUnit?: DoseUnit;
+  syringeType?: SyringeType;
+};
+
+export function CalculatorForm({
+  initialValues,
+}: {
+  initialValues?: CalculatorInitialValues;
+} = {}): React.ReactElement {
+  const initialCompound =
+    (initialValues?.compoundSlug &&
+      COMPOUNDS.find((c) => c.slug === initialValues.compoundSlug)) ||
+    null;
+  const [selectedCompound, setSelectedCompound] = useState<Compound | null>(
+    initialCompound,
+  );
+  const [vialAmount, setVialAmount] = useState(initialValues?.vialAmount ?? "");
+  const [vialAmountUnit, setVialAmountUnit] = useState<DoseUnit>(
+    initialValues?.vialAmountUnit ?? "mg",
+  );
+  const [diluentVolumeMl, setDiluentVolumeMl] = useState(
+    initialValues?.diluentVolumeMl ?? "",
+  );
+  const [targetDose, setTargetDose] = useState(initialValues?.targetDose ?? "");
+  const [targetDoseUnit, setTargetDoseUnit] = useState<DoseUnit>(
+    initialValues?.targetDoseUnit ?? "mg",
+  );
+  const [syringeType, setSyringeType] = useState<SyringeType>(
+    initialValues?.syringeType ?? "u100_1ml",
+  );
   const [result, setResult] = useState<CalculatorResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -285,6 +315,30 @@ export function CalculatorForm(): React.ReactElement {
       {result && (
         <div className="space-y-6">
           <CalculatorResults result={result} />
+          <SavePresetButton
+            buildInput={(): PresetInput | null => {
+              const vialNum = parseFloat(vialAmount);
+              const diluentNum = parseFloat(diluentVolumeMl);
+              const doseNum = parseFloat(targetDose);
+              if (
+                Number.isNaN(vialNum) ||
+                Number.isNaN(diluentNum) ||
+                Number.isNaN(doseNum)
+              ) {
+                return null;
+              }
+              return {
+                name: "",
+                compound_slug: selectedCompound?.slug ?? null,
+                vial_strength: vialNum,
+                vial_unit: vialAmountUnit,
+                diluent_volume: diluentNum,
+                target_dose: doseNum,
+                dose_unit: targetDoseUnit,
+                syringe_type: syringeType,
+              };
+            }}
+          />
           <CalculatorWarnings warnings={result.warnings} />
         </div>
       )}

@@ -70,11 +70,31 @@ Build only the smallest credible public wedge:
 - citation-backed protocol reference views for supported compounds
 - clear disclaimers and neutral language
 
+### Active Scope Beyond MVP
+
+Sprint 13 (2026-04-14) expanded scope to include a minimal, optional
+account layer. Accounts are additive — every feature still works without
+one. Accounts store only preferences (display name, favorite compound
+slugs, favorite stack slugs, calculator presets). Peply does NOT store
+health data, dosing history, lab results, or any personal medical
+information under any circumstance.
+
+- user accounts (magic-link email only, no passwords)
+- saved calculator presets
+- saved favorites (compounds and stacks)
+- product feedback board — one-way suggestions to the product team
+  (feature requests, compound requests, bug reports, general feedback)
+  with upvoting. NOT a forum, NOT a comments system: no replies, no
+  threads, no user-to-user discussion. Attribution is opt-in and
+  defaults to anonymous. Admins can hide suggestions via a `hidden`
+  flag on the row.
+
 ### Explicit Non-Goals For v1
 
 Do not build these into the first release:
 
-- user accounts
+- user-to-user forums, comments, or threaded discussion (the feedback
+  board is one-way product feedback, not a forum)
 - personal tracking
 - injection logs
 - site rotation maps
@@ -87,7 +107,6 @@ Do not build these into the first release:
 - multi-compound stacking
 - notifications
 - ~~real-time regulatory tracker~~ (shipped as static reference page)
-- forums or comments
 
 ## Product Principles
 
@@ -345,7 +364,8 @@ Pre-commit hooks via Husky and lint-staged are recommended once the repo is scaf
 - never commit secrets
 - maintain `.env.example` with dummy values
 - use Vercel environment variables for deployment secrets
-- do not add auth or persistence infrastructure without a concrete scope need
+- do not expand the authenticated data model beyond preferences (favorites, presets, display name) without explicit approval
+- never store health data, dosing history, bloodwork, or PHI in the authenticated schema
 - run `/cso` before public launch
 
 ## Performance Targets

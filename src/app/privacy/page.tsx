@@ -17,7 +17,7 @@ export default function PrivacyPage(): React.ReactElement {
         emphasisWord="Privacy"
       />
       <p className="text-[12px] text-text-secondary mt-2 mb-8">
-        Last updated: April 13, 2026
+        Last updated: April 14, 2026
       </p>
 
       <div className="space-y-6 text-sm text-text-secondary leading-relaxed">
@@ -37,6 +37,38 @@ export default function PrivacyPage(): React.ReactElement {
             name, license number, and contact email. Submitted quality data
             including batch numbers, purity percentages, and certificates of
             analysis.
+          </p>
+        </Card>
+
+        <Card>
+          <h2 className="text-base font-semibold text-text mb-3">
+            User Accounts (Optional)
+          </h2>
+          <p className="mb-2">
+            <strong className="text-text">What is stored:</strong> email
+            address, optional display name, compound and stack favorites
+            (slug references only), and calculator presets (vial strength,
+            diluent volume, target dose, syringe type, and optional preset
+            name).
+          </p>
+          <p className="mb-2">
+            <strong className="text-text">What is NOT stored:</strong> no
+            health data, no dosing history, no bloodwork, no labs, no
+            injection logs, no site rotation, and no personal health
+            information of any kind. Peply accounts are for saving
+            preferences only.
+          </p>
+          <p className="mb-2">
+            <strong className="text-text">Data deletion:</strong> visit{" "}
+            <a href="/account" className="text-accent hover:underline">
+              Account settings
+            </a>{" "}
+            and use &quot;Delete account&quot; to permanently remove your
+            account and all associated preferences. This cannot be undone.
+          </p>
+          <p>
+            <strong className="text-text">Data export:</strong> download a
+            JSON file of your preferences from Account settings at any time.
           </p>
         </Card>
 

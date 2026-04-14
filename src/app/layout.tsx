@@ -6,6 +6,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Header } from "@/components/ui/Header";
 import { ServiceWorkerRegistration } from "@/components/ui/ServiceWorkerRegistration";
 import { InstallPrompt } from "@/components/ui/InstallPrompt";
+import { AuthProvider } from "@/components/auth/AuthProvider";
+import { createClient } from "@/utils/supabase/server";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -57,11 +59,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>): React.ReactElement {
+}>): Promise<React.ReactElement> {
+  let initialUser = null;
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getUser();
+    initialUser = data.user;
+  } catch {
+    // Supabase misconfigured or unreachable — render as unauthenticated
+  }
+
   return (
     <html
       lang="en"
@@ -81,10 +92,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-text font-sans">
-        <ServiceWorkerRegistration />
-        <InstallPrompt />
-        <Header />
-        <main className="flex-1">{children}</main>
+        <AuthProvider initialUser={initialUser}>
+          <ServiceWorkerRegistration />
+          <InstallPrompt />
+          <Header />
+          <main className="flex-1">{children}</main>
         <footer className="border-t border-border">
           {/* About line */}
           <div className="mx-auto max-w-[960px] px-6 pt-10 pb-6">
@@ -112,6 +124,7 @@ export default function RootLayout({
                 <div className="flex flex-col gap-2">
                   <Link href="/regulatory" className="text-text-secondary hover:text-text transition-colors duration-150">Regulatory</Link>
                   <Link href="/submit" className="text-text-secondary hover:text-text transition-colors duration-150">Contribute</Link>
+                  <Link href="/feedback" className="text-text-secondary hover:text-text transition-colors duration-150">Feedback</Link>
                 </div>
               </div>
               <div>
@@ -150,6 +163,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        </AuthProvider>
         <Analytics />
         <SpeedInsights />
       </body>
