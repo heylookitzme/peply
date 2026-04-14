@@ -4,6 +4,7 @@ import { COMPOUNDS } from "@/lib/constants/compounds";
 import { getRegulatoryBadge } from "@/lib/constants/compounds/regulatoryBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Card } from "@/components/ui/Card";
+import { JsonLd } from "@/components/seo/JsonLd";
 import {
   TIMELINE_MILESTONES,
   REMAINING_RESTRICTED,
@@ -37,6 +38,39 @@ export default function RegulatoryPage(): React.ReactElement {
         title="FDA Regulatory Tracker"
         emphasisWord="Tracker"
         subtitle="Compounding category status based on publicly available FDA communications."
+      />
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "What is the difference between FDA Category 1 and Category 2?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Category 1 bulk drug substances may be legally compounded by licensed 503A and 503B pharmacies under a physician prescription. Category 2 substances are restricted from compounding due to insufficient clinical data or unresolved adverse event profiles.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "When will peptides return to Category 1?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "The February 2026 HHS announcement stated approximately 14 peptides would return to Category 1 availability. As of April 2026, the formal FDA reclassification has not been published in the Federal Register. Until published, Category 2 restrictions remain in effect.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Does reclassification mean FDA approval?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "No. Moving from Category 2 to Category 1 means a compound may be legally compounded. It does not mean the compound is FDA-approved for any specific indication. These remain off-label uses requiring a physician prescription from a licensed compounding pharmacy.",
+              },
+            },
+          ],
+        }}
       />
 
       {/* Verification notice */}

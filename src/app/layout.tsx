@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Instrument_Serif, DM_Sans, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Header } from "@/components/ui/Header";
 import { ServiceWorkerRegistration } from "@/components/ui/ServiceWorkerRegistration";
 import { InstallPrompt } from "@/components/ui/InstallPrompt";
@@ -11,20 +13,27 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://peply.bio"),
+  alternates: {
+    canonical: "/",
+    languages: { en: "/" },
+  },
   title: {
     default: "Peply — Peptide Reconstitution Calculator & Reference",
     template: "%s — Peply",
@@ -38,6 +47,7 @@ export const metadata: Metadata = {
     description:
       "Peptide reconstitution calculator with published compound data, stack protocols, FDA regulatory tracking, and community submissions.",
     url: "https://peply.bio",
+    images: [{ url: "/og-default.svg", width: 1200, height: 630, alt: "Peply — Precise dosing. Every time." }],
   },
   twitter: {
     card: "summary",
@@ -60,6 +70,8 @@ export default function RootLayout({
     >
       <head>
         <meta name="theme-color" content="#0C0C0C" />
+        {/* Google Search Console — replace content with your verification code */}
+        <meta name="google-site-verification" content="PLACEHOLDER" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="apple-touch-icon" href="/icons/icon.svg" />
@@ -139,6 +151,8 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
