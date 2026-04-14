@@ -57,7 +57,11 @@ export function FavoriteButton({
     }
   }, [user, kind, slug]);
 
-  const label = favorited ? "Remove from favorites" : "Save to favorites";
+  const tooltip = !user
+    ? "Sign in to save favorites"
+    : favorited
+      ? "Remove from favorites"
+      : "Save to favorites";
 
   return (
     <div className="relative inline-flex flex-col items-end gap-1">
@@ -66,27 +70,23 @@ export function FavoriteButton({
         onClick={handleClick}
         disabled={loading || busy}
         aria-pressed={favorited}
-        aria-label={label}
-        title={label}
-        className={`inline-flex items-center gap-2 rounded-md border px-3 py-2 text-[13px] transition-colors duration-150 cursor-pointer disabled:cursor-not-allowed ${
+        aria-label={tooltip}
+        title={tooltip}
+        className={`inline-flex items-center justify-center w-10 h-10 rounded-md border transition-colors duration-150 cursor-pointer disabled:cursor-not-allowed ${
           favorited
-            ? "border-accent/50 bg-accent/10 text-accent"
+            ? "border-accent/50 bg-accent/10 text-accent hover:bg-accent/15"
             : "border-border text-text-secondary hover:border-text-secondary hover:text-text"
         }`}
       >
         <Heart
-          className="w-4 h-4"
+          className="w-[18px] h-[18px]"
           fill={favorited ? "currentColor" : "none"}
           strokeWidth={1.75}
         />
-        <span>{favorited ? "Saved" : "Save"}</span>
       </button>
 
       {showPrompt && !user && (
-        <p
-          role="status"
-          className="text-[12px] text-text-secondary"
-        >
+        <p role="status" className="text-[12px] text-text-secondary">
           <Link href="/auth/login" className="text-accent hover:underline">
             Sign in
           </Link>{" "}

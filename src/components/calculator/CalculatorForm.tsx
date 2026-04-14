@@ -315,7 +315,6 @@ export function CalculatorForm({
       {result && (
         <div className="space-y-6">
           <CalculatorResults result={result} />
-          <CalculatorWarnings warnings={result.warnings} />
           <SavePresetButton
             buildInput={(): PresetInput | null => {
               const vialNum = parseFloat(vialAmount);
@@ -340,6 +339,7 @@ export function CalculatorForm({
               };
             }}
           />
+          <CalculatorWarnings warnings={result.warnings} />
         </div>
       )}
     </div>
