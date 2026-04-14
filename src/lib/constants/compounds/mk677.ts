@@ -11,8 +11,7 @@ export const mk677: Compound = {
     "Non-peptide, orally active growth hormone secretagogue. Mimics ghrelin at the GHS-R1a receptor to stimulate endogenous GH release. Investigational — not FDA-approved for any indication. Administered orally, so reconstitution calculations do not apply.",
   mechanism:
     "Non-peptide ghrelin mimetic. Agonist at the growth hormone secretagogue receptor (GHS-R1a). Increases pulsatile GH release and downstream IGF-1 without raising cortisol in most studies.",
-  halfLife:
-    "~4-6 hours (plasma). GH/IGF-1 elevation persists ~24 hours, supporting once-daily oral dosing.",
+  halfLife: "Approximately 24 hours",
   manufacturer: "Research compound (historical: Merck MK-0677)",
   defaultRoute: "oral",
   commonVialSizes: [
@@ -47,13 +46,13 @@ export const mk677: Compound = {
     },
   ],
   regulatoryStatus: {
-    currentCategory: "cat2",
+    currentCategory: "investigational",
     reclassificationStatus: "stable",
-    fdaCategory: "Research compound. On the original FDA Category 2 list; expected to remain restricted.",
-    dateRestricted: "2023-09-29",
+    fdaCategory:
+      "Research compound (investigational). Not FDA-approved. Oral small molecule — not subject to the FDA peptide Category 2 restrictions.",
     lastUpdated: "2026-04-14",
     sourcingNote:
-      "Not FDA-approved for any indication. On the original FDA Category 2 list. Oral administration — reconstitution does not apply.",
+      "Not FDA-approved for any indication. As a non-peptide oral small molecule, it is not on the FDA peptide Category 2 list. Oral administration — reconstitution does not apply.",
   },
   citations: [
     {
