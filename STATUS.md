@@ -95,7 +95,6 @@ Peply/
 |-- BUILD-READY-NOTES.md
 |-- CLAUDE.md
 |-- README-next.md
-|-- Wilbur Schedule.md
 |-- peply-product-brief-tightened.md
 |-- package.json
 |-- tsconfig.json
@@ -136,7 +135,6 @@ Peply/
 
 | File | Notes |
 |------|-------|
-| `Wilbur Schedule.md` | Personal peptide dosing schedule (from Grok conversation). Not project code. |
 | `BUILD-READY-NOTES.md` | Planning document from pre-build phase |
 | `peply-product-brief-tightened.md` | Product brief |
 | `README-next.md` | Next.js default readme |
@@ -286,8 +284,7 @@ Based on the CLAUDE.md sprint plan and current state:
 
 ### Cleanup
 
-19. **Remove or relocate `Wilbur Schedule.md`** - personal dosing schedule should not ship in the repo
-20. **Consolidate planning docs** - `BUILD-READY-NOTES.md` and product brief may be archivable now that CLAUDE.md and ARCHITECTURE.md are authoritative
+19. **Consolidate planning docs** - `BUILD-READY-NOTES.md` and product brief may be archivable now that CLAUDE.md and ARCHITECTURE.md are authoritative
 
 ---
 
