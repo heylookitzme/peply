@@ -55,6 +55,40 @@ export default function PrivacyPage(): React.ReactElement {
 
         <Card>
           <h2 className="text-base font-semibold text-text mb-3">
+            Cookies &amp; Tracking Technologies
+          </h2>
+          <p className="mb-2">
+            <strong className="text-text">First-party cookies:</strong> Peply
+            uses first-party cookies solely for authentication session
+            management (keeping you signed in). These are strictly necessary
+            cookies and are not used for tracking or advertising.
+          </p>
+          <p className="mb-2">
+            <strong className="text-text">Analytics:</strong> Peply uses
+            Vercel Analytics for anonymous, aggregated usage data such as page
+            views, referrers, and device types. Vercel Analytics does not use
+            cookies and does not collect personally identifiable information.
+          </p>
+          <p className="mb-2">
+            <strong className="text-text">No third-party tracking:</strong>{" "}
+            Peply does not use third-party tracking cookies, advertising
+            cookies, or cross-site tracking technologies.
+          </p>
+          <p className="mb-2">
+            <strong className="text-text">No data sharing for advertising:</strong>{" "}
+            Peply does not sell, share, or provide personal data to third
+            parties for advertising or marketing purposes.
+          </p>
+          <p>
+            <strong className="text-text">No consent banner:</strong> No
+            cookie consent banner is displayed because Peply only uses
+            strictly necessary first-party cookies and privacy-friendly
+            analytics.
+          </p>
+        </Card>
+
+        <Card>
+          <h2 className="text-base font-semibold text-text mb-3">
             How Data Is Used
           </h2>
           <p>
