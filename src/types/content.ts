@@ -23,6 +23,7 @@ export const ROUTES = [
   "subcutaneous",
   "intramuscular",
   "intranasal",
+  "oral",
   "other",
 ] as const;
 export type Route = (typeof ROUTES)[number];

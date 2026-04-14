@@ -146,6 +146,8 @@ export function CalculatorForm({
     ? `${formatDoseRange(selectedCompound.clinicalDoseRange)} ${selectedCompound.clinicalDoseRange.frequencyLabel.toLowerCase()}`
     : null;
 
+  const isOral = selectedCompound?.defaultRoute === "oral";
+
   return (
     <div className="space-y-8">
       {/* Compound Selector */}
@@ -164,8 +166,31 @@ export function CalculatorForm({
         />
       </div>
 
+      {isOral && (
+        <div
+          role="status"
+          className="rounded-lg border border-warning/25 bg-warning/[0.08] px-5 py-4"
+        >
+          <p className="text-[14px] font-medium text-text mb-1">
+            {selectedCompound?.name} is an oral compound.
+          </p>
+          <p className="text-[13px] text-text-secondary leading-relaxed">
+            Reconstitution calculations do not apply to oral administration.
+            Refer to the clinical dose range on the{" "}
+            <a
+              href={`/compounds/${selectedCompound?.slug ?? ""}`}
+              className="text-accent hover:underline"
+            >
+              compound page
+            </a>{" "}
+            for dosing information.
+          </p>
+        </div>
+      )}
+
       {/* Form Grid */}
-      <div className="grid gap-6 sm:grid-cols-2">
+      <fieldset disabled={isOral} className="contents">
+      <div className={`grid gap-6 sm:grid-cols-2 ${isOral ? "opacity-50 pointer-events-none" : ""}`}>
         {/* Vial Amount */}
         <div className="space-y-1.5">
           <label
@@ -288,6 +313,7 @@ export function CalculatorForm({
           </select>
         </div>
       </div>
+      </fieldset>
 
       {/* Disclaimer + Calculate Button */}
       <div className="space-y-3">
@@ -296,7 +322,7 @@ export function CalculatorForm({
           results independently. Not a substitute for professional medical
           guidance.
         </p>
-        <Button type="button" variant="primary" fullWidth onClick={handleCalculate}>
+        <Button type="button" variant="primary" fullWidth onClick={handleCalculate} disabled={isOral}>
           Calculate
         </Button>
       </div>
