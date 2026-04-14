@@ -12,19 +12,22 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: "portrait-primary",
     icons: [
       {
-        src: "/icons/icon.svg",
+        src: "/icons/peply-logo.svg",
         sizes: "any",
         type: "image/svg+xml",
+        purpose: "any",
       },
       {
-        src: "/icons/icon-192x192.png",
+        src: "/icons/icon-192.png",
         sizes: "192x192",
         type: "image/png",
+        purpose: "any",
       },
       {
-        src: "/icons/icon-512x512.png",
+        src: "/icons/icon-512.png",
         sizes: "512x512",
         type: "image/png",
+        purpose: "any",
       },
     ],
   };

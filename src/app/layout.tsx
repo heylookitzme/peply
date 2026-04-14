@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     description:
       "Peptide reconstitution calculator with published compound data, stack protocols, FDA regulatory tracking, and community submissions.",
     url: "https://peply.bio",
-    images: [{ url: "/og-default.svg", width: 1200, height: 630, alt: "Peply — Precise dosing. Every time." }],
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "Peply — Precise dosing. Every time." }],
   },
   twitter: {
     card: "summary",
@@ -93,7 +93,9 @@ export default async function RootLayout({
         <meta name="google-site-verification" content="ASHCvXTC_CS11PY947F5xO3kMj2tVzLho9YzYMVmOME" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="apple-touch-icon" href="/icons/icon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/icons/peply-logo.svg" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`,
