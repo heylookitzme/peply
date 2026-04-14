@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/Input";
 import { createClient } from "@/utils/supabase/client";
 import { setDisplayName } from "@/lib/preferences/queries";
 import { signOut } from "@/utils/supabase/auth";
+import { useAuth } from "@/components/auth/AuthProvider";
 
 export function AccountClient({
   userId,
@@ -25,6 +26,7 @@ export function AccountClient({
   suggestionsCount: number;
 }): React.ReactElement {
   const router = useRouter();
+  const { refreshProfile } = useAuth();
   const [displayName, setDisplayNameState] = useState(initialDisplayName);
   const [savingName, setSavingName] = useState(false);
   const [nameStatus, setNameStatus] = useState<"idle" | "saved" | "error">(
@@ -42,6 +44,8 @@ export function AccountClient({
     try {
       await setDisplayName(userId, displayName);
       setNameStatus("saved");
+      await refreshProfile();
+      router.refresh();
     } catch {
       setNameStatus("error");
     } finally {

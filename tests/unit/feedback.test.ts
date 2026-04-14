@@ -168,29 +168,3 @@ describe("submitSuggestion", () => {
   });
 });
 
-describe("toggleUpvote", () => {
-  it("refuses signed-out users", async () => {
-    const { toggleUpvote } = await import("@/app/feedback/actions");
-    const res = await toggleUpvote("sug-1");
-    expect(res.success).toBe(false);
-    expect(res.error).toMatch(/Sign in/i);
-  });
-
-  it("inserts a vote when none exists", async () => {
-    authUser.current = { id: "user-1" };
-    existingVote.current = null;
-    const { toggleUpvote } = await import("@/app/feedback/actions");
-    const res = await toggleUpvote("sug-1");
-    expect(res.success).toBe(true);
-    expect(insertCalls.map((c) => c.table)).toContain("suggestion_votes");
-  });
-
-  it("deletes the vote when one exists", async () => {
-    authUser.current = { id: "user-1" };
-    existingVote.current = { suggestion_id: "sug-1" };
-    const { toggleUpvote } = await import("@/app/feedback/actions");
-    const res = await toggleUpvote("sug-1");
-    expect(res.success).toBe(true);
-    expect(deleteCalls.map((c) => c.table)).toContain("suggestion_votes");
-  });
-});

@@ -82,36 +82,3 @@ export async function submitSuggestion(
   return { success: true };
 }
 
-export async function toggleUpvote(
-  suggestionId: string,
-): Promise<FeedbackResult> {
-  const supabase = await createClient();
-  const { data: authData } = await supabase.auth.getUser();
-  if (!authData.user) {
-    return { success: false, error: "Sign in to upvote." };
-  }
-
-  const { data: existing } = await supabase
-    .from("suggestion_votes")
-    .select("suggestion_id")
-    .eq("suggestion_id", suggestionId)
-    .eq("user_id", authData.user.id)
-    .maybeSingle();
-
-  if (existing) {
-    const { error } = await supabase
-      .from("suggestion_votes")
-      .delete()
-      .eq("suggestion_id", suggestionId)
-      .eq("user_id", authData.user.id);
-    if (error) return { success: false, error: "Could not remove vote." };
-  } else {
-    const { error } = await supabase
-      .from("suggestion_votes")
-      .insert({ suggestion_id: suggestionId, user_id: authData.user.id });
-    if (error) return { success: false, error: "Could not record vote." };
-  }
-
-  revalidatePath("/feedback");
-  return { success: true };
-}

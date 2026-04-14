@@ -24,8 +24,3 @@ export type Suggestion = {
   upvotes: number;
   created_at: string;
 };
-
-export type SuggestionWithVote = Suggestion & {
-  viewerUpvoted: boolean;
-  attributionName: string | null;
-};
