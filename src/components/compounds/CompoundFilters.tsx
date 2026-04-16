@@ -183,15 +183,19 @@ export function CompoundFilters({
                 <CompoundCardFavorite slug={compound.slug} />
               </div>
 
-              {/* Row 2: Category badge + regulatory badge */}
-              <div className="flex items-center justify-between gap-2 mb-3">
+              {/* Row 2: Category badge */}
+              <div className="mb-1.5">
                 <span
-                  className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${catColor}`}
+                  className={`inline-block rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${catColor}`}
                 >
                   {CATEGORY_LABELS[compound.category]}
                 </span>
+              </div>
+
+              {/* Row 3: Regulatory badge */}
+              <div className="mb-3">
                 <span
-                  className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide whitespace-nowrap cursor-help ${regBadge.style}`}
+                  className={`inline-block rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide cursor-help ${regBadge.style}`}
                   title={regBadge.tooltip}
                 >
                   {regBadge.label}
