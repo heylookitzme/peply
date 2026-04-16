@@ -44,8 +44,8 @@ describe("PT-141 (Bremelanotide)", () => {
     expect(getCompoundBySlug("pt-141")).toBe(ptBremelanotide);
   });
 
-  it("is FDA-approved (Vyleesi)", () => {
-    expect(ptBremelanotide.approvalStatus).toBe("approved");
+  it("is limited-indication (Vyleesi only)", () => {
+    expect(ptBremelanotide.approvalStatus).toBe("limited-indication");
     expect(ptBremelanotide.regulatoryStatus.currentCategory).toBe("approved");
   });
 

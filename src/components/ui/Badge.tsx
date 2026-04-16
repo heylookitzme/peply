@@ -5,14 +5,13 @@ interface BadgeProps {
   children: React.ReactNode;
 }
 
-const statusStyles = {
-  approved:
-    "bg-success/15 text-success border-success/30",
-  investigational:
-    "bg-warning/15 text-warning border-warning/30",
-  research:
-    "bg-info/15 text-info border-info/30",
-} as const;
+const statusStyles: Record<ApprovalStatus, string> = {
+  approved: "bg-success/15 text-success border-success/30",
+  "limited-indication": "bg-warning/15 text-warning border-warning/30",
+  "previously-approved": "bg-text-secondary/15 text-text-secondary border-text-secondary/30",
+  investigational: "bg-info/15 text-info border-info/30",
+  research: "bg-text-secondary/15 text-text-secondary border-text-secondary/30",
+};
 
 export function Badge({ status, children }: BadgeProps): React.ReactElement {
   return (

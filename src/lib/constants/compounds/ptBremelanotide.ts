@@ -6,7 +6,7 @@ export const ptBremelanotide: Compound = {
   name: "PT-141",
   aliases: ["Bremelanotide", "Vyleesi"],
   category: "neuropeptide",
-  approvalStatus: "approved",
+  approvalStatus: "limited-indication",
   summary:
     "Melanocortin-4 receptor agonist approved by the FDA in 2019 as Vyleesi for hypoactive sexual desire disorder (HSDD) in premenopausal women. Acts centrally on nervous system pathways rather than on the vascular system.",
   mechanism:
@@ -49,10 +49,10 @@ export const ptBremelanotide: Compound = {
   regulatoryStatus: {
     currentCategory: "approved",
     reclassificationStatus: "stable",
-    fdaCategory: "FDA-approved (Vyleesi, 2019) — HSDD in premenopausal women",
-    lastUpdated: "2026-04-14",
+    fdaCategory: "FDA-approved (Vyleesi, 2019) — limited indication: HSDD in premenopausal women only",
+    lastUpdated: "2026-04-16",
     sourcingNote:
-      "Approved product (Vyleesi) available by prescription. Not on FDA Category 2 list.",
+      "Only Vyleesi (bremelanotide 1.75 mg autoinjector) is FDA-approved, specifically for hypoactive sexual desire disorder (HSDD) in premenopausal women. Other formulations and uses are research or compounded only.",
   },
   citations: [
     {

@@ -6,7 +6,7 @@ export const sermorelin: Compound = {
   name: "Sermorelin",
   aliases: ["GRF 1-29", "Geref"],
   category: "gh-secretagogue",
-  approvalStatus: "research",
+  approvalStatus: "previously-approved",
   summary:
     "Synthetic analog of the first 29 amino acids of growth hormone releasing hormone (GHRH). Previously FDA-approved as Geref; withdrawn from the US market in 2008 for commercial reasons, not safety. Currently available via compounding pharmacies.",
   mechanism:
@@ -53,12 +53,12 @@ export const sermorelin: Compound = {
     },
   ],
   regulatoryStatus: {
-    currentCategory: "investigational",
+    currentCategory: "cat1",
     reclassificationStatus: "stable",
-    fdaCategory: "Previously FDA-approved (Geref, withdrawn 2008). Not on FDA Category 2 list.",
-    lastUpdated: "2026-04-14",
+    fdaCategory: "Previously FDA-approved (Geref, 1997). Discontinued by manufacturer in 2008 for commercial reasons, not safety or efficacy.",
+    lastUpdated: "2026-04-16",
     sourcingNote:
-      "Geref (Serono) was withdrawn from the US market in 2008 for commercial reasons. Not currently an FDA-approved product; available via compounding pharmacies.",
+      "Was FDA-approved as Geref (1997) for pediatric growth hormone deficiency diagnosis/treatment. Discontinued by manufacturer in 2008 for commercial reasons, not safety or efficacy. Currently available via compounding pharmacies only.",
   },
   citations: [
     {

@@ -14,6 +14,8 @@ export type CompoundCategory = (typeof COMPOUND_CATEGORIES)[number];
 
 export const APPROVAL_STATUSES = [
   "approved",
+  "limited-indication",
+  "previously-approved",
   "investigational",
   "research",
 ] as const;

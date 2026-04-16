@@ -247,7 +247,7 @@ describe("data corrections (audit-verified)", () => {
 describe("dosing evidence disclaimers", () => {
   it("all research compounds have dosingEvidence field", () => {
     const research = COMPOUNDS.filter((c) => c.approvalStatus === "research");
-    expect(research.length).toBe(19);
+    expect(research.length).toBe(18);
     for (const c of research) {
       expect(c.dosingEvidence).toBeDefined();
       expect(["preclinical", "limited-human"]).toContain(c.dosingEvidence);

@@ -123,16 +123,24 @@ describe("regulatory tracker data", () => {
     expect(invBadge.label).toBe("Investigational");
     expect(invBadge.style).toContain("info");
 
-    // Cat 1 stable
-    const cat1Stable = COMPOUNDS.find(
-      (c) =>
-        c.regulatoryStatus.currentCategory === "cat1" &&
-        c.regulatoryStatus.reclassificationStatus === "stable",
+    // Previously approved (Sermorelin — cat1 stable, but previously-approved takes priority)
+    const prevApproved = COMPOUNDS.find(
+      (c) => c.approvalStatus === "previously-approved",
     );
-    if (cat1Stable) {
-      const cat1Badge = getRegulatoryBadge(cat1Stable);
-      expect(cat1Badge.label).toBe("Category 1");
-      expect(cat1Badge.style).toContain("success");
+    if (prevApproved) {
+      const prevBadge = getRegulatoryBadge(prevApproved);
+      expect(prevBadge.label).toBe("Previously Approved");
+      expect(prevBadge.style).toContain("text-secondary");
+    }
+
+    // Limited indication (PT-141 — approved category, but limited-indication takes priority)
+    const limited = COMPOUNDS.find(
+      (c) => c.approvalStatus === "limited-indication",
+    );
+    if (limited) {
+      const limitedBadge = getRegulatoryBadge(limited);
+      expect(limitedBadge.label).toBe("FDA Approved (Vyleesi)");
+      expect(limitedBadge.style).toContain("warning");
     }
   });
 

@@ -15,6 +15,8 @@ export const CATEGORY_LABELS: Record<CompoundCategory, string> = {
 
 export const STATUS_LABELS: Record<ApprovalStatus, string> = {
   approved: "FDA Approved",
+  "limited-indication": "FDA Approved (Vyleesi)",
+  "previously-approved": "Previously Approved",
   investigational: "Investigational",
   research: "Research",
 };
