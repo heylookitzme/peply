@@ -173,30 +173,30 @@ export function CompoundFilters({
               key={compound.id}
               className="hover:border-accent/40 transition-colors duration-150 h-full flex flex-col"
             >
-              {/* Top row: category badge left, reg badge + heart right */}
-              <div className="flex items-center justify-between gap-2 mb-3 min-w-0">
+              {/* Row 1: Name + heart */}
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <Link href={`/compounds/${compound.slug}`}>
+                  <h2 className="font-serif text-xl leading-tight hover:text-accent transition-colors duration-150">
+                    {compound.name}
+                  </h2>
+                </Link>
+                <CompoundCardFavorite slug={compound.slug} />
+              </div>
+
+              {/* Row 2: Category badge + regulatory badge */}
+              <div className="flex items-center justify-between gap-2 mb-3">
                 <span
-                  className={`shrink-0 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${catColor}`}
+                  className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${catColor}`}
                 >
                   {CATEGORY_LABELS[compound.category]}
                 </span>
-                <div className="flex items-center gap-1.5 shrink-0">
-                  <span
-                    className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide whitespace-nowrap cursor-help ${regBadge.style}`}
-                    title={regBadge.tooltip}
-                  >
-                    {regBadge.label}
-                  </span>
-                  <CompoundCardFavorite slug={compound.slug} />
-                </div>
+                <span
+                  className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide whitespace-nowrap cursor-help ${regBadge.style}`}
+                  title={regBadge.tooltip}
+                >
+                  {regBadge.label}
+                </span>
               </div>
-
-              {/* Name */}
-              <Link href={`/compounds/${compound.slug}`}>
-                <h2 className="font-serif text-xl leading-tight mb-1 hover:text-accent transition-colors duration-150">
-                  {compound.name}
-                </h2>
-              </Link>
 
               {compound.aliases.length > 0 && (
                 <p className="text-[11px] text-text-secondary mb-2">
