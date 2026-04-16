@@ -17,7 +17,7 @@ export function Card({
 }: CardProps): React.ReactElement {
   return (
     <div
-      className={`bg-surface border border-border rounded-[10px] ${paddingMap[padding]} ${className}`}
+      className={`bg-surface border border-border rounded-[10px] overflow-hidden ${paddingMap[padding]} ${className}`}
     >
       {children}
     </div>

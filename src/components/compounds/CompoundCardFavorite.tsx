@@ -61,7 +61,7 @@ export function CompoundCardFavorite({
       aria-pressed={favorited}
       aria-label={tooltip}
       title={tooltip}
-      className={`inline-flex items-center justify-center w-7 h-7 rounded-md transition-colors duration-150 ${
+      className={`inline-flex items-center justify-center w-6 h-6 shrink-0 rounded-md transition-colors duration-150 ${
         favorited
           ? "text-accent"
           : "text-text-secondary/40 hover:text-text-secondary"
