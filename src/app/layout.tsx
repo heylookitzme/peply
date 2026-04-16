@@ -170,7 +170,7 @@ export default async function RootLayout({
                 using any compound.
               </p>
               <p>
-                21 compounds · 5 protocols · Published clinical data ·
+                24 compounds · 5 protocols · Published clinical data ·
                 Community-driven · Zero vendor affiliations
               </p>
             </div>

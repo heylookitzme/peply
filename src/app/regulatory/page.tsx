@@ -8,19 +8,30 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import {
   TIMELINE_MILESTONES,
   REMAINING_RESTRICTED,
+  REMOVED_NOT_IN_DATABASE,
 } from "@/lib/constants/regulatory";
 
 export const metadata: Metadata = {
   title: "FDA Regulatory Tracker",
   description:
-    "FDA peptide reclassification tracker. Category 2 to Category 1 status, timeline, and compound-by-compound tracking for compounding pharmacies.",
+    "FDA peptide reclassification tracker. Category 2 removals, PCAC evaluation timeline, and compound-by-compound status for compounding pharmacies.",
 };
 
 export default function RegulatoryPage(): React.ReactElement {
-  const regulatedCompounds = COMPOUNDS.filter(
+  const removedCompounds = COMPOUNDS.filter(
+    (c) => c.regulatoryStatus.reclassificationStatus === "removed-from-cat2",
+  );
+
+  const remainingCat2 = COMPOUNDS.filter(
     (c) =>
-      c.regulatoryStatus.currentCategory === "cat2" ||
-      c.regulatoryStatus.currentCategory === "cat1",
+      c.regulatoryStatus.currentCategory === "cat2" &&
+      c.regulatoryStatus.reclassificationStatus !== "removed-from-cat2",
+  );
+
+  const cat1Compounds = COMPOUNDS.filter(
+    (c) =>
+      c.regulatoryStatus.currentCategory === "cat1" &&
+      c.regulatoryStatus.reclassificationStatus === "stable",
   );
 
   const approvedCompounds = COMPOUNDS.filter(
@@ -28,7 +39,9 @@ export default function RegulatoryPage(): React.ReactElement {
   );
 
   const investigationalCompounds = COMPOUNDS.filter(
-    (c) => c.regulatoryStatus.currentCategory === "investigational",
+    (c) =>
+      c.regulatoryStatus.currentCategory === "investigational" &&
+      c.regulatoryStatus.reclassificationStatus !== "removed-from-cat2",
   );
 
   return (
@@ -55,10 +68,18 @@ export default function RegulatoryPage(): React.ReactElement {
             },
             {
               "@type": "Question",
+              name: "What does removed from Category 2 mean?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Removed from Category 2 means the FDA will no longer restrict compounding pharmacies from preparing these compounds. Each removed compound will undergo formal review by the Pharmacy Compounding Advisory Committee (PCAC) beginning July 2026. This does not mean FDA-approved — these remain off-label uses requiring a physician prescription.",
+              },
+            },
+            {
+              "@type": "Question",
               name: "When will peptides return to Category 1?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "The February 2026 HHS announcement stated approximately 14 peptides would return to Category 1 availability. As of April 2026, the formal FDA reclassification has not been published in the Federal Register. Until published, Category 2 restrictions remain in effect.",
+                text: "On April 15, 2026, HHS Secretary Kennedy announced 12 peptides are being removed from Category 2. Formal PCAC evaluation begins July 2026. Category 1 reclassification depends on the PCAC outcome.",
               },
             },
             {
@@ -66,7 +87,7 @@ export default function RegulatoryPage(): React.ReactElement {
               name: "Does reclassification mean FDA approval?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "No. Moving from Category 2 to Category 1 means a compound may be legally compounded. It does not mean the compound is FDA-approved for any specific indication. These remain off-label uses requiring a physician prescription from a licensed compounding pharmacy.",
+                text: "No. Removal from Category 2 means a compound may be legally compounded. It does not mean the compound is FDA-approved for any specific indication. These remain off-label uses requiring a physician prescription from a licensed compounding pharmacy.",
               },
             },
           ],
@@ -92,22 +113,21 @@ export default function RegulatoryPage(): React.ReactElement {
       <div className="mt-8">
         <Card>
           <div className="flex items-center gap-3 mb-2">
-            <span className="inline-block rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-warning/15 text-warning border-warning/30">
-              Pending
+            <span className="inline-block rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-[#2dd4bf]/15 text-[#2dd4bf] border-[#2dd4bf]/30">
+              Update
             </span>
             <h2 className="text-base font-semibold">
-              Reclassification Announced — Awaiting Formal FDA Publication
+              12 Peptides Removed from Category 2
             </h2>
           </div>
           <p className="text-sm text-text-secondary leading-relaxed">
-            Category 1 compounds may be legally prepared by licensed compounding
-            pharmacies under a physician prescription. Category 2 compounds are
-            restricted from compounding.
+            On April 15, 2026, HHS Secretary Kennedy announced that nominators
+            withdrew 12 peptides from Category 2. Compounding pharmacies are no
+            longer restricted from preparing these compounds. Each will undergo
+            formal PCAC review beginning July 2026.
           </p>
           <p className="text-[11px] text-text-secondary mt-3">
-            Last updated:{" "}
-            {TIMELINE_MILESTONES.filter((m) => m.status === "completed")
-              .slice(-1)[0]?.date ?? "Unknown"}
+            Last updated: April 15, 2026
           </p>
         </Card>
       </div>
@@ -231,22 +251,19 @@ export default function RegulatoryPage(): React.ReactElement {
                   Compound
                 </th>
                 <th className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium text-left px-4 py-3 border-b border-border">
-                  Category
-                </th>
-                <th className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium text-left px-4 py-3 border-b border-border">
                   Status
                 </th>
                 <th className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium text-left px-4 py-3 border-b border-border hidden sm:table-cell">
                   Restricted
                 </th>
                 <th className="text-[11px] uppercase tracking-[0.08em] text-text-secondary font-medium text-left px-4 py-3 border-b border-border hidden sm:table-cell">
-                  Expected Return
+                  Note
                 </th>
               </tr>
             </thead>
             <tbody>
-              {/* Cat 2 / Cat 1 research compounds */}
-              {regulatedCompounds.map((compound) => {
+              {/* Removed from Cat 2 */}
+              {removedCompounds.map((compound) => {
                 const badge = getRegulatoryBadge(compound);
                 return (
                   <tr key={compound.slug}>
@@ -258,10 +275,59 @@ export default function RegulatoryPage(): React.ReactElement {
                         {compound.name}
                       </Link>
                     </td>
+                    <td className="px-4 py-3 border-b border-border">
+                      <span
+                        className={`inline-block rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${badge.style}`}
+                      >
+                        {badge.label}
+                      </span>
+                    </td>
+                    <td className="text-sm font-mono px-4 py-3 border-b border-border hidden sm:table-cell">
+                      {compound.regulatoryStatus.dateRestricted ?? "—"}
+                    </td>
+                    <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
+                      <span className="text-[11px] text-text-secondary">
+                        PCAC evaluation begins July 2026
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+
+              {/* Not-in-database compounds from the removal announcement */}
+              {REMOVED_NOT_IN_DATABASE.map((name) => (
+                <tr key={name}>
+                  <td className="text-sm px-4 py-3 border-b border-border text-text-secondary">
+                    {name}
+                  </td>
+                  <td className="px-4 py-3 border-b border-border">
+                    <span className="inline-block rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide bg-[#2dd4bf]/15 text-[#2dd4bf] border-[#2dd4bf]/30">
+                      Removed from Cat 2
+                    </span>
+                  </td>
+                  <td className="text-sm font-mono px-4 py-3 border-b border-border hidden sm:table-cell">
+                    2023-09-29
+                  </td>
+                  <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
+                    <span className="text-[11px] text-text-secondary italic">
+                      No detail page yet
+                    </span>
+                  </td>
+                </tr>
+              ))}
+
+              {/* Remaining Cat 2 restricted */}
+              {remainingCat2.map((compound) => {
+                const badge = getRegulatoryBadge(compound);
+                return (
+                  <tr key={compound.slug}>
                     <td className="text-sm px-4 py-3 border-b border-border">
-                      {compound.regulatoryStatus.currentCategory === "cat2"
-                        ? "Cat 2"
-                        : "Cat 1"}
+                      <Link
+                        href={`/compounds/${compound.slug}`}
+                        className="text-accent hover:underline"
+                      >
+                        {compound.name}
+                      </Link>
                     </td>
                     <td className="px-4 py-3 border-b border-border">
                       <span
@@ -273,9 +339,8 @@ export default function RegulatoryPage(): React.ReactElement {
                     <td className="text-sm font-mono px-4 py-3 border-b border-border hidden sm:table-cell">
                       {compound.regulatoryStatus.dateRestricted ?? "—"}
                     </td>
-                    <td className="text-sm font-mono px-4 py-3 border-b border-border hidden sm:table-cell">
-                      {compound.regulatoryStatus.dateAnnouncedReturn ??
-                        "—"}
+                    <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
+                      —
                     </td>
                   </tr>
                 );
@@ -287,9 +352,6 @@ export default function RegulatoryPage(): React.ReactElement {
                   <td className="text-sm px-4 py-3 border-b border-border text-text-secondary">
                     {compound.name}
                   </td>
-                  <td className="text-sm px-4 py-3 border-b border-border">
-                    Cat 2
-                  </td>
                   <td className="px-4 py-3 border-b border-border">
                     <span className="inline-block rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide bg-error/15 text-error border-error/30">
                       Remaining Restricted
@@ -300,11 +362,41 @@ export default function RegulatoryPage(): React.ReactElement {
                   </td>
                   <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
                     <span className="text-[11px] text-text-secondary italic">
-                      Not returning: {compound.reason.toLowerCase()}
+                      Not in removal list: {compound.reason.toLowerCase()}
                     </span>
                   </td>
                 </tr>
               ))}
+
+              {/* Cat 1 compounds */}
+              {cat1Compounds.map((compound) => {
+                const badge = getRegulatoryBadge(compound);
+                return (
+                  <tr key={compound.slug}>
+                    <td className="text-sm px-4 py-3 border-b border-border">
+                      <Link
+                        href={`/compounds/${compound.slug}`}
+                        className="text-accent hover:underline"
+                      >
+                        {compound.name}
+                      </Link>
+                    </td>
+                    <td className="px-4 py-3 border-b border-border">
+                      <span
+                        className={`inline-block rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${badge.style}`}
+                      >
+                        {badge.label}
+                      </span>
+                    </td>
+                    <td className="text-sm font-mono px-4 py-3 border-b border-border hidden sm:table-cell">
+                      —
+                    </td>
+                    <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
+                      —
+                    </td>
+                  </tr>
+                );
+              })}
 
               {/* Approved compounds */}
               {approvedCompounds.map((compound) => {
@@ -319,9 +411,6 @@ export default function RegulatoryPage(): React.ReactElement {
                         {compound.name}
                       </Link>
                     </td>
-                    <td className="text-sm px-4 py-3 border-b border-border">
-                      Approved
-                    </td>
                     <td className="px-4 py-3 border-b border-border">
                       <span
                         className={`inline-block rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${badge.style}`}
@@ -329,7 +418,7 @@ export default function RegulatoryPage(): React.ReactElement {
                         {badge.label}
                       </span>
                     </td>
-                    <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
+                    <td className="text-sm font-mono px-4 py-3 border-b border-border hidden sm:table-cell">
                       —
                     </td>
                     <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
@@ -352,9 +441,6 @@ export default function RegulatoryPage(): React.ReactElement {
                         {compound.name}
                       </Link>
                     </td>
-                    <td className="text-sm px-4 py-3 border-b border-border">
-                      Investigational
-                    </td>
                     <td className="px-4 py-3 border-b border-border">
                       <span
                         className={`inline-block rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${badge.style}`}
@@ -362,7 +448,7 @@ export default function RegulatoryPage(): React.ReactElement {
                         {badge.label}
                       </span>
                     </td>
-                    <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
+                    <td className="text-sm font-mono px-4 py-3 border-b border-border hidden sm:table-cell">
                       —
                     </td>
                     <td className="text-sm px-4 py-3 border-b border-border hidden sm:table-cell">
@@ -386,37 +472,43 @@ export default function RegulatoryPage(): React.ReactElement {
         <div className="space-y-4">
           <Card padding="sm">
             <h3 className="text-sm font-medium mb-1">
-              Category 1 vs Category 2
+              Removed from Category 2
             </h3>
             <p className="text-[13px] text-text-secondary leading-relaxed">
-              Category 1 bulk drug substances may be legally compounded by
-              licensed 503A and 503B pharmacies under a physician prescription.
-              Category 2 substances are restricted from compounding due to
-              insufficient clinical data or unresolved adverse event profiles.
+              Compounding pharmacies are no longer restricted from preparing
+              these compounds. Nominators withdrew their Category 2 nominations,
+              and the FDA will remove the compounds from the restricted list.
             </p>
           </Card>
           <Card padding="sm">
             <h3 className="text-sm font-medium mb-1">
-              &ldquo;Announced&rdquo; vs &ldquo;Published&rdquo;
+              PCAC Review — July 2026
             </h3>
             <p className="text-[13px] text-text-secondary leading-relaxed">
-              The February 2026 HHS announcement stated that approximately 14
-              peptides would return to Category 1 availability. As of April
-              2026, the formal FDA reclassification has not been published in
-              the Federal Register. Until published, Category 2 restrictions
-              remain in effect.
+              Each removed compound will undergo formal evaluation by the
+              Pharmacy Compounding Advisory Committee (PCAC) beginning July 2026.
+              Formal reclassification to Category 1 depends on the PCAC outcome.
             </p>
           </Card>
           <Card padding="sm">
             <h3 className="text-sm font-medium mb-1">
-              Reclassification Is Not FDA Approval
+              Not FDA-Approved
             </h3>
             <p className="text-[13px] text-text-secondary leading-relaxed">
-              Moving from Category 2 to Category 1 means a compound may be
-              legally compounded — it does not mean the compound is
-              FDA-approved for any specific indication. These remain off-label
-              uses that require a physician prescription from a licensed
-              compounding pharmacy.
+              Removal from Category 2 does not mean FDA-approved. These remain
+              off-label uses that require a physician prescription from a
+              licensed compounding pharmacy. They are not unregulated consumer
+              products.
+            </p>
+          </Card>
+          <Card padding="sm">
+            <h3 className="text-sm font-medium mb-1">
+              Remaining Restricted Compounds
+            </h3>
+            <p className="text-[13px] text-text-secondary leading-relaxed">
+              Compounds not on the April 15 removal list remain Category 2
+              restricted. Compounding pharmacies may not prepare these
+              substances until their status changes through separate FDA action.
             </p>
           </Card>
           <Card padding="sm">
@@ -459,6 +551,13 @@ export default function RegulatoryPage(): React.ReactElement {
             <span>
               HHS Secretary Kennedy announcement on peptide reclassification,
               February 27, 2026.
+            </span>
+          </li>
+          <li className="text-sm">
+            <span className="text-text-secondary mr-2">[3]</span>
+            <span>
+              HHS Secretary Kennedy public statement on removal of 12 peptides
+              from Category 2, April 15, 2026.
             </span>
           </li>
         </ol>

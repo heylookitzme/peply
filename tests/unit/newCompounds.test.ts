@@ -102,9 +102,9 @@ describe("MK-677 (Ibutamoren)", () => {
     expect(mk677.halfLife.toLowerCase()).toContain("24");
   });
 
-  it("notes oral administration in the sourcingNote", () => {
+  it("notes removal from Category 2 in the sourcingNote", () => {
     expect(mk677.regulatoryStatus.sourcingNote?.toLowerCase()).toContain(
-      "oral",
+      "removed from category 2",
     );
   });
 });

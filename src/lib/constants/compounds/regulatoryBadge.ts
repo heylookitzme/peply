@@ -10,6 +10,7 @@ export interface RegulatoryBadgeInfo {
 const REG_BADGE_STYLES: Record<string, string> = {
   approved: "bg-success/15 text-success border-success/30",
   cat1: "bg-success/15 text-success border-success/30",
+  "removed-from-cat2": "bg-[#2dd4bf]/15 text-[#2dd4bf] border-[#2dd4bf]/30",
   pending: "bg-warning/15 text-warning border-warning/30",
   cat2: "bg-error/15 text-error border-error/30",
   investigational: "bg-info/15 text-info border-info/30",
@@ -38,6 +39,13 @@ export function getRegulatoryBadge(compound: Compound): RegulatoryBadgeInfo {
       label: "Category 1",
       style: REG_BADGE_STYLES.cat1,
       tooltip: "May be legally compounded by licensed 503A/503B pharmacies under a physician prescription.",
+    };
+  }
+  if (compound.regulatoryStatus.reclassificationStatus === "removed-from-cat2") {
+    return {
+      label: "Removed from Cat 2",
+      style: REG_BADGE_STYLES["removed-from-cat2"],
+      tooltip: "Removed from Category 2 by FDA (April 15, 2026). Will be evaluated by PCAC beginning July 2026. Not yet Category 1 — awaiting formal PCAC review.",
     };
   }
   if (compound.regulatoryStatus.reclassificationStatus === "pending") {

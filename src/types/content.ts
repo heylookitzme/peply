@@ -77,6 +77,7 @@ export const RECLASSIFICATION_STATUSES = [
   "stable",
   "pending",
   "announced",
+  "removed-from-cat2",
 ] as const;
 export type ReclassificationStatus = (typeof RECLASSIFICATION_STATUSES)[number];
 
@@ -86,6 +87,7 @@ export interface RegulatoryStatus {
   fdaCategory: string;
   dateRestricted?: string;
   dateAnnouncedReturn?: string;
+  dateAnnouncedRemoval?: string;
   lastUpdated: string;
   sourcingNote?: string;
 }

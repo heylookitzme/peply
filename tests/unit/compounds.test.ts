@@ -106,7 +106,7 @@ describe("compound data integrity", () => {
       expect(["cat1", "cat2", "approved", "investigational"]).toContain(
         c.regulatoryStatus.currentCategory,
       );
-      expect(["stable", "pending", "announced"]).toContain(
+      expect(["stable", "pending", "announced", "removed-from-cat2"]).toContain(
         c.regulatoryStatus.reclassificationStatus,
       );
     },

@@ -4,6 +4,7 @@ import { getRegulatoryBadge } from "@/lib/constants/compounds/regulatoryBadge";
 import {
   TIMELINE_MILESTONES,
   REMAINING_RESTRICTED,
+  REMOVED_NOT_IN_DATABASE,
 } from "@/lib/constants/regulatory";
 
 describe("regulatory tracker data", () => {
@@ -13,12 +14,18 @@ describe("regulatory tracker data", () => {
       c.regulatoryStatus.currentCategory === "cat1",
   );
 
+  const removedCompounds = COMPOUNDS.filter(
+    (c) => c.regulatoryStatus.reclassificationStatus === "removed-from-cat2",
+  );
+
   const approvedCompounds = COMPOUNDS.filter(
     (c) => c.regulatoryStatus.currentCategory === "approved",
   );
 
   const investigationalCompounds = COMPOUNDS.filter(
-    (c) => c.regulatoryStatus.currentCategory === "investigational",
+    (c) =>
+      c.regulatoryStatus.currentCategory === "investigational" &&
+      c.regulatoryStatus.reclassificationStatus !== "removed-from-cat2",
   );
 
   it("all regulated compounds resolve to real compound data", () => {
@@ -27,6 +34,14 @@ describe("regulatory tracker data", () => {
       expect(c.slug).toBeTruthy();
       expect(c.name).toBeTruthy();
       expect(c.regulatoryStatus.lastUpdated).toBeTruthy();
+    }
+  });
+
+  it("removed-from-cat2 compounds have dateAnnouncedRemoval", () => {
+    expect(removedCompounds.length).toBe(9);
+    for (const c of removedCompounds) {
+      expect(c.regulatoryStatus.dateAnnouncedRemoval).toBe("2026-04-15");
+      expect(c.regulatoryStatus.lastUpdated).toBe("2026-04-15");
     }
   });
 
@@ -46,25 +61,18 @@ describe("regulatory tracker data", () => {
     }
   });
 
-  it("cat2 compounds have dateRestricted and dateAnnouncedReturn", () => {
+  it("cat2 compounds have dateRestricted", () => {
     const cat2 = COMPOUNDS.filter(
       (c) => c.regulatoryStatus.currentCategory === "cat2",
     );
     expect(cat2.length).toBeGreaterThan(0);
     for (const c of cat2) {
       expect(c.regulatoryStatus.dateRestricted).toBe("2023-09-29");
-      // Compounds returning to Cat 1 carry an announced return date.
-      // Compounds that stay restricted (reclassificationStatus "stable") do not.
-      if (c.regulatoryStatus.reclassificationStatus !== "stable") {
-        expect(c.regulatoryStatus.dateAnnouncedReturn).toBe("2026-02-27");
-      } else {
-        expect(c.regulatoryStatus.dateAnnouncedReturn).toBeUndefined();
-      }
     }
   });
 
   it("remaining restricted compounds all have names, reasons, and dates", () => {
-    expect(REMAINING_RESTRICTED.length).toBe(5);
+    expect(REMAINING_RESTRICTED.length).toBe(3);
     for (const c of REMAINING_RESTRICTED) {
       expect(c.name).toBeTruthy();
       expect(c.reason).toBeTruthy();
@@ -74,21 +82,26 @@ describe("regulatory tracker data", () => {
 
   it("remaining restricted compounds are the expected set", () => {
     const names = REMAINING_RESTRICTED.map((c) => c.name);
-    expect(names).toContain("Melanotan II");
     expect(names).toContain("GHRP-2");
     expect(names).toContain("GHRP-6");
-    expect(names).toContain("LL-37 (Cathelicidin)");
     expect(names).toContain("PEG-MGF");
   });
 
-  it("timeline has 3 milestones in chronological order", () => {
-    expect(TIMELINE_MILESTONES.length).toBe(3);
+  it("removed-not-in-database compounds listed", () => {
+    expect(REMOVED_NOT_IN_DATABASE).toContain("Dihexa Acetate");
+    expect(REMOVED_NOT_IN_DATABASE).toContain("Melanotan II");
+    expect(REMOVED_NOT_IN_DATABASE).toContain("LL-37 (Cathelicidin)");
+  });
+
+  it("timeline has 4 milestones in chronological order", () => {
+    expect(TIMELINE_MILESTONES.length).toBe(4);
     expect(TIMELINE_MILESTONES[0].date).toBe("2023-09-29");
     expect(TIMELINE_MILESTONES[0].status).toBe("completed");
     expect(TIMELINE_MILESTONES[1].date).toBe("2026-02-27");
     expect(TIMELINE_MILESTONES[1].status).toBe("completed");
-    expect(TIMELINE_MILESTONES[2].date).toBe("TBD");
-    expect(TIMELINE_MILESTONES[2].status).toBe("pending");
+    expect(TIMELINE_MILESTONES[2].date).toBe("2026-04-15");
+    expect(TIMELINE_MILESTONES[2].status).toBe("completed");
+    expect(TIMELINE_MILESTONES[3].status).toBe("pending");
   });
 
   it("status badges render correctly for each regulatory type", () => {
@@ -98,15 +111,11 @@ describe("regulatory tracker data", () => {
     expect(approvedBadge.label).toBe("FDA Approved");
     expect(approvedBadge.style).toContain("success");
 
-    // Cat 2 pending
-    const cat2Pending = COMPOUNDS.find(
-      (c) =>
-        c.regulatoryStatus.currentCategory === "cat2" &&
-        c.regulatoryStatus.reclassificationStatus === "pending",
-    )!;
-    const pendingBadge = getRegulatoryBadge(cat2Pending);
-    expect(pendingBadge.label).toContain("Pending");
-    expect(pendingBadge.style).toContain("warning");
+    // Removed from Cat 2
+    const removed = removedCompounds[0];
+    const removedBadge = getRegulatoryBadge(removed);
+    expect(removedBadge.label).toBe("Removed from Cat 2");
+    expect(removedBadge.style).toContain("2dd4bf");
 
     // Investigational
     const inv = investigationalCompounds[0];

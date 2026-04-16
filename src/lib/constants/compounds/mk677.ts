@@ -47,12 +47,13 @@ export const mk677: Compound = {
   ],
   regulatoryStatus: {
     currentCategory: "investigational",
-    reclassificationStatus: "stable",
+    reclassificationStatus: "removed-from-cat2",
     fdaCategory:
-      "Research compound (investigational). Not FDA-approved. Oral small molecule — not subject to the FDA peptide Category 2 restrictions.",
-    lastUpdated: "2026-04-14",
+      "Research compound (investigational). Not FDA-approved. Included in April 2026 FDA Category 2 removal announcement.",
+    dateAnnouncedRemoval: "2026-04-15",
+    lastUpdated: "2026-04-15",
     sourcingNote:
-      "Not FDA-approved for any indication. As a non-peptide oral small molecule, it is not on the FDA peptide Category 2 list. Oral administration — reconstitution does not apply.",
+      "Removed from Category 2 by FDA (April 15, 2026). Will be evaluated by PCAC beginning July 2026. Not yet Category 1 — awaiting formal PCAC review.",
   },
   citations: [
     {

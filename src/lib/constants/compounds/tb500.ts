@@ -53,13 +53,14 @@ export const tb500: Compound = {
   ],
   regulatoryStatus: {
     currentCategory: "cat2",
-    reclassificationStatus: "pending",
-    fdaCategory: "Research peptide (FDA Category 2)",
+    reclassificationStatus: "removed-from-cat2",
+    fdaCategory: "Research peptide (removed from FDA Category 2)",
     dateRestricted: "2023-09-29",
     dateAnnouncedReturn: "2026-02-27",
-    lastUpdated: "2026-02-27",
+    dateAnnouncedRemoval: "2026-04-15",
+    lastUpdated: "2026-04-15",
     sourcingNote:
-      "Not FDA-approved for any indication. Currently FDA Category 2 (restricted). Pending return to Category 1 availability.",
+      "Removed from Category 2 by FDA (April 15, 2026). Will be evaluated by PCAC beginning July 2026. Not yet Category 1 — awaiting formal PCAC review.",
   },
   citations: [
     {

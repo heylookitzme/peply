@@ -47,13 +47,14 @@ export const semax: Compound = {
   ],
   regulatoryStatus: {
     currentCategory: "cat2",
-    reclassificationStatus: "pending",
-    fdaCategory: "Research peptide in US (approved in Russia)",
+    reclassificationStatus: "removed-from-cat2",
+    fdaCategory: "Research peptide in US (removed from FDA Category 2; approved in Russia)",
     dateRestricted: "2023-09-29",
     dateAnnouncedReturn: "2026-02-27",
-    lastUpdated: "2026-02-27",
+    dateAnnouncedRemoval: "2026-04-15",
+    lastUpdated: "2026-04-15",
     sourcingNote:
-      "Not FDA-approved. Approved in Russia for cognitive enhancement and stroke recovery. Currently FDA Category 2 (restricted) in US. Pending return to Category 1.",
+      "Removed from Category 2 by FDA (April 15, 2026). Will be evaluated by PCAC beginning July 2026. Not yet Category 1 — awaiting formal PCAC review.",
   },
   citations: [
     {
