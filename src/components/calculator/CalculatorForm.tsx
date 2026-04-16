@@ -60,16 +60,26 @@ export function CalculatorForm({
   const [selectedCompound, setSelectedCompound] = useState<Compound | null>(
     initialCompound,
   );
-  const [vialAmount, setVialAmount] = useState(initialValues?.vialAmount ?? "");
+  const [vialAmount, setVialAmount] = useState(
+    initialValues?.vialAmount ??
+      (initialCompound?.commonVialSizes[0]
+        ? String(initialCompound.commonVialSizes[0].amount)
+        : ""),
+  );
   const [vialAmountUnit, setVialAmountUnit] = useState<DoseUnit>(
-    initialValues?.vialAmountUnit ?? "mg",
+    initialValues?.vialAmountUnit ??
+      initialCompound?.commonVialSizes[0]?.unit ??
+      "mg",
   );
   const [diluentVolumeMl, setDiluentVolumeMl] = useState(
-    initialValues?.diluentVolumeMl ?? "",
+    initialValues?.diluentVolumeMl ??
+      (initialCompound ? String(initialCompound.defaultBacWaterMl) : ""),
   );
   const [targetDose, setTargetDose] = useState(initialValues?.targetDose ?? "");
   const [targetDoseUnit, setTargetDoseUnit] = useState<DoseUnit>(
-    initialValues?.targetDoseUnit ?? "mg",
+    initialValues?.targetDoseUnit ??
+      initialCompound?.clinicalDoseRange.unit ??
+      "mg",
   );
   const [syringeType, setSyringeType] = useState<SyringeType>(
     initialValues?.syringeType ?? "u100_1ml",
