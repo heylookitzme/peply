@@ -18,7 +18,7 @@ export const ghkcu: Compound = {
     { amount: 50, unit: "mg", label: "50 mg vial" },
     { amount: 100, unit: "mg", label: "100 mg vial" },
   ],
-  defaultBacWaterMl: 4,
+  defaultBacWaterMl: 2,
   clinicalDoseRange: {
     min: 1,
     max: 3,

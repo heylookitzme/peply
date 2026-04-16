@@ -10,7 +10,7 @@ export const epitalon: Compound = {
   summary:
     "Synthetic tetrapeptide researched for telomerase activation and pineal gland function. Not FDA-approved for any indication.",
   mechanism:
-    "Synthetic tetrapeptide (Ala-Glu-Asp-Gly) analog of epithalamin. Activates telomerase, the enzyme responsible for maintaining telomere length. May promote pineal gland function and melatonin production.",
+    "Synthetic tetrapeptide (Ala-Glu-Asp-Gly) analog of epithalamin that activates telomerase and may support pineal gland function and melatonin production.",
   halfLife: "Estimated 1-2 hours",
   manufacturer: "Research peptide (multiple suppliers)",
   defaultRoute: "subcutaneous",

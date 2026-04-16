@@ -10,8 +10,8 @@ export const bpc157: Compound = {
   summary:
     "Gastric pentadecapeptide researched for tissue repair, angiogenesis, and anti-inflammatory effects. Not FDA-approved for any indication.",
   mechanism:
-    "Gastric pentadecapeptide. Promotes angiogenesis, tendon/ligament healing, and nitric oxide signaling. Modulates growth factor expression.",
-  halfLife: "Estimated 15-30 minutes (rapid clearance per He 2022 PK data)",
+    "Gastric pentadecapeptide. Promotes angiogenesis, supports tendon and ligament healing, and modulates nitric oxide signaling and growth factor expression.",
+  halfLife: "Estimated 15-30 minutes (rapid plasma clearance)",
   manufacturer: "Research peptide (multiple suppliers)",
   defaultRoute: "subcutaneous",
   commonVialSizes: [
@@ -53,7 +53,7 @@ export const bpc157: Compound = {
     dateAnnouncedRemoval: "2026-04-15",
     lastUpdated: "2026-04-15",
     sourcingNote:
-      "Removed from Category 2 by FDA (April 15, 2026). Will be evaluated by PCAC beginning July 2026. Not yet Category 1 — awaiting formal PCAC review.",
+      "Removed from Category 2 following the April 2026 FDA announcement. Will undergo PCAC review starting July 2026. Remains for research use only until final decision.",
   },
   citations: [
     {

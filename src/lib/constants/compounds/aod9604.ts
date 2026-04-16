@@ -57,7 +57,7 @@ export const aod9604: Compound = {
   citations: [
     {
       id: "aod-obesity",
-      label: "Heffernan 2001",
+      label: "Heffernan 2001 (Mouse Study)",
       title:
         "Effects of a Modified Fragment of Growth Hormone on Body Composition (mouse study; human SC dosing is community-derived)",
       source: "Obesity Research, 9(S4), A51",

@@ -28,7 +28,7 @@ export const kisspeptin10: Compound = {
   },
   dosingEvidence: "preclinical",
   dosingEvidenceNote:
-    "Dosing extrapolated from animal studies and community protocols. No large-scale human clinical trials.",
+    "Weight-based dosing: 1-10 mcg/kg (typically 75-750 mcg total for adults). Extrapolated from early human studies and community protocols. No large-scale clinical trials.",
   titrationProtocols: [
     {
       name: "Research Protocol",

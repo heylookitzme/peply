@@ -10,7 +10,7 @@ export const igf1lr3: Compound = {
   summary:
     "Long-acting analog of IGF-1 with reduced IGFBP binding. Promotes muscle hyperplasia, protein synthesis, and glucose uptake. Monitor blood glucose closely due to insulin-like effects.",
   mechanism:
-    "Long-acting analog of IGF-1 with an extended N-terminal peptide (arginine substitution at position 3 + 13-amino-acid extension). Reduced binding to IGF binding proteins (IGFBPs) results in longer half-life and greater bioavailability. Promotes muscle hyperplasia, protein synthesis, and glucose uptake in muscle tissue.",
+    "Long-acting analog of IGF-1 with an extended N-terminal peptide (arginine substitution at position 3 + 13-amino-acid extension). Reduced binding to IGF binding proteins (IGFBPs) results in longer half-life and greater bioavailability. Promotes muscle hyperplasia, protein synthesis, and glucose uptake in muscle tissue. Caution: can cause hypoglycemia. Monitor blood glucose closely.",
   halfLife: "Approximately 20-30 hours (vs. 10-15 minutes for native IGF-1)",
   manufacturer: "Research peptide (multiple suppliers)",
   defaultRoute: "subcutaneous",

@@ -10,7 +10,7 @@ export const dsip: Compound = {
   summary:
     "Nonapeptide researched for sleep architecture modulation and stress-related cortisol regulation. Not FDA-approved for any indication.",
   mechanism:
-    "Nonapeptide that modulates sleep architecture. Acts on multiple targets including GABA-A receptors, serotonergic pathways, and cortisol regulation. Promotes delta-wave sleep onset without causing sedation.",
+    "Nonapeptide known for modulating sleep architecture and promoting delta-wave sleep. Acts on multiple targets including GABA-A receptors, serotonergic pathways, and cortisol regulation without causing sedation.",
   halfLife: "Approximately 15-25 minutes",
   manufacturer: "Research peptide (multiple suppliers)",
   defaultRoute: "subcutaneous",

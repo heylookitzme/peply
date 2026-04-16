@@ -60,7 +60,7 @@ export const fiveAmino1mq: Compound = {
       "Research compound (small molecule, not on FDA peptide category lists)",
     lastUpdated: "2026-02-27",
     sourcingNote:
-      "Not FDA-approved. Small molecule NNMT inhibitor, not classified as a peptide. Not subject to FDA Cat 1/Cat 2 peptide restrictions.",
+      "Not FDA-approved. Small molecule NNMT inhibitor, not classified as a peptide. Not subject to FDA Cat 1/Cat 2 peptide restrictions. Oral administration (50-150 mg daily) is the more common route in research settings.",
   },
   citations: [
     {

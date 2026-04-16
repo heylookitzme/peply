@@ -65,8 +65,8 @@ export const tb500: Compound = {
   citations: [
     {
       id: "tb4-review",
-      label: "Goldstein 2012",
-      title: "Thymosin Beta-4: A Multi-Functional Regenerative Peptide",
+      label: "Goldstein 2012 (Biology Review)",
+      title: "Thymosin Beta-4: A Multi-Functional Regenerative Peptide (biology review, not a dosing study)",
       source: "Expert Opinion on Biological Therapy, 12(1), 37-51",
       sourceUrl: "https://doi.org/10.1517/14712598.2012.697527",
       publishedAt: "2012-01-01",
