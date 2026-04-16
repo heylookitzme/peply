@@ -144,6 +144,7 @@ export default async function RootLayout({
                   Legal
                 </p>
                 <div className="flex flex-col gap-2">
+                  <Link href="/disclaimer" className="text-text-secondary hover:text-text transition-colors duration-150">Disclaimer</Link>
                   <Link href="/terms" className="text-text-secondary hover:text-text transition-colors duration-150">Terms</Link>
                   <Link href="/privacy" className="text-text-secondary hover:text-text transition-colors duration-150">Privacy</Link>
                   <Link href="/contact" className="text-text-secondary hover:text-text transition-colors duration-150">Contact</Link>

@@ -104,7 +104,7 @@ export default function HomePage(): React.ReactElement {
             Calculator, compound database, stack protocols, regulatory tracking,
             and community data — with zero vendor affiliations.
           </p>
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/calculator"
               className="inline-block rounded-lg bg-accent text-white px-8 py-3.5 text-[15px] font-medium hover:bg-accent-hover transition-colors duration-150"
