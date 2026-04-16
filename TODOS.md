@@ -105,10 +105,10 @@ Last updated: 2026-04-13
 
 ### Remaining
 
-- [ ] Responsive polish pass: 375px, 768px, 1440px
+- [x] Responsive polish pass: 375px, 768px, 1440px (v0.3.1.0 — hero CTA stacks on mobile, all layouts verified)
 - [ ] Accessibility audit (keyboard navigation, ARIA labels, contrast)
-- [ ] Add disclaimer page (`/disclaimer`) — directory exists but no implementation
-- [ ] Add SEO metadata for all pages
+- [x] Add disclaimer page (`/disclaimer`) with full legal content (v0.3.1.0)
+- [x] Add SEO metadata for all pages (v0.3.1.0 — stack calculator layout metadata added, all routes covered)
 - [ ] Run `/design-review` on final UI
 - [ ] Run `/benchmark` for performance baseline
 
