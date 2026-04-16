@@ -93,8 +93,8 @@ export default async function RootLayout({
         <meta name="google-site-verification" content="ASHCvXTC_CS11PY947F5xO3kMj2tVzLho9YzYMVmOME" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="icon" type="image/svg+xml" href="/icons/peply-logo.svg" />
-        <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon.png" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" />
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
         <script
           dangerouslySetInnerHTML={{
