@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 interface CalculatorPageProps {
-  searchParams: Promise<{ preset?: string }>;
+  searchParams: Promise<{ preset?: string; compound?: string }>;
 }
 
 async function loadPreset(
@@ -45,8 +45,9 @@ async function loadPreset(
 export default async function CalculatorPage({
   searchParams,
 }: CalculatorPageProps): Promise<React.ReactElement> {
-  const { preset } = await searchParams;
+  const { preset, compound } = await searchParams;
   const initialValues = preset ? await loadPreset(preset) : null;
+  const compoundSlug = !initialValues && compound ? compound : undefined;
 
   return (
     <div className="mx-auto max-w-[720px] px-6 py-12">
@@ -62,7 +63,11 @@ export default async function CalculatorPage({
         </p>
       )}
       <div className="mt-8">
-        <CalculatorForm initialValues={initialValues ?? undefined} />
+        <CalculatorForm
+          initialValues={
+            initialValues ?? (compoundSlug ? { compoundSlug } : undefined)
+          }
+        />
       </div>
 
       <div className="mt-12 flex items-center justify-center gap-6 text-[13px]">

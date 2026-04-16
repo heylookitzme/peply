@@ -6,7 +6,7 @@ import { CompoundFilters } from "@/components/compounds/CompoundFilters";
 export const metadata: Metadata = {
   title: "Compounds",
   description:
-    "21 peptide compounds with published dose ranges, titration protocols, and FDA regulatory status. BPC-157, semaglutide, tirzepatide, and more.",
+    "24 peptide compounds with published dose ranges, titration protocols, and FDA regulatory status. BPC-157, semaglutide, tirzepatide, and more.",
 };
 
 export default function CompoundsPage(): React.ReactElement {
