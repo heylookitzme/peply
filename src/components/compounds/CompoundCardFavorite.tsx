@@ -3,12 +3,18 @@
 import { useCallback, useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthProvider";
-import { getProfile, toggleFavorite } from "@/lib/preferences/queries";
+import {
+  type FavoriteKind,
+  getProfile,
+  toggleFavorite,
+} from "@/lib/preferences/queries";
 
 export function CompoundCardFavorite({
   slug,
+  kind = "compound",
 }: {
   slug: string;
+  kind?: FavoriteKind;
 }): React.ReactElement {
   const { user, loading } = useAuth();
   const [favorited, setFavorited] = useState(false);
@@ -23,13 +29,15 @@ export function CompoundCardFavorite({
     getProfile(user.id)
       .then((p) => {
         if (cancelled) return;
-        setFavorited(p.favorite_compounds.includes(slug));
+        const arr =
+          kind === "compound" ? p.favorite_compounds : p.favorite_stacks;
+        setFavorited(arr.includes(slug));
       })
       .catch(() => {});
     return () => {
       cancelled = true;
     };
-  }, [user, slug]);
+  }, [user, slug, kind]);
 
   const handleClick = useCallback(
     async (e: React.MouseEvent) => {
@@ -38,13 +46,13 @@ export function CompoundCardFavorite({
       if (!user) return;
       setBusy(true);
       try {
-        const next = await toggleFavorite(user.id, "compound", slug);
+        const next = await toggleFavorite(user.id, kind, slug);
         setFavorited(next.includes(slug));
       } finally {
         setBusy(false);
       }
     },
-    [user, slug],
+    [user, kind, slug],
   );
 
   const tooltip = !user
