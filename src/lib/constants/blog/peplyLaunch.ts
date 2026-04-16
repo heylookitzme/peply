@@ -2,7 +2,7 @@ import type { BlogPost } from "@/types/blog";
 
 export const peplyLaunch: BlogPost = {
   slug: "introducing-peply",
-  title: "Introducing Peply — A Neutral Peptide Reference Tool",
+  title: "Introducing Peply: A Neutral Peptide Reference Tool",
   description:
     "Peply is a vendor-independent reconstitution calculator and reference layer for peptide and injectable medication data. 24 compounds, 5 stacks, regulatory tracking, zero vendor affiliations.",
   category: "announcement",
@@ -27,12 +27,12 @@ Everything is built on published clinical data. Every non-arithmetic claim has a
 - [Stack calculator](/calculator/stacks) that walks through multi-compound protocols one compound at a time.
 - [Cost calculator](/calculator/cost) for estimating a protocol's monthly and per-dose spend.
 - [24 compounds](/compounds) spanning GLP-1 agonists, growth hormone secretagogues, neuropeptides, and metabolic compounds.
-- [5 stacks](/stacks) — community-derived combination protocols with rationale and evidence disclaimers.
+- [5 stacks](/stacks), community-derived combination protocols with rationale and evidence disclaimers.
 - [Regulatory tracker](/regulatory) for FDA Category 2 status and reclassification timelines.
 
 ## Who it's for
 
-Peply is built for informed adults who already understand what they're doing and want the math to be correct: biohackers, GLP-1 patients running their own titration, TRT/HRT patients on compounded prescriptions, athletes working with recovery peptides. It's also useful for healthcare providers who want a neutral reference that isn't tied to a vendor.
+Peply is built for informed adults who already understand what they're doing and want the math to be correct. That includes biohackers, GLP-1 patients running their own titration, TRT/HRT patients on compounded prescriptions, and athletes working with recovery peptides. It is also useful for healthcare providers who want a neutral reference that is not tied to a vendor.
 
 ## What Peply is not
 
@@ -48,7 +48,7 @@ This part matters, so it gets its own section. Peply is **not**:
 Two additions rolled in alongside the launch:
 
 - **User accounts** (optional, magic-link or Google sign-in). Accounts only store preferences: a display name, favorite compounds, favorite stacks, and saved calculator presets. No health data, no dosing history, no injection logs. Ever.
-- **Feedback board** at [/feedback](/feedback) — a one-way submission form for feature requests, new compound requests, bug reports, and general feedback. Submissions go to the product team, not to other users.
+- **Feedback board** at [/feedback](/feedback), a one-way submission form for feature requests, new compound requests, bug reports, and general feedback. Submissions go to the product team, not to other users.
 
 Both are additive. The calculator, compound pages, and stacks all work anonymously.
 
@@ -57,7 +57,7 @@ Both are additive. The calculator, compound pages, and stacks all work anonymous
 - Try the [reconstitution calculator](/calculator).
 - Browse the [compound library](/compounds).
 - Review the [regulatory tracker](/regulatory) for current FDA status.
-- Send us a [suggestion](/feedback) — we read every one.
+- Send us a [suggestion](/feedback). We read every one.
 
-Peply is early. We'll ship improvements based on what people actually need, not what looks good in a roadmap slide.`,
+Peply is early. We will ship improvements based on what people actually need, not what looks good in a roadmap slide.`,
 };
