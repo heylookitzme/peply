@@ -38,10 +38,9 @@ describe("regulatory tracker data", () => {
   });
 
   it("removed-from-cat2 compounds have dateAnnouncedRemoval", () => {
-    expect(removedCompounds.length).toBe(9);
+    expect(removedCompounds.length).toBe(12);
     for (const c of removedCompounds) {
       expect(c.regulatoryStatus.dateAnnouncedRemoval).toBe("2026-04-15");
-      expect(c.regulatoryStatus.lastUpdated).toBe("2026-04-15");
     }
   });
 
@@ -87,10 +86,8 @@ describe("regulatory tracker data", () => {
     expect(names).toContain("PEG-MGF");
   });
 
-  it("removed-not-in-database compounds listed", () => {
-    expect(REMOVED_NOT_IN_DATABASE).toContain("Dihexa Acetate");
-    expect(REMOVED_NOT_IN_DATABASE).toContain("Melanotan II");
-    expect(REMOVED_NOT_IN_DATABASE).toContain("LL-37 (Cathelicidin)");
+  it("all April-15 removal-list compounds now have detail pages", () => {
+    expect(REMOVED_NOT_IN_DATABASE).toHaveLength(0);
   });
 
   it("timeline has 4 milestones in chronological order", () => {

@@ -55,8 +55,4 @@ export const REMAINING_RESTRICTED: readonly RestrictedOnlyCompound[] = [
 ] as const;
 
 /** Compounds in the April 15 removal announcement that are not in the Peply database. */
-export const REMOVED_NOT_IN_DATABASE: readonly string[] = [
-  "Dihexa Acetate",
-  "Melanotan II",
-  "LL-37 (Cathelicidin)",
-] as const;
+export const REMOVED_NOT_IN_DATABASE: readonly string[] = [] as const;

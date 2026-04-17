@@ -11,8 +11,8 @@ import {
 import type { Compound } from "@/types/content";
 
 describe("compound data integrity", () => {
-  it("exports 24 compounds in the COMPOUNDS array", () => {
-    expect(COMPOUNDS).toHaveLength(24);
+  it("exports 27 compounds in the COMPOUNDS array", () => {
+    expect(COMPOUNDS).toHaveLength(27);
   });
 
   it("all compounds have unique ids", () => {
@@ -216,6 +216,50 @@ describe("regulatory status consistency", () => {
   });
 });
 
+describe("April 15, 2026 FDA removal additions", () => {
+  it("Dihexa Acetate is in the database with c-Met mechanism", () => {
+    const dihexa = getCompoundBySlug("dihexa-acetate");
+    expect(dihexa).toBeDefined();
+    expect(dihexa!.name).toBe("Dihexa Acetate");
+    expect(dihexa!.category).toBe("neuropeptide");
+    expect(dihexa!.mechanism).toContain("c-Met");
+    expect(dihexa!.regulatoryStatus.reclassificationStatus).toBe(
+      "removed-from-cat2",
+    );
+    expect(dihexa!.regulatoryStatus.dateAnnouncedRemoval).toBe("2026-04-15");
+  });
+
+  it("Melanotan II is in the database with melanocortin mechanism", () => {
+    const mt2 = getCompoundBySlug("melanotan-ii");
+    expect(mt2).toBeDefined();
+    expect(mt2!.name).toBe("Melanotan II");
+    expect(mt2!.mechanism).toContain("melanocortin");
+    expect(mt2!.regulatoryStatus.reclassificationStatus).toBe(
+      "removed-from-cat2",
+    );
+    expect(mt2!.regulatoryStatus.dateAnnouncedRemoval).toBe("2026-04-15");
+  });
+
+  it("LL-37 is in the database as cathelicidin antimicrobial peptide", () => {
+    const ll = getCompoundBySlug("ll-37");
+    expect(ll).toBeDefined();
+    expect(ll!.name).toBe("LL-37");
+    expect(ll!.category).toBe("longevity-immune");
+    expect(ll!.mechanism).toContain("cathelicidin");
+    expect(ll!.regulatoryStatus.reclassificationStatus).toBe(
+      "removed-from-cat2",
+    );
+    expect(ll!.regulatoryStatus.dateAnnouncedRemoval).toBe("2026-04-15");
+  });
+
+  it("all 12 April-15 compounds are in the database", () => {
+    const removed = COMPOUNDS.filter(
+      (c) => c.regulatoryStatus.dateAnnouncedRemoval === "2026-04-15",
+    );
+    expect(removed.length).toBe(12);
+  });
+});
+
 describe("data corrections (audit-verified)", () => {
   it("BPC-157 half-life is 15-30 minutes, not 4 hours", () => {
     const bpc = getCompoundBySlug("bpc-157");
@@ -247,7 +291,7 @@ describe("data corrections (audit-verified)", () => {
 describe("dosing evidence disclaimers", () => {
   it("all research compounds have dosingEvidence field", () => {
     const research = COMPOUNDS.filter((c) => c.approvalStatus === "research");
-    expect(research.length).toBe(18);
+    expect(research.length).toBe(21);
     for (const c of research) {
       expect(c.dosingEvidence).toBeDefined();
       expect(["preclinical", "limited-human"]).toContain(c.dosingEvidence);
@@ -259,7 +303,7 @@ describe("dosing evidence disclaimers", () => {
     const preclinical = COMPOUNDS.filter(
       (c) => c.dosingEvidence === "preclinical",
     );
-    expect(preclinical.length).toBe(10);
+    expect(preclinical.length).toBe(12);
     for (const c of preclinical) {
       expect(c.dosingEvidenceNote).toBeTruthy();
     }
@@ -269,7 +313,7 @@ describe("dosing evidence disclaimers", () => {
     const limited = COMPOUNDS.filter(
       (c) => c.dosingEvidence === "limited-human",
     );
-    expect(limited.length).toBe(9);
+    expect(limited.length).toBe(10);
     for (const c of limited) {
       expect(c.dosingEvidenceNote).toContain("small human studies");
     }

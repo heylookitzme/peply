@@ -4,7 +4,7 @@ export const peplyLaunch: BlogPost = {
   slug: "introducing-peply",
   title: "Introducing Peply: A Neutral Peptide Reference Tool",
   description:
-    "Peply is a vendor-independent reconstitution calculator and reference layer for peptide and injectable medication data. 24 compounds, 5 stacks, regulatory tracking, zero vendor affiliations.",
+    "Peply is a vendor-independent reconstitution calculator and reference layer for peptide and injectable medication data. 27 compounds, 5 stacks, regulatory tracking, zero vendor affiliations.",
   category: "announcement",
   publishedAt: "2026-04-14",
   author: "Peply Team",
@@ -17,7 +17,7 @@ export const peplyLaunch: BlogPost = {
 At its core, Peply is two things:
 
 - A **universal reconstitution calculator** that takes a vial strength, diluent volume, target dose, and syringe type, and returns concentration, draw volume, and syringe units.
-- A **curated reference layer** of 24 peptide compounds with published dose ranges, regulatory status, titration protocols, and citations back to primary sources.
+- A **curated reference layer** of 27 peptide compounds with published dose ranges, regulatory status, titration protocols, and citations back to primary sources.
 
 Everything is built on published clinical data. Every non-arithmetic claim has a citation with a \`lastReviewedAt\` date. Compounds that are investigational or restricted are labelled as such, not laundered into something that reads like FDA approval.
 
@@ -26,7 +26,7 @@ Everything is built on published clinical data. Every non-arithmetic claim has a
 - [Reconstitution calculator](/calculator) with smart warnings for low-accuracy draws, syringe overflow, and awkward dilutions.
 - [Stack calculator](/calculator/stacks) that walks through multi-compound protocols one compound at a time.
 - [Cost calculator](/calculator/cost) for estimating a protocol's monthly and per-dose spend.
-- [24 compounds](/compounds) spanning GLP-1 agonists, growth hormone secretagogues, neuropeptides, and metabolic compounds.
+- [27 compounds](/compounds) spanning GLP-1 agonists, growth hormone secretagogues, neuropeptides, and metabolic compounds.
 - [5 stacks](/stacks), community-derived combination protocols with rationale and evidence disclaimers.
 - [Regulatory tracker](/regulatory) for FDA Category 2 status and reclassification timelines.
 

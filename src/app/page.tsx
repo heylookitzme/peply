@@ -20,7 +20,7 @@ const FEATURES = [
     icon: Beaker,
   },
   {
-    title: "24 Compounds",
+    title: "27 Compounds",
     description:
       "Published dose ranges, titration protocols, mechanisms, and citations from FDA labels, NEJM trials, and peer-reviewed research. Not vendor marketing copy.",
     href: "/compounds",
@@ -62,7 +62,7 @@ const FEATURES = [
 ] as const;
 
 const STATS = [
-  "24 compounds",
+  "27 compounds",
   "5 protocols",
   "Published clinical data",
   "Community-driven",

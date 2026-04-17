@@ -40,6 +40,11 @@ import { fiveAmino1mq } from "./fiveAmino1mq";
 // Additional Growth & Recovery
 import { igf1lr3 } from "./igf1lr3";
 
+// April 15, 2026 FDA removal additions
+import { dihexaAcetate } from "./dihexaAcetate";
+import { melanotanIi } from "./melanotanIi";
+import { ll37 } from "./ll37";
+
 export const COMPOUNDS: readonly Compound[] = [
   semaglutide,
   tirzepatide,
@@ -67,6 +72,10 @@ export const COMPOUNDS: readonly Compound[] = [
   fiveAmino1mq,
   // Additional Growth & Recovery
   igf1lr3,
+  // April 15, 2026 FDA removal additions
+  dihexaAcetate,
+  melanotanIi,
+  ll37,
 ] as const;
 
 export function getCompoundBySlug(slug: string): Compound | undefined {
@@ -102,4 +111,7 @@ export {
   kisspeptin10,
   fiveAmino1mq,
   igf1lr3,
+  dihexaAcetate,
+  melanotanIi,
+  ll37,
 };
