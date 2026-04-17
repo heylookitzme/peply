@@ -3,7 +3,7 @@ import type { Compound } from "@/types/content";
 export const cjc1295nodac: Compound = {
   id: "cjc-1295-no-dac",
   slug: "cjc-1295-no-dac",
-  name: "CJC-1295 (no DAC) / Modified GRF 1-29",
+  name: "CJC-1295 (no DAC)",
   aliases: ["Modified GRF 1-29", "Mod GRF 1-29", "CJC-1295 without DAC"],
   category: "gh-secretagogue",
   approvalStatus: "research",

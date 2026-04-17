@@ -3,7 +3,7 @@ import type { Compound } from "@/types/content";
 export const dsip: Compound = {
   id: "dsip",
   slug: "dsip",
-  name: "DSIP (Delta Sleep-Inducing Peptide / Emideltide)",
+  name: "DSIP (Emideltide)",
   aliases: ["Delta Sleep-Inducing Peptide", "Emideltide"],
   category: "neuropeptide",
   approvalStatus: "research",

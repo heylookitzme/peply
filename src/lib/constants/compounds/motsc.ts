@@ -3,8 +3,12 @@ import type { Compound } from "@/types/content";
 export const motsc: Compound = {
   id: "mots-c",
   slug: "mots-c",
-  name: "MOTS-C (Mitochondrial ORF of the 12S rRNA Type-C)",
-  aliases: ["Mitochondrial-Derived Peptide MOTS-c"],
+  name: "MOTS-c",
+  aliases: [
+    "MOTS-C",
+    "Mitochondrial ORF of the 12S rRNA Type-C",
+    "Mitochondrial-Derived Peptide MOTS-c",
+  ],
   category: "longevity-immune",
   approvalStatus: "research",
   summary:
