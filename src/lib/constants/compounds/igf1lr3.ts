@@ -68,17 +68,7 @@ export const igf1lr3: Compound = {
       source: "Journal of Molecular Endocrinology, 8(1), 29-38",
       sourceUrl: "https://doi.org/10.1677/jme.0.0080029",
       publishedAt: "1992-02-01",
-      lastReviewedAt: "2026-04-12",
-    },
-    {
-      id: "igf1lr3-tomas",
-      label: "Tomas 1998",
-      title:
-        "Anabolic Effects of IGF-1 and Long R3 IGF-1 in Animal Models",
-      source: "Growth Hormone & IGF Research, 8(S2), 123-127",
-      sourceUrl: "https://doi.org/10.1016/S1096-6374(98)80038-X",
-      publishedAt: "1998-04-01",
-      lastReviewedAt: "2026-04-12",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };

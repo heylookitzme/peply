@@ -33,8 +33,8 @@ export const ghkcu: Compound = {
     {
       name: "Research Protocol",
       source:
-        "Pickart et al., International Journal of Molecular Sciences, 2012",
-      sourceUrl: "https://doi.org/10.3390/ijms131216324",
+        "Pickart & Margolina, Oxidative Medicine and Cellular Longevity, 2012",
+      sourceUrl: "https://doi.org/10.1155/2012/324832",
       steps: [
         {
           dose: 1,
@@ -61,12 +61,12 @@ export const ghkcu: Compound = {
       id: "ghkcu-review",
       label: "Pickart 2012",
       title:
-        "The Human Tripeptide GHK-Cu in Remodeling and Regeneration",
+        "The Human Tripeptide GHK-Cu in Prevention of Oxidative Stress and Degenerative Conditions of Aging: Implications for Cognitive Health",
       source:
-        "International Journal of Molecular Sciences, 13(12), 16324-16346",
-      sourceUrl: "https://doi.org/10.3390/ijms131216324",
-      publishedAt: "2012-12-01",
-      lastReviewedAt: "2026-02-27",
+        "Oxidative Medicine and Cellular Longevity, 2012, 324832",
+      sourceUrl: "https://doi.org/10.1155/2012/324832",
+      publishedAt: "2012-01-01",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };

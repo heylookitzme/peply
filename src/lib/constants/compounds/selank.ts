@@ -34,8 +34,8 @@ export const selank: Compound = {
     {
       name: "Research Protocol",
       source:
-        "Zozulya et al., Bulletin of Experimental Biology and Medicine, 2008",
-      sourceUrl: "https://doi.org/10.1007/s10517-008-0006-0",
+        "Zozulya et al., Zh Nevrol Psikhiatr Im S S Korsakova, 2008 (PMID 18454096)",
+      sourceUrl: "https://pubmed.ncbi.nlm.nih.gov/18454096/",
       steps: [
         {
           dose: 300,
@@ -60,12 +60,13 @@ export const selank: Compound = {
     {
       id: "selank-gaba",
       label: "Zozulya 2008",
-      title: "Selank: A Novel Anxiolytic Peptide",
+      title:
+        "Efficacy and Possible Mechanisms of Action of a New Peptide Anxiolytic Selank in the Therapy of Generalized Anxiety Disorders and Neurasthenia",
       source:
-        "Bulletin of Experimental Biology and Medicine, 145(2), 225-227",
-      sourceUrl: "https://doi.org/10.1007/s10517-008-0006-0",
-      publishedAt: "2008-02-01",
-      lastReviewedAt: "2026-02-27",
+        "Zh Nevrol Psikhiatr Im S S Korsakova, 108(4), 38-48 (Russian) — PMID 18454096",
+      sourceUrl: "https://pubmed.ncbi.nlm.nih.gov/18454096/",
+      publishedAt: "2008-04-01",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };

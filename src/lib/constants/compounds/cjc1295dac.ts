@@ -33,7 +33,7 @@ export const cjc1295dac: Compound = {
     {
       name: "Research Protocol",
       source: "Teichman et al., Journal of Clinical Endocrinology & Metabolism, 2006",
-      sourceUrl: "https://doi.org/10.1210/jc.2005-2664",
+      sourceUrl: "https://doi.org/10.1210/jc.2005-1536",
       steps: [
         {
           dose: 2,
@@ -59,11 +59,11 @@ export const cjc1295dac: Compound = {
       id: "cjc-dac-pk",
       label: "Teichman 2006",
       title:
-        "Prolonged Stimulation of Growth Hormone and IGF-I After Single Subcutaneous Administration of CJC-1295",
+        "Prolonged Stimulation of Growth Hormone (GH) and Insulin-Like Growth Factor I Secretion by CJC-1295, a Long-Acting Analog of GH-Releasing Hormone, in Healthy Adults",
       source: "Journal of Clinical Endocrinology & Metabolism, 91(3), 799-805",
-      sourceUrl: "https://doi.org/10.1210/jc.2005-2664",
+      sourceUrl: "https://doi.org/10.1210/jc.2005-1536",
       publishedAt: "2006-03-01",
-      lastReviewedAt: "2026-02-27",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };

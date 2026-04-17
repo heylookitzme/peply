@@ -35,7 +35,7 @@ export const epitalon: Compound = {
       name: "Research Cycling Protocol",
       source:
         "Khavinson et al., Bulletin of Experimental Biology and Medicine, 2003",
-      sourceUrl: "https://doi.org/10.1023/A:1024626105532",
+      sourceUrl: "https://doi.org/10.1023/A:1025493705728",
       steps: [
         {
           dose: 10,
@@ -65,9 +65,9 @@ export const epitalon: Compound = {
         "Epithalon Peptide Induces Telomerase Activity and Telomere Elongation in Human Somatic Cells",
       source:
         "Bulletin of Experimental Biology and Medicine, 135(6), 590-592",
-      sourceUrl: "https://doi.org/10.1023/A:1024626105532",
+      sourceUrl: "https://doi.org/10.1023/A:1025493705728",
       publishedAt: "2003-06-01",
-      lastReviewedAt: "2026-02-27",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };

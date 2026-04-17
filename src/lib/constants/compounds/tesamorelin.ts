@@ -28,8 +28,8 @@ export const tesamorelin: Compound = {
   titrationProtocols: [
     {
       name: "Egrifta SV Label Dosing",
-      source: "Egrifta SV (tesamorelin) prescribing information, Theratechnologies, 2019",
-      sourceUrl: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/022505s010lbl.pdf",
+      source: "Egrifta SV (tesamorelin) prescribing information, Theratechnologies, 2025 (supplement s020)",
+      sourceUrl: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf",
       steps: [
         { dose: 2, unit: "mg", durationWeeks: 0, notes: "Fixed daily dose, no titration required" },
       ],
@@ -49,9 +49,9 @@ export const tesamorelin: Compound = {
       label: "Egrifta SV PI",
       title: "Egrifta SV (tesamorelin for injection) - Prescribing Information",
       source: "FDA / Theratechnologies",
-      sourceUrl: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/022505s010lbl.pdf",
-      publishedAt: "2019-11-01",
-      lastReviewedAt: "2024-01-01",
+      sourceUrl: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf",
+      publishedAt: "2025-01-01",
+      lastReviewedAt: "2026-04-16",
     },
     {
       id: "tesa-visceral-fat",
@@ -60,7 +60,7 @@ export const tesamorelin: Compound = {
       source: "Journal of Clinical Endocrinology & Metabolism, 95(9), 4291-4304",
       sourceUrl: "https://doi.org/10.1210/jc.2010-0285",
       publishedAt: "2010-09-01",
-      lastReviewedAt: "2024-01-01",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };

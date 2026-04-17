@@ -32,8 +32,8 @@ export const dsip: Compound = {
   titrationProtocols: [
     {
       name: "Research Protocol",
-      source: "Kovalzon & Strekalova, Peptides, 2006",
-      sourceUrl: "https://doi.org/10.1016/j.peptides.2005.10.020",
+      source: "Kovalzon & Strekalova, Journal of Neurochemistry, 2006",
+      sourceUrl: "https://doi.org/10.1111/j.1471-4159.2006.03693.x",
       steps: [
         {
           dose: 100,
@@ -59,11 +59,12 @@ export const dsip: Compound = {
     {
       id: "dsip-sleep",
       label: "Kovalzon 2006",
-      title: "Delta Sleep-Inducing Peptide: An Update",
-      source: "Peptides, 27(6), 1455-1461",
-      sourceUrl: "https://doi.org/10.1016/j.peptides.2005.10.020",
-      publishedAt: "2006-06-01",
-      lastReviewedAt: "2026-02-27",
+      title:
+        "Delta Sleep-Inducing Peptide (DSIP): A Still Unresolved Riddle",
+      source: "Journal of Neurochemistry, 97(2), 303-309",
+      sourceUrl: "https://doi.org/10.1111/j.1471-4159.2006.03693.x",
+      publishedAt: "2006-04-01",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };

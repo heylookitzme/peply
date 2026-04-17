@@ -33,8 +33,8 @@ export const semax: Compound = {
   titrationProtocols: [
     {
       name: "Research Protocol",
-      source: "Ashmarin et al., Doklady Biological Sciences, 2005",
-      sourceUrl: "https://doi.org/10.1007/s10630-005-0008-4",
+      source: "Dolotov et al., Brain Research, 2006",
+      sourceUrl: "https://doi.org/10.1016/j.brainres.2006.07.108",
       steps: [
         {
           dose: 300,
@@ -59,13 +59,13 @@ export const semax: Compound = {
   citations: [
     {
       id: "semax-bdnf",
-      label: "Ashmarin 2005",
+      label: "Dolotov 2006",
       title:
-        "ACTH/MSH-like Peptide Semax: Mechanisms of Action and Clinical Applications",
-      source: "Doklady Biological Sciences, 402(1), 195-197",
-      sourceUrl: "https://doi.org/10.1007/s10630-005-0008-4",
-      publishedAt: "2005-01-01",
-      lastReviewedAt: "2026-02-27",
+        "Semax, an Analog of ACTH(4-10) with Cognitive Effects, Regulates BDNF and trkB Expression in the Rat Hippocampus",
+      source: "Brain Research, 1170, 35-42",
+      sourceUrl: "https://doi.org/10.1016/j.brainres.2006.07.108",
+      publishedAt: "2006-09-01",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };

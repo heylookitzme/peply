@@ -32,8 +32,9 @@ export const cjc1295nodac: Compound = {
   titrationProtocols: [
     {
       name: "Research Protocol",
-      source: "Ionescu & Bhayani, Growth Hormone & IGF Research, 2006",
-      sourceUrl: "https://doi.org/10.1016/j.ghir.2006.07.001",
+      source:
+        "Ionescu & Frohman, Journal of Clinical Endocrinology & Metabolism, 2006",
+      sourceUrl: "https://doi.org/10.1210/jc.2006-1702",
       steps: [
         {
           dose: 100,
@@ -58,11 +59,13 @@ export const cjc1295nodac: Compound = {
     {
       id: "cjc-nodac-study",
       label: "Ionescu 2006",
-      title: "CJC-1295, A Long-Acting GHRH Analog",
-      source: "Growth Hormone & IGF Research, 16(S1), S62",
-      sourceUrl: "https://doi.org/10.1016/j.ghir.2006.07.001",
-      publishedAt: "2006-07-01",
-      lastReviewedAt: "2026-02-27",
+      title:
+        "Pulsatile Secretion of Growth Hormone (GH) Persists during Continuous Stimulation by CJC-1295, a Long-Acting GH-Releasing Hormone Analog",
+      source:
+        "Journal of Clinical Endocrinology & Metabolism, 91(12), 4792-4797",
+      sourceUrl: "https://doi.org/10.1210/jc.2006-1702",
+      publishedAt: "2006-12-01",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };

@@ -33,7 +33,7 @@ export const bpc157: Compound = {
     {
       name: "Research Dosing Protocol",
       source: "Sikiric et al., Current Pharmaceutical Design, 2018",
-      sourceUrl: "https://doi.org/10.2174/1381612824666180713101408",
+      sourceUrl: "https://doi.org/10.2174/1381612824666180608101119",
       steps: [
         {
           dose: 250,
@@ -59,11 +59,12 @@ export const bpc157: Compound = {
     {
       id: "bpc157-review",
       label: "Sikiric 2018 Review",
-      title: "Stable Gastric Pentadecapeptide BPC 157: Novel Therapy",
-      source: "Current Pharmaceutical Design, 24(18), 2012-2032",
-      sourceUrl: "https://doi.org/10.2174/1381612824666180713101408",
+      title:
+        "Novel Cytoprotective Mediator, Stable Gastric Pentadecapeptide BPC 157: Vascular Recruitment and Gastrointestinal Tract Healing",
+      source: "Current Pharmaceutical Design, 24(18), 1990-2001",
+      sourceUrl: "https://doi.org/10.2174/1381612824666180608101119",
       publishedAt: "2018-01-01",
-      lastReviewedAt: "2026-02-27",
+      lastReviewedAt: "2026-04-16",
     },
   ],
 };
